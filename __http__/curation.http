@@ -1,0 +1,19 @@
+GET http://localhost:3000/styles
+
+
+###
+
+
+POST http://localhost:3000/styles
+
+
+###
+
+
+PUT http://localhost:3000/styles/1
+
+
+###
+
+
+DELETE http://localhost:3000/styles/1

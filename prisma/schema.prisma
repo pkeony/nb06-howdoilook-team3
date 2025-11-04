@@ -1,0 +1,101 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum CategoryType {
+  top
+  bottom
+  outer
+  dress
+  shoes
+  bag
+  accessory
+}
+
+model Styles {
+  id            Int        @id @default(autoincrement())
+  nickname      String
+  title         String
+  content       String
+  password      String
+  viewCount     Int?
+  curationCount Int?
+  categories    Category[]
+  curation      Curation[]
+  tags          Tags[]
+  images        Images[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+model Images {
+  id        Int      @id @default(autoincrement())
+  isPrimary Boolean
+  url       String
+  styles    Styles   @relation(fields: [stylesId], references: [id], onDelete: Cascade)
+  stylesId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//tag숫자는 필드도 되지만 쿼리활용 가능
+//이미지를 별도 model로 만드는것도 방법
+model Tags {
+  id        Int      @id @default(autoincrement())
+  name      String
+  styles    Styles   @relation(fields: [stylesId], references: [id], onDelete: Cascade)
+  stylesId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id        Int          @id @default(autoincrement())
+  type      CategoryType
+  name      String
+  brand     String
+  price     Float
+  style     Styles?      @relation(fields: [styleId], references: [id], onDelete: Cascade)
+  styleId   Int
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model Curation {
+  id                Int      @id @default(autoincrement())
+  nickname          String
+  content           String
+  password          String
+  trendy            Int
+  personality       Int
+  practicality      Int
+  costEffectiveness Int
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  styles            Styles   @relation(fields: [stylesId], references: [id], onDelete: Cascade)
+  stylesId          Int
+  Comment           Comment?
+}
+
+model Comment {
+  id         Int      @id @default(autoincrement())
+  content    String
+  password   String //style참조 ->password와 nickname req바디에 줘야
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  curations  Curation @relation(fields: [curationId], references: [id], onDelete: Cascade)
+  curationId Int      @unique
+}
+
+//password 값을 같은지 확인 -> curation 타고가서 styles 비밀번호 확인
