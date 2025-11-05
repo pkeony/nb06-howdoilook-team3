@@ -1,6 +1,6 @@
 import * as s from 'superstruct';
 
-const Url = define('Url', (value) => {
+const Url = s.define('Url', (value) => {
   try {
     new URL(value);
     return true;
