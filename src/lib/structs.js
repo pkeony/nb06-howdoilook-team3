@@ -1,6 +1,4 @@
-import { createContext } from 'react';
 import * as s from 'superstruct';
-import { define } from 'superstruct';
 
 const Url = define('Url', (value) => {
   try {
@@ -11,7 +9,7 @@ const Url = define('Url', (value) => {
   }
 });
 
-const Password = refine(string(), 'Password', (value) => {
+const Password = s.refine(s.string(), 'Password', (value) => {
   const lengthOk = value.length >= 8 && value.length <= 16;
   const hasLetter = /[a-zA-Z]/.test(value);
   const hasNumber = /\d/.test(value);
