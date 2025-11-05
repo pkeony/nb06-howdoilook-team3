@@ -41,19 +41,23 @@ export async function getStylesList(req, res) {
     include: {
       images: {
         where: { isPrimary: true },
-        select: { url: true },
+        //select: { url: true },
       },
       tags: true,
       curation: true,
       updatedAt: false,
     },
   });
-  res.status(200).send(styles);
+  if (styles.length) {
+    res.status(200).send(styles);
+  } else {
+    res.status(200).send('Not found.');
+  }
 }
 
 export async function getStyles(req, res) {
   const id = Number(req.params.id);
-  const style = await prisma.styles.findFirstOrThrow({
+  const style = await prisma.styles.findUniqueOrThrow({
     where: { id },
     include: {
       //images: { select: { url: true } },
