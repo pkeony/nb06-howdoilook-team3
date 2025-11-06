@@ -1,10 +1,8 @@
 // =========================
 // Styles: 13개
 // =========================
-
 export const Styles = [
   {
-    id: 1,
     nickname: 'keony',
     title: '미니멀 오피스룩',
     content: '화이트 셔츠와 블랙 슬랙스로 구성된 깔끔한 출근룩.',
@@ -17,7 +15,6 @@ export const Styles = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 2,
     nickname: 'sora',
     title: '봄 데일리 캐주얼',
     content: '가벼운 자켓과 청바지로 완성한 캐주얼 봄 코디.',
@@ -30,7 +27,6 @@ export const Styles = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 3,
     nickname: 'minsu',
     title: '겨울 감성룩',
     content: '코트와 머플러로 따뜻한 분위기의 감성 스타일.',
@@ -43,7 +39,6 @@ export const Styles = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 4,
     nickname: 'yuna',
     title: '여름 스트릿룩',
     content: '와이드팬츠와 크롭티로 시원한 스트릿 무드 완성.',
@@ -56,7 +51,6 @@ export const Styles = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 5,
     nickname: 'taeyang',
     title: '가을 데이트룩',
     content: '브라운 가디건과 데님으로 따뜻한 데이트 감성.',
@@ -69,7 +63,6 @@ export const Styles = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 6,
     nickname: 'minji',
     title: '가을 캐주얼 데일리룩',
     content: '부드러운 가디건과 데님 팬츠로 완성한 따뜻한 데일리룩.',
@@ -82,7 +75,6 @@ export const Styles = [
     updatedAt: '2025-10-03T09:30:00Z',
   },
   {
-    id: 7,
     nickname: 'soobin',
     title: '오피스 미니멀룩',
     content: '화이트 셔츠와 블랙 슬랙스로 심플한 오피스룩.',
@@ -96,7 +88,6 @@ export const Styles = [
   },
   {
     //
-    id: 8,
     nickname: 'yuna',
     title: '편안한 주말 스트릿룩',
     content: '후드티와 조거팬츠로 완성한 캐주얼 스트릿 스타일.',
@@ -109,7 +100,6 @@ export const Styles = [
     updatedAt: '2025-10-06T10:10:00Z',
   },
   {
-    id: 9,
     nickname: 'hajin',
     title: '간절기 레이어드룩',
     content: '셔츠와 니트를 함께 매치해 포근하면서 세련된 간절기 코디.',
@@ -122,7 +112,6 @@ export const Styles = [
     updatedAt: '2025-10-07T11:00:00Z',
   },
   {
-    id: 10,
     nickname: 'eunho',
     title: '겨울 오버핏 코트룩',
     content: '롱코트와 머플러로 완성한 감성적인 겨울 스타일.',
@@ -135,7 +124,6 @@ export const Styles = [
     updatedAt: '2025-10-08T10:15:00Z',
   },
   {
-    id: 11,
     nickname: 'sora',
     title: '여름 린넨 셋업룩',
     content: '린넨 셔츠와 팬츠로 시원하게 연출한 썸머 셋업 스타일.',
@@ -148,7 +136,6 @@ export const Styles = [
     updatedAt: '2025-10-09T09:45:00Z',
   },
   {
-    id: 12,
     nickname: 'jimin',
     title: '하프집 맨투맨 캐주얼룩',
     content: '트레이닝 팬츠와 하프집 맨투맨으로 완성한 가벼운 캐주얼룩.',
@@ -161,7 +148,6 @@ export const Styles = [
     updatedAt: '2025-10-10T11:20:00Z',
   },
   {
-    id: 13,
     nickname: 'hyunwoo',
     title: '블랙앤화이트 모노톤룩',
     content: '깔끔한 대비감으로 포멀한 인상을 주는 모노톤 스타일.',
@@ -181,7 +167,6 @@ export const Styles = [
 // =========================
 export const Categories = [
   {
-    id: 1,
     type: 'TOP',
     name: '화이트 셔츠',
     brand: 'Uniqlo',
@@ -191,7 +176,6 @@ export const Categories = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 2,
     type: 'BOTTOM',
     name: '블랙 슬랙스',
     brand: 'Musinsa',
@@ -201,7 +185,6 @@ export const Categories = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 3,
     type: 'SHOES',
     name: '로퍼',
     brand: 'Dr.Martens',
@@ -211,7 +194,6 @@ export const Categories = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 4,
     type: 'TOP',
     name: '데님 자켓',
     brand: 'Zara',
@@ -221,7 +203,6 @@ export const Categories = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 5,
     type: 'BOTTOM',
     name: '라이트진',
     brand: 'Levi’s',
@@ -231,7 +212,6 @@ export const Categories = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 6,
     type: 'OUTER',
     name: '울 코트',
     brand: 'TNGT',
@@ -241,7 +221,6 @@ export const Categories = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 7,
     type: 'ACCESSORY',
     name: '머플러',
     brand: 'H&M',
@@ -251,7 +230,6 @@ export const Categories = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 8,
     type: 'TOP',
     name: '크롭티',
     brand: '8Seconds',
@@ -261,7 +239,6 @@ export const Categories = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 9,
     type: 'BOTTOM',
     name: '와이드팬츠',
     brand: 'Nike',
@@ -271,7 +248,6 @@ export const Categories = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 10,
     type: 'OUTER',
     name: '가디건',
     brand: 'Musinsa',
@@ -281,7 +257,6 @@ export const Categories = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 11,
     type: 'BOTTOM',
     name: '데님팬츠',
     brand: 'Zara',
@@ -291,7 +266,6 @@ export const Categories = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 12,
     type: 'TOP',
     name: '니트 가디건',
     brand: 'Musinsa Standard',
@@ -301,7 +275,6 @@ export const Categories = [
     updatedAt: '2025-10-03T09:50:00Z',
   },
   {
-    id: 13,
     type: 'BOTTOM',
     name: '데님 팬츠',
     brand: "Levi's",
@@ -311,7 +284,6 @@ export const Categories = [
     updatedAt: '2025-10-03T09:51:00Z',
   },
   {
-    id: 14,
     type: 'TOP',
     name: '화이트 셔츠',
     brand: 'Musinsa Standard',
@@ -321,7 +293,6 @@ export const Categories = [
     updatedAt: '2025-10-04T09:00:00Z',
   },
   {
-    id: 15,
     type: 'BOTTOM',
     name: '블랙 슬랙스',
     brand: 'Musinsa Standard',
@@ -331,7 +302,6 @@ export const Categories = [
     updatedAt: '2025-10-04T09:01:00Z',
   },
   {
-    id: 16,
     type: 'TOP',
     name: '후드티',
     brand: 'Musinsa Standard',
@@ -341,7 +311,6 @@ export const Categories = [
     updatedAt: '2025-10-06T10:30:00Z',
   },
   {
-    id: 17,
     type: 'BOTTOM',
     name: '조거팬츠',
     brand: 'Musinsa Standard',
@@ -351,7 +320,6 @@ export const Categories = [
     updatedAt: '2025-10-06T10:31:00Z',
   },
   {
-    id: 18,
     type: 'TOP',
     name: '브이넥 니트',
     brand: 'Musinsa Standard',
@@ -361,7 +329,6 @@ export const Categories = [
     updatedAt: '2025-10-07T11:20:00Z',
   },
   {
-    id: 19,
     type: 'OUTER',
     name: '울 블렌드 코트',
     brand: 'Musinsa Standard',
@@ -371,7 +338,6 @@ export const Categories = [
     updatedAt: '2025-10-08T10:30:00Z',
   },
   {
-    id: 20,
     type: 'TOP',
     name: '린넨 셔츠',
     brand: 'Musinsa Standard',
@@ -381,7 +347,6 @@ export const Categories = [
     updatedAt: '2025-10-09T10:00:00Z',
   },
   {
-    id: 21,
     type: 'TOP',
     name: '하프집 맨투맨',
     brand: 'Musinsa Standard',
@@ -391,7 +356,6 @@ export const Categories = [
     updatedAt: '2025-10-10T11:35:00Z',
   },
   {
-    id: 22,
     type: 'BOTTOM',
     name: '블랙 슬림 팬츠',
     brand: 'Musinsa Standard',
@@ -408,7 +372,6 @@ export const Categories = [
 // =========================
 export const Curations = [
   {
-    id: 1,
     nickname: 'curator_1',
     content: '깔끔한 오피스룩이에요.',
     password: 'cpwpwpwpw1',
@@ -421,7 +384,6 @@ export const Curations = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 2,
     nickname: 'curator_2',
     content: '출근용으로 딱입니다.',
     password: 'cpwpwpwpw2',
@@ -434,7 +396,6 @@ export const Curations = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 3,
     nickname: 'curator_3',
     content: '봄 느낌 물씬 나요.',
     password: 'cpwpwpwpw3',
@@ -447,7 +408,6 @@ export const Curations = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 4,
     nickname: 'curator_4',
     content: '따뜻하고 포근한 느낌!',
     password: 'cpwpwpwpw4',
@@ -460,7 +420,6 @@ export const Curations = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 5,
     nickname: 'curator_5',
     content: '스트릿 감성 좋아요.',
     password: 'cpwpwpwpw5',
@@ -473,7 +432,6 @@ export const Curations = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 6,
     nickname: 'curator_6',
     content: '가을 감성이 물씬 나네요.',
     password: 'cpwpwpwpw6',
@@ -486,7 +444,6 @@ export const Curations = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 7,
     nickname: 'minji',
     content: '톤온톤 조합이 부드럽고 따뜻한 느낌이에요.',
     password: 'fj38Lskd91Qv',
@@ -499,7 +456,6 @@ export const Curations = [
     updatedAt: '2025-10-03T10:00:00Z',
   },
   {
-    id: 8,
     nickname: 'soobin',
     content: '깔끔하고 단정한 인상이 돋보입니다.',
     password: 'pwLz49nQ83hf',
@@ -512,7 +468,6 @@ export const Curations = [
     updatedAt: '2025-10-04T09:10:00Z',
   },
   {
-    id: 9,
     nickname: 'yuna',
     content: '편하게 입기 좋은 스트릿 무드네요.',
     password: 'xR72abN8qL90',
@@ -525,7 +480,6 @@ export const Curations = [
     updatedAt: '2025-10-06T10:40:00Z',
   },
   {
-    id: 10,
     nickname: 'hajin',
     content: '셔츠 위에 니트를 매치하니 포근하고 따뜻해요.',
     password: 'haN64fJs19xB',
@@ -538,7 +492,6 @@ export const Curations = [
     updatedAt: '2025-10-07T13:00:00Z',
   },
   {
-    id: 11,
     nickname: 'eunho',
     content: '겨울 감성 가득한 코트룩이네요.',
     password: 'euH92mQs84zW',
@@ -551,7 +504,6 @@ export const Curations = [
     updatedAt: '2025-10-08T12:00:00Z',
   },
   {
-    id: 12,
     nickname: 'sora',
     content: '린넨 특유의 시원한 분위기가 좋네요.',
     password: 'srT45vNp91yL',
@@ -564,7 +516,6 @@ export const Curations = [
     updatedAt: '2025-10-09T11:00:00Z',
   },
   {
-    id: 13,
     nickname: 'jimin',
     content: '가볍고 활동성 좋은 조합이에요.',
     password: 'jiM78qZw32cR',
@@ -577,7 +528,6 @@ export const Curations = [
     updatedAt: '2025-10-10T13:00:00Z',
   },
   {
-    id: 14,
     nickname: 'hyunwoo',
     content: '블랙앤화이트 조합이 깔끔하고 단정합니다.',
     password: 'hwC59rLp07sK',
@@ -597,7 +547,6 @@ export const Curations = [
 // =========================
 export const Comments = [
   {
-    id: 1,
     content: '이 코디 정말 참고할만해요!',
     password: 'cm1',
     curationId: 1,
@@ -605,7 +554,6 @@ export const Comments = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 2,
     content: '깔끔하고 좋아요.',
     password: 'cm2',
     curationId: 2,
@@ -613,7 +561,6 @@ export const Comments = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 3,
     content: '따뜻한 봄 느낌이에요.',
     password: 'cm3',
     curationId: 3,
@@ -621,7 +568,6 @@ export const Comments = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 4,
     content: '겨울 감성 최고네요.',
     password: 'cm4',
     curationId: 4,
@@ -629,7 +575,6 @@ export const Comments = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 5,
     content: '스트릿 감성 굿!',
     password: 'cm5',
     curationId: 5,
@@ -637,7 +582,6 @@ export const Comments = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 6,
     content: '가을 무드 최고예요.',
     password: 'cm6',
     curationId: 6,
@@ -645,7 +589,6 @@ export const Comments = [
     updatedAt: '2025-01-01T00:00:00Z',
   },
   {
-    id: 7,
     content: '컬러 매치가 너무 예뻐요. 가을 느낌이 물씬 나네요!',
     password: 'ynA92lRt53xC',
     curationId: 7,
@@ -653,7 +596,6 @@ export const Comments = [
     updatedAt: '2025-10-02T15:00:00Z',
   },
   {
-    id: 8,
     content: '편안하면서도 스타일리시하네요. 참고할게요!',
     password: 'dmS84zQn61vR',
     curationId: 8,
@@ -661,7 +603,6 @@ export const Comments = [
     updatedAt: '2025-10-03T11:50:00Z',
   },
   {
-    id: 9,
     content: '톤온톤 조합이 정말 안정적이에요. 보기 좋아요.',
     password: 'mnF65pRs72tB',
     curationId: 9,
@@ -669,7 +610,6 @@ export const Comments = [
     updatedAt: '2025-10-04T14:10:00Z',
   },
   {
-    id: 10,
     content: '셔츠 핏이 너무 자연스럽네요. 색감도 굿!',
     password: 'jsD49kMp83yL',
     curationId: 10,
@@ -677,7 +617,6 @@ export const Comments = [
     updatedAt: '2025-10-05T09:45:00Z',
   },
   {
-    id: 11,
     content: '상의랑 하의 비율이 완벽해요. 사진 구도도 예쁘네요.',
     password: 'heB73nLs14pV',
     curationId: 11,
@@ -685,7 +624,6 @@ export const Comments = [
     updatedAt: '2025-10-06T13:00:00Z',
   },
   {
-    id: 12,
     content: '셔츠와 니트 조합이 따뜻하고 좋아요.',
     password: 'hjL92sQp87zA',
     curationId: 12,
@@ -693,7 +631,6 @@ export const Comments = [
     updatedAt: '2025-10-07T13:10:00Z',
   },
   {
-    id: 13,
     content: '코트핏이 깔끔해서 겨울룩에 잘 어울리네요.',
     password: 'ehX84nLp22tZ',
     curationId: 13,
@@ -701,7 +638,6 @@ export const Comments = [
     updatedAt: '2025-10-08T12:10:00Z',
   },
   {
-    id: 14,
     content: '린넨의 내추럴한 질감이 정말 잘 살아있어요.',
     password: 'soR56nMv03yB',
     curationId: 14,

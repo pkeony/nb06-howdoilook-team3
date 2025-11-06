@@ -25,17 +25,17 @@ async function main() {
     data: Comments,
     skipDuplicates: true,
   });
-}
 
-await prisma.$executeRawUnsafe(`
-    SELECT setval(pg_get_serial_sequence('"Style"', 'id'), (SELECT MAX(id) FROM "Style"));
+  await prisma.$executeRawUnsafe(`
+    SELECT setval(pg_get_serial_sequence('"Style"', 'id'), COALESCE((SELECT MAX(id) FROM "Style"), 0), true);
   `);
-await prisma.$executeRawUnsafe(`
-    SELECT setval(pg_get_serial_sequence('"Curation"', 'id'), (SELECT MAX(id) FROM "Curation"));
+  await prisma.$executeRawUnsafe(`
+    SELECT setval(pg_get_serial_sequence('"Curation"', 'id'), COALESCE((SELECT MAX(id) FROM "Curation"), 0), true);
   `);
-await prisma.$executeRawUnsafe(`
-    SELECT setval(pg_get_serial_sequence('"Comment"', 'id'), (SELECT MAX(id) FROM "Comment"));
+  await prisma.$executeRawUnsafe(`
+    SELECT setval(pg_get_serial_sequence('"Comment"', 'id'), COALESCE((SELECT MAX(id) FROM "Comment"), 0), true);
   `);
+}
 
 main()
   .then(async () => {
@@ -45,4 +45,7 @@ main()
     console.log(e);
     await prisma.$disconnect();
     process.exit(1); // 프로세스를 종료시킬거라는 명령어
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
   });
