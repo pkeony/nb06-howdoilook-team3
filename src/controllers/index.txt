@@ -1,0 +1,5 @@
+repositories: Prisma ORM과 직접 통신. DB CRUD 전담.
+              prisma.style.create(), prisma.curation.findMany() 등
+
+controllers:  요청(req/res)을 처리하고 service 호출. Request Handler 담당.
+              style.controller.js에서 createStyle, getStyles 등 정의

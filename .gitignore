@@ -1,4 +1,4 @@
-node_modules
+node_modules/
 # Keep environment variables out of version control
 # 환경 설정 파일
 .env

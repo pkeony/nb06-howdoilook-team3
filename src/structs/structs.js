@@ -21,28 +21,8 @@ const CATEGORYTYPE = ['top', 'bottom', 'outer', 'dress', 'shoes', 'bag', 'access
 export const CheckStyles = s.object({
   nickname: s.size(s.string(), 1, 20),
   title: s.size(s.string(), 1, 30),
-  tags: s.array(
-    //이 구조가 맞을까?
-    s.size(
-      s.object({
-        name: s.size(s.string(), 1, 20), //사이즈 체크 요망
-        stylesId: s.min(s.integer(), 1), //체크 요망 s.define
-      }),
-      0,
-      3,
-    ),
-  ),
-  image: s.array(
-    s.size(
-      s.object({
-        isPrimary: s.boolean(),
-        url: Url,
-        stylesId: s.min(s.integer(), 1),
-      }),
-    ),
-    1,
-    undefined,
-  ),
+  tags: s.size(s.array(s.size(s.string(), 1, 20)), 0, 3),
+  imageUrls: s.size(s.array(Url), 1, undefined),
   categories: s.array(
     s.size(
       s.object({
@@ -75,10 +55,4 @@ export const CheckComment = s.object({
   content: s.size(s.string(), 1, 150),
   password: Password,
   curationId: s.min(s.integer(), 1),
-});
-
-export const CheckImage = s.object({
-  isPrimary: s.boolean(),
-  url: Url,
-  stylesId: s.min(s.integer(), 1),
 });

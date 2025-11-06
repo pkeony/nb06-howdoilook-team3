@@ -1,13 +1,11 @@
 import { PrismaClient } from '@prisma/client';
-import { Styles, Tags, Categories, Images, Curations, Comments } from './mock.js';
+import { Styles, Categories, Curations, Comments } from './mock.js';
 
 const prisma = new PrismaClient();
 
 async function main() {
   await prisma.styles.deleteMany();
-  await prisma.tags.deleteMany();
   await prisma.category.deleteMany();
-  await prisma.images.deleteMany();
   await prisma.curation.deleteMany();
   await prisma.comment.deleteMany();
 
@@ -15,16 +13,8 @@ async function main() {
     data: Styles,
     skipDuplicates: true,
   });
-  await prisma.tags.createMany({
-    data: Tags,
-    skipDuplicates: true,
-  });
   await prisma.category.createMany({
     data: Categories,
-    skipDuplicates: true,
-  });
-  await prisma.images.createMany({
-    data: Images,
     skipDuplicates: true,
   });
   await prisma.curation.createMany({
