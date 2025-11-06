@@ -1,3 +1,7 @@
+// =========================
+// Styles: 13개
+// =========================
+
 export const Styles = [
   {
     id: 1,
@@ -7,6 +11,8 @@ export const Styles = [
     password: ' pwpwpwpw1',
     viewCount: 1200,
     curationCount: 2,
+    tags: ['미니멀'],
+    imageUrls: ['https://picsum.photos/id/11/600/400'],
     createdAt: '2025-01-01T00:00:00Z',
     updatedAt: '2025-01-01T00:00:00Z',
   },
@@ -18,6 +24,8 @@ export const Styles = [
     password: ' pwpwpwpw2',
     viewCount: 980,
     curationCount: 1,
+    tags: ['오피스룩'],
+    imageUrls: ['https://picsum.photos/id/12/600/400'],
     createdAt: '2025-01-01T00:00:00Z',
     updatedAt: '2025-01-01T00:00:00Z',
   },
@@ -29,6 +37,8 @@ export const Styles = [
     password: ' pwpwpwpw3',
     viewCount: 1500,
     curationCount: 3,
+    tags: ['봄패션'],
+    imageUrls: ['https://picsum.photos/id/21/600/400'],
     createdAt: '2025-01-01T00:00:00Z',
     updatedAt: '2025-01-01T00:00:00Z',
   },
@@ -40,6 +50,8 @@ export const Styles = [
     password: ' pwpwpwpw4',
     viewCount: 800,
     curationCount: 1,
+    tags: ['스트릿', '여름패션'],
+    imageUrls: ['https://picsum.photos/id/41/600/400'],
     createdAt: '2025-01-01T00:00:00Z',
     updatedAt: '2025-01-01T00:00:00Z',
   },
@@ -51,6 +63,8 @@ export const Styles = [
     password: ' pwpwpwpw5',
     viewCount: 1100,
     curationCount: 2,
+    tags: ['데이트룩', '가을감성'],
+    imageUrls: ['https://picsum.photos/id/51/600/400', 'https://picsum.photos/id/52/600/400'],
     createdAt: '2025-01-01T00:00:00Z',
     updatedAt: '2025-01-01T00:00:00Z',
   },
@@ -62,6 +76,8 @@ export const Styles = [
     password: 'mnJ482skQ9',
     viewCount: 132,
     curationCount: 4,
+    tags: ['가을룩', '캐쥬얼'],
+    imageUrls: ['https://images.unsplash.com/photo-1682685794760-3e7e1d796be4'],
     createdAt: '2025-10-01T10:00:00Z',
     updatedAt: '2025-10-03T09:30:00Z',
   },
@@ -73,10 +89,13 @@ export const Styles = [
     password: 'sbnA93lpXf1',
     viewCount: 208,
     curationCount: 3,
+    tags: ['미니멀룩'],
+    imageUrls: ['https://picsum.photos/id/51/600/400'],
     createdAt: '2025-10-02T11:00:00Z',
     updatedAt: '2025-10-04T08:45:00Z',
   },
   {
+    //
     id: 8,
     nickname: 'yuna',
     title: '편안한 주말 스트릿룩',
@@ -84,6 +103,8 @@ export const Styles = [
     password: 'yuN549zRt8',
     viewCount: 97,
     curationCount: 2,
+    tags: ['스트릿룩'],
+    imageUrls: ['https://picsum.photos/id/52/600/400'],
     createdAt: '2025-10-05T09:00:00Z',
     updatedAt: '2025-10-06T10:10:00Z',
   },
@@ -95,6 +116,8 @@ export const Styles = [
     password: 'hjL92sQp87zA',
     viewCount: 185,
     curationCount: 3,
+    tags: ['레이어드룩'],
+    imageUrls: ['https://images.unsplash.com/photo-1682685794760-3e7e1d796be4'],
     createdAt: '2025-10-07T10:00:00Z',
     updatedAt: '2025-10-07T11:00:00Z',
   },
@@ -106,6 +129,8 @@ export const Styles = [
     password: 'ehX84nLp22tZ',
     viewCount: 266,
     curationCount: 5,
+    tags: ['겨울룩'],
+    imageUrls: ['https://images.unsplash.com/photo-1679932156433-2f909f1b01d7'],
     createdAt: '2025-10-08T09:00:00Z',
     updatedAt: '2025-10-08T10:15:00Z',
   },
@@ -117,6 +142,8 @@ export const Styles = [
     password: 'soR56nMv03yB',
     viewCount: 119,
     curationCount: 2,
+    tags: ['린넨'],
+    imageUrls: ['https://images.unsplash.com/photo-1680951732398-7a7ff76d43f0'],
     createdAt: '2025-10-09T08:30:00Z',
     updatedAt: '2025-10-09T09:45:00Z',
   },
@@ -128,6 +155,8 @@ export const Styles = [
     password: 'jmF39pKs71vR',
     viewCount: 152,
     curationCount: 3,
+    tags: ['트레이닝'],
+    imageUrls: ['https://images.unsplash.com/photo-1684324872744-9948e1e272db'],
     createdAt: '2025-10-10T10:00:00Z',
     updatedAt: '2025-10-10T11:20:00Z',
   },
@@ -139,293 +168,16 @@ export const Styles = [
     password: 'hwT67qNj94bP',
     viewCount: 230,
     curationCount: 4,
+    tags: ['모노톤'],
+    imageUrls: ['https://images.unsplash.com/photo-1679932156433-2f909f1b01d7'],
     createdAt: '2025-10-11T09:00:00Z',
     updatedAt: '2025-10-11T10:40:00Z',
   },
 ];
 
 // =========================
-// Images (1:N)
-// =========================
-export const Images = [
-  {
-    id: 1,
-    isPrimary: true,
-    url: 'https://picsum.photos/id/11/600/400',
-    stylesId: 1,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 2,
-    isPrimary: false,
-    url: 'https://picsum.photos/id/12/600/400',
-    stylesId: 1,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 3,
-    isPrimary: true,
-    url: 'https://picsum.photos/id/21/600/400',
-    stylesId: 2,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 4,
-    isPrimary: true,
-    url: 'https://picsum.photos/id/31/600/400',
-    stylesId: 3,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 5,
-    isPrimary: false,
-    url: 'https://picsum.photos/id/32/600/400',
-    stylesId: 3,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 6,
-    isPrimary: true,
-    url: 'https://picsum.photos/id/41/600/400',
-    stylesId: 4,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 7,
-    isPrimary: true,
-    url: 'https://picsum.photos/id/51/600/400',
-    stylesId: 5,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 8,
-    isPrimary: false,
-    url: 'https://picsum.photos/id/52/600/400',
-    stylesId: 5,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 9,
-    isPrimary: true,
-    url: 'https://images.unsplash.com/photo-1682685794760-3e7e1d796be4',
-    stylesId: 6,
-    createdAt: '2025-10-01T10:10:00Z',
-    updatedAt: '2025-10-03T09:40:00Z',
-  },
-  {
-    id: 10,
-    isPrimary: true,
-    url: 'https://images.unsplash.com/photo-1682686578222-6aafc2a22a2b',
-    stylesId: 7,
-    createdAt: '2025-10-02T11:15:00Z',
-    updatedAt: '2025-10-04T08:50:00Z',
-  },
-  {
-    id: 11,
-    isPrimary: true,
-    url: 'https://images.unsplash.com/photo-1682695791037-7b9e9cf40e7a',
-    stylesId: 8,
-    createdAt: '2025-10-05T09:05:00Z',
-    updatedAt: '2025-10-06T10:20:00Z',
-  },
-  {
-    id: 12,
-    isPrimary: true,
-    url: 'https://images.unsplash.com/photo-1683009427032-1f84a6a7b722',
-    stylesId: 9,
-    createdAt: '2025-10-07T10:10:00Z',
-    updatedAt: '2025-10-07T11:10:00Z',
-  },
-  {
-    id: 13,
-    isPrimary: true,
-    url: 'https://images.unsplash.com/photo-1679932156433-2f909f1b01d7',
-    stylesId: 10,
-    createdAt: '2025-10-08T09:10:00Z',
-    updatedAt: '2025-10-08T10:20:00Z',
-  },
-  {
-    id: 14,
-    isPrimary: true,
-    url: 'https://images.unsplash.com/photo-1680951732398-7a7ff76d43f0',
-    stylesId: 11,
-    createdAt: '2025-10-09T08:40:00Z',
-    updatedAt: '2025-10-09T09:50:00Z',
-  },
-  {
-    id: 15,
-    isPrimary: true,
-    url: 'https://images.unsplash.com/photo-1684324872744-9948e1e272db',
-    stylesId: 12,
-    createdAt: '2025-10-10T10:15:00Z',
-    updatedAt: '2025-10-10T11:25:00Z',
-  },
-  {
-    id: 16,
-    isPrimary: true,
-    url: 'https://images.unsplash.com/photo-1681043618723-7c7cc6a01c2a',
-    stylesId: 13,
-    createdAt: '2025-10-11T09:10:00Z',
-    updatedAt: '2025-10-11T10:50:00Z',
-  },
-];
-
-// =========================
-// Tags (1:N, 최대 3개)
-// =========================
-export const Tags = [
-  {
-    id: 1,
-    name: '미니멀',
-    stylesId: 1,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 2,
-    name: '오피스룩',
-    stylesId: 1,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 3,
-    name: '봄패션',
-    stylesId: 2,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 4,
-    name: '캐주얼',
-    stylesId: 2,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 5,
-    name: '겨울코디',
-    stylesId: 3,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 6,
-    name: '감성',
-    stylesId: 3,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 7,
-    name: '스트릿',
-    stylesId: 4,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 8,
-    name: '여름패션',
-    stylesId: 4,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 9,
-    name: '데이트룩',
-    stylesId: 5,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 10,
-    name: '가을감성',
-    stylesId: 5,
-    createdAt: '2025-01-01T00:00:00Z',
-    updatedAt: '2025-01-01T00:00:00Z',
-  },
-  {
-    id: 11,
-    name: '가을룩',
-    stylesId: 6,
-    createdAt: '2025-10-01T10:15:00Z',
-    updatedAt: '2025-10-03T09:45:00Z',
-  },
-  {
-    id: 12,
-    name: '캐주얼',
-    stylesId: 6,
-    createdAt: '2025-10-01T10:16:00Z',
-    updatedAt: '2025-10-03T09:46:00Z',
-  },
-  {
-    id: 13,
-    name: '오피스룩',
-    stylesId: 7,
-    createdAt: '2025-10-02T11:20:00Z',
-    updatedAt: '2025-10-04T08:55:00Z',
-  },
-  {
-    id: 14,
-    name: '미니멀',
-    stylesId: 7,
-    createdAt: '2025-10-02T11:21:00Z',
-    updatedAt: '2025-10-04T08:56:00Z',
-  },
-  {
-    id: 15,
-    name: '스트릿',
-    stylesId: 8,
-    createdAt: '2025-10-05T09:10:00Z',
-    updatedAt: '2025-10-06T10:25:00Z',
-  },
-  {
-    id: 16,
-    name: '레이어드',
-    stylesId: 9,
-    createdAt: '2025-10-07T10:20:00Z',
-    updatedAt: '2025-10-07T11:15:00Z',
-  },
-  {
-    id: 17,
-    name: '겨울룩',
-    stylesId: 10,
-    createdAt: '2025-10-08T09:20:00Z',
-    updatedAt: '2025-10-08T10:25:00Z',
-  },
-  {
-    id: 18,
-    name: '린넨',
-    stylesId: 11,
-    createdAt: '2025-10-09T08:50:00Z',
-    updatedAt: '2025-10-09T09:55:00Z',
-  },
-  {
-    id: 19,
-    name: '트레이닝',
-    stylesId: 12,
-    createdAt: '2025-10-10T10:25:00Z',
-    updatedAt: '2025-10-10T11:30:00Z',
-  },
-  {
-    id: 20,
-    name: '모노톤',
-    stylesId: 13,
-    createdAt: '2025-10-11T09:20:00Z',
-    updatedAt: '2025-10-11T10:55:00Z',
-  },
-];
-
-// =========================
-// Categories (1:N, 최대 7개)
+// Categories 22개
+// Styles: Categories = 1:N (최대 7개)
 // =========================
 export const Categories = [
   {
@@ -651,7 +403,8 @@ export const Categories = [
 ];
 
 // =========================
-// Curations (1:N)
+// Curations 14개
+// Styles: Categories = 1:N
 // =========================
 export const Curations = [
   {
@@ -839,7 +592,8 @@ export const Curations = [
 ];
 
 // =========================
-// Comments (1:1)
+// Comments 14개
+// Curations: Comments = 1:1
 // =========================
 export const Comments = [
   {

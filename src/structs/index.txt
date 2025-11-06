@@ -1,0 +1,3 @@
+요청 body 검증용 Superstruct 스키마 정의.
+- CreateStyleStruct
+- PatchCurationStruct 등

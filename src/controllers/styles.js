@@ -1,6 +1,7 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
 import cors from 'cors';
+import { pageInfo } from '../services/pageInfo.js';
 
 const app = express();
 app.use(express.json());
@@ -9,49 +10,75 @@ app.use(cors());
 const prisma = new PrismaClient();
 
 export async function getStylesList(req, res) {
-  const { offset = 0, limit = 0, order = 'recent', nickname, title, content, tags } = req.query;
+  const { page = 1, pageSize = 10, sortBy = 'recent', searchBy, keyword, tag } = req.query;
+
   let orderBy;
-  switch (order) {
-    case 'recent':
+  switch (sortBy) {
+    case 'latest':
       orderBy = { createdAt: 'desc' };
       break;
-    case 'oldest':
-      orderBy = { createdAt: 'asc' };
-      break;
-    case 'view':
+    case 'mostViewed':
       orderBy = { viewCount: 'desc' };
       break;
-    case 'curation':
+    case 'mostCurated':
       orderBy = { curationCount: 'desc' };
       break;
     default:
       orderBy = { createdAt: 'desc' };
   }
 
+  // function keywordSearch(searchByStr, keywordStr) {
+  //   return { searchByStr: { contains: keywordStr } };
+  // }
+  // const searchWhere = keywordSearch(searchBy, keyword);
+  // console.log(searchWhere);
+
+  let searchWhere;
+  switch (searchBy) {
+    case 'nickname':
+      searchWhere = { nickname: { contains: keyword } };
+      break;
+    case 'title':
+      searchWhere = { title: { contains: keyword } };
+      break;
+    case 'content':
+      searchWhere = { content: { contains: keyword } };
+      break;
+    case 'tag': // not working currently
+      searchWhere = { tags: { hasSome: tag } };
+      //   searchWhere = { tags: { some: { name: { contains: keyword } } } };
+      break;
+    default:
+      searchWhere = { undefined: undefined };
+  }
+
   const styles = await prisma.styles.findMany({
     where: {
-      nickname: { contains: nickname },
-      title: { contains: title },
-      content: { contains: content },
-      tags: { some: { name: { contains: tags } } },
+      ...searchWhere,
+      //tags: { hasSome: tag }, // not working
     },
     orderBy,
-    skip: parseInt(offset),
-    take: parseInt(limit) || undefined,
+    omit: {
+      password: true,
+      updatedAt: true,
+      imageUrls: true,
+    },
     include: {
-      images: {
-        where: { isPrimary: true },
-        //select: { url: true },
-      },
-      tags: true,
-      curation: true,
-      updatedAt: false,
+      categories: true,
+      // curations: true,
     },
   });
   if (styles.length) {
-    res.status(200).send(styles);
+    const myPage = pageInfo(page, pageSize, styles.length);
+    const results = {
+      currentPage: myPage.currPage,
+      totalPage: myPage.totalPage,
+      totalItemCount: myPage.totalItemCount,
+      data: styles.slice(myPage.startItem, myPage.endItem + 1),
+    };
+    res.status(200).send(results);
   } else {
-    res.status(200).send('Not found.');
+    res.status(200).send('No styles retrived.'); // 정상수행: 검색되는 결과가 없음
   }
 }
 
@@ -60,10 +87,10 @@ export async function getStyles(req, res) {
   const style = await prisma.styles.findUniqueOrThrow({
     where: { id },
     include: {
-      //images: { select: { url: true } },
-      images: true,
-      curation: true,
+      password: false,
       updatedAt: false,
+      categories: { select: { type: true, name: true, brand: true, price: true } },
+      curations: true,
     },
   });
   res.status(200).send(style);

@@ -1,0 +1,2 @@
+URL 라우팅 담당. Controller의 메서드를 등록.
+(예시) router.post('/styles', styleController.createStyle)

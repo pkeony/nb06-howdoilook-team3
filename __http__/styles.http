@@ -1,26 +1,34 @@
-GET http://localhost:3001/styles
+GET http://localhost:3001/styles?page=1&pageSize=5
 
 
 // 최신순, 조회순, 큐레이팅순(큐레이팅 많은 순)-정렬 
 ###
-GET http://localhost:3001/styles?order=recent 
+GET http://localhost:3001/styles?sortBy=latest
 ###
-GET http://localhost:3001/styles?order=view 
+GET http://localhost:3001/styles?sortBy=mostViewed
 ###
-GET http://localhost:3001/styles?order=curation
+GET http://localhost:3001/styles?sortBy=mostCurated
 
 //닉네임, 제목, 상세, 태그 검색 
 ###
-GET http://localhost:3001/styles?nickname=sooyoung
+GET http://localhost:3001/styles?searchBy=nickname&keyword=sora
 ###
-GET http://localhost:3001/styles?title=겨울
+GET http://localhost:3001/styles?searchBy=nickname&keyword=sooyoung
 ###
-GET http://localhost:3001/styles?content=팬츠
+GET http://localhost:3001/styles?searchBy=title&keyword=겨울
 ###
-GET http://localhost:3001/styles?tags=감성
+GET http://localhost:3001/styles?searchBy=content&keyword=팬츠
+###
+GET http://localhost:3001/styles?searchBy=tag&keyword=감성
+
+
+//태그 검색 
+###
+GET http://localhost:3001/styles?tag=감성
+
 
 
 //스타일 상세 조회
 ###
-GET http://localhost:3001/styles/10
+GET http://localhost:3001/styles/1
 

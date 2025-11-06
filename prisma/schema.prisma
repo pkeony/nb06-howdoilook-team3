@@ -25,6 +25,7 @@ enum CategoryType {
 
 model Styles {
   id            Int        @id @default(autoincrement())
+  thumbnail     String?
   nickname      String
   title         String
   content       String
@@ -32,32 +33,11 @@ model Styles {
   viewCount     Int?
   curationCount Int?
   categories    Category[]
-  curation      Curation[]
-  tags          Tags[]
-  images        Images[]
+  curations     Curation[]
+  tags          String[]
+  imageUrls     String[]
   createdAt     DateTime   @default(now())
   updatedAt     DateTime   @updatedAt
-}
-
-model Images {
-  id        Int      @id @default(autoincrement())
-  isPrimary Boolean
-  url       String
-  styles    Styles   @relation(fields: [stylesId], references: [id], onDelete: Cascade)
-  stylesId  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-//tag숫자는 필드도 되지만 쿼리활용 가능
-//이미지를 별도 model로 만드는것도 방법
-model Tags {
-  id        Int      @id @default(autoincrement())
-  name      String
-  styles    Styles   @relation(fields: [stylesId], references: [id], onDelete: Cascade)
-  stylesId  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model Category {
@@ -97,5 +77,3 @@ model Comment {
   curations  Curation @relation(fields: [curationId], references: [id], onDelete: Cascade)
   curationId Int      @unique
 }
-
-//password 값을 같은지 확인 -> curation 타고가서 styles 비밀번호 확인
