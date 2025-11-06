@@ -4,12 +4,12 @@ import { Styles, Categories, Curations, Comments } from './mock.js';
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.styles.deleteMany();
+  await prisma.style.deleteMany();
   await prisma.category.deleteMany();
   await prisma.curation.deleteMany();
   await prisma.comment.deleteMany();
 
-  await prisma.styles.createMany({
+  await prisma.style.createMany({
     data: Styles,
     skipDuplicates: true,
   });
@@ -26,6 +26,16 @@ async function main() {
     skipDuplicates: true,
   });
 }
+
+await prisma.$executeRawUnsafe(`
+    SELECT setval(pg_get_serial_sequence('"Style"', 'id'), (SELECT MAX(id) FROM "Style"));
+  `);
+await prisma.$executeRawUnsafe(`
+    SELECT setval(pg_get_serial_sequence('"Curation"', 'id'), (SELECT MAX(id) FROM "Curation"));
+  `);
+await prisma.$executeRawUnsafe(`
+    SELECT setval(pg_get_serial_sequence('"Comment"', 'id'), (SELECT MAX(id) FROM "Comment"));
+  `);
 
 main()
   .then(async () => {

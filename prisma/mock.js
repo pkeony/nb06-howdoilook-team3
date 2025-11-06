@@ -182,7 +182,7 @@ export const Styles = [
 export const Categories = [
   {
     id: 1,
-    type: 'top',
+    type: 'TOP',
     name: '화이트 셔츠',
     brand: 'Uniqlo',
     price: 39000,
@@ -192,7 +192,7 @@ export const Categories = [
   },
   {
     id: 2,
-    type: 'bottom',
+    type: 'BOTTOM',
     name: '블랙 슬랙스',
     brand: 'Musinsa',
     price: 49000,
@@ -202,7 +202,7 @@ export const Categories = [
   },
   {
     id: 3,
-    type: 'shoes',
+    type: 'SHOES',
     name: '로퍼',
     brand: 'Dr.Martens',
     price: 129000,
@@ -212,7 +212,7 @@ export const Categories = [
   },
   {
     id: 4,
-    type: 'top',
+    type: 'TOP',
     name: '데님 자켓',
     brand: 'Zara',
     price: 69000,
@@ -222,7 +222,7 @@ export const Categories = [
   },
   {
     id: 5,
-    type: 'bottom',
+    type: 'BOTTOM',
     name: '라이트진',
     brand: 'Levi’s',
     price: 89000,
@@ -232,7 +232,7 @@ export const Categories = [
   },
   {
     id: 6,
-    type: 'outer',
+    type: 'OUTER',
     name: '울 코트',
     brand: 'TNGT',
     price: 189000,
@@ -242,7 +242,7 @@ export const Categories = [
   },
   {
     id: 7,
-    type: 'accessory',
+    type: 'ACCESSORY',
     name: '머플러',
     brand: 'H&M',
     price: 29000,
@@ -252,7 +252,7 @@ export const Categories = [
   },
   {
     id: 8,
-    type: 'top',
+    type: 'TOP',
     name: '크롭티',
     brand: '8Seconds',
     price: 19000,
@@ -262,7 +262,7 @@ export const Categories = [
   },
   {
     id: 9,
-    type: 'bottom',
+    type: 'BOTTOM',
     name: '와이드팬츠',
     brand: 'Nike',
     price: 59000,
@@ -272,7 +272,7 @@ export const Categories = [
   },
   {
     id: 10,
-    type: 'outer',
+    type: 'OUTER',
     name: '가디건',
     brand: 'Musinsa',
     price: 49000,
@@ -282,7 +282,7 @@ export const Categories = [
   },
   {
     id: 11,
-    type: 'bottom',
+    type: 'BOTTOM',
     name: '데님팬츠',
     brand: 'Zara',
     price: 69000,
@@ -292,7 +292,7 @@ export const Categories = [
   },
   {
     id: 12,
-    type: 'top',
+    type: 'TOP',
     name: '니트 가디건',
     brand: 'Musinsa Standard',
     price: 49000,
@@ -302,7 +302,7 @@ export const Categories = [
   },
   {
     id: 13,
-    type: 'bottom',
+    type: 'BOTTOM',
     name: '데님 팬츠',
     brand: "Levi's",
     price: 89000,
@@ -312,7 +312,7 @@ export const Categories = [
   },
   {
     id: 14,
-    type: 'top',
+    type: 'TOP',
     name: '화이트 셔츠',
     brand: 'Musinsa Standard',
     price: 29900,
@@ -322,7 +322,7 @@ export const Categories = [
   },
   {
     id: 15,
-    type: 'bottom',
+    type: 'BOTTOM',
     name: '블랙 슬랙스',
     brand: 'Musinsa Standard',
     price: 49900,
@@ -332,7 +332,7 @@ export const Categories = [
   },
   {
     id: 16,
-    type: 'top',
+    type: 'TOP',
     name: '후드티',
     brand: 'Musinsa Standard',
     price: 39000,
@@ -342,7 +342,7 @@ export const Categories = [
   },
   {
     id: 17,
-    type: 'bottom',
+    type: 'BOTTOM',
     name: '조거팬츠',
     brand: 'Musinsa Standard',
     price: 45000,
@@ -352,7 +352,7 @@ export const Categories = [
   },
   {
     id: 18,
-    type: 'top',
+    type: 'TOP',
     name: '브이넥 니트',
     brand: 'Musinsa Standard',
     price: 39000,
@@ -362,7 +362,7 @@ export const Categories = [
   },
   {
     id: 19,
-    type: 'outer',
+    type: 'OUTER',
     name: '울 블렌드 코트',
     brand: 'Musinsa Standard',
     price: 129000,
@@ -372,7 +372,7 @@ export const Categories = [
   },
   {
     id: 20,
-    type: 'top',
+    type: 'TOP',
     name: '린넨 셔츠',
     brand: 'Musinsa Standard',
     price: 34900,
@@ -382,7 +382,7 @@ export const Categories = [
   },
   {
     id: 21,
-    type: 'top',
+    type: 'TOP',
     name: '하프집 맨투맨',
     brand: 'Musinsa Standard',
     price: 35900,
@@ -392,7 +392,7 @@ export const Categories = [
   },
   {
     id: 22,
-    type: 'bottom',
+    type: 'BOTTOM',
     name: '블랙 슬림 팬츠',
     brand: 'Musinsa Standard',
     price: 49000,

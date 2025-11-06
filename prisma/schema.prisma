@@ -14,16 +14,16 @@ datasource db {
 }
 
 enum CategoryType {
-  top
-  bottom
-  outer
-  dress
-  shoes
-  bag
-  accessory
+  TOP
+  BOTTOM
+  OUTER
+  DRESS
+  SHOES
+  BAG
+  ACCESSORY
 }
 
-model Styles {
+model Style {
   id            Int        @id @default(autoincrement())
   thumbnail     String?
   nickname      String
@@ -46,7 +46,7 @@ model Category {
   name      String
   brand     String
   price     Float
-  style     Styles?      @relation(fields: [styleId], references: [id], onDelete: Cascade)
+  style     Style        @relation(fields: [styleId], references: [id], onDelete: Cascade)
   styleId   Int
   createdAt DateTime     @default(now())
   updatedAt DateTime     @updatedAt
@@ -63,7 +63,7 @@ model Curation {
   costEffectiveness Int
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
-  styles            Styles   @relation(fields: [stylesId], references: [id], onDelete: Cascade)
+  style             Style    @relation(fields: [stylesId], references: [id], onDelete: Cascade)
   stylesId          Int
   Comment           Comment?
 }
