@@ -67,9 +67,8 @@ export async function getStylesList(req, res) {
     case 'content':
       searchWhere = { content: { contains: keyword } };
       break;
-    case 'tag': // not working currently
-      searchWhere = { tags: { has: tag } };
-      //   searchWhere = { tags: { some: { name: { contains: keyword } } } };
+    case 'tag':
+      searchWhere = { tags: { has: keyword } };
       break;
     default:
       searchWhere = { undefined: undefined };
