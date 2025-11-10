@@ -1,36 +1,12 @@
-import express from 'express';
+import exgpress from 'express';
 import { PrismaClient } from '@prisma/client';
 import cors from 'cors';
 import { pageInfo } from '../services/pageInfo.js';
-
-import {
-  createStyleService,
-  updateStyleService,
-  deleteStyleService,
-} from '../services/stylesService.js';
-
-import { assert } from 'superstruct';
-import { CheckStyle, CheckDeleteStyle } from '../structs/structs.js';
+import { prisma } from '../lib/prismaClient.js';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-
-const prisma = new PrismaClient();
-
-export async function getStyles(req, res) {
-  const id = Number(req.params.id);
-  const style = await prisma.style.findUniqueOrThrow({
-    where: { id },
-    include: {
-      password: false,
-      updatedAt: false,
-      categories: { select: { type: true, name: true, brand: true, price: true } },
-      curations: true,
-    },
-  });
-  res.status(200).send(style);
-}
 
 export async function getStylesList(req, res) {
   const { page = 1, pageSize = 10, sortBy = 'recent', searchBy, keyword, tag } = req.query;
@@ -68,17 +44,17 @@ export async function getStylesList(req, res) {
       searchWhere = { content: { contains: keyword } };
       break;
     case 'tag': // not working currently
-      searchWhere = { tags: { has: tag } };
+      searchWhere = { tags: { hasSome: tag } };
       //   searchWhere = { tags: { some: { name: { contains: keyword } } } };
       break;
     default:
       searchWhere = { undefined: undefined };
   }
 
-  const styles = await prisma.style.findMany({
+  const styles = await prisma.styles.findMany({
     where: {
       ...searchWhere,
-      ...(tag ? { tags: { has: tag } } : {}), // not working
+      //tags: { hasSome: tag }, // not working
     },
     orderBy,
     omit: {
@@ -105,33 +81,16 @@ export async function getStylesList(req, res) {
   }
 }
 
-// 스타일 등록
-export const createStyle = async (req, res) => {
-  assert(req.body, CheckStyle);
-  const styleData = req.body;
-  const newStyle = await createStyleService(styleData);
-
-  res.status(201).json(newStyle);
-};
-
-// 스타일 수정
-export const updateStyle = async (req, res) => {
-  assert(req.body, CheckStyle);
-
-  const { styleId } = req.params;
-  const updateData = req.body;
-  const updatedStyle = await updateStyleService(styleId, updateData);
-
-  res.status(200).json(updatedStyle);
-};
-
-// 스타일 삭제
-export const deleteStyle = async (req, res) => {
-  assert(req.body, CheckDeleteStyle);
-
-  const { styleId } = req.params;
-  const { password } = req.body;
-  await deleteStyleService(styleId, password);
-
-  res.status(200).json({ message: '성공적으로 삭제되었습니다.' });
-};
+export async function getStyles(req, res) {
+  const id = Number(req.params.id);
+  const style = await prisma.styles.findUniqueOrThrow({
+    where: { id },
+    include: {
+      password: false,
+      updatedAt: false,
+      categories: { select: { type: true, name: true, brand: true, price: true } },
+      curations: true,
+    },
+  });
+  res.status(200).send(style);
+}
