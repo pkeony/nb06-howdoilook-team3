@@ -7,7 +7,7 @@ import {
   createStyleService,
   updateStyleService,
   deleteStyleService,
-} from '../services/stylesService.js';
+} from '../services/styleService.js';
 
 import { assert } from 'superstruct';
 import { CheckStyle, CheckDeleteStyle } from '../structs/structs.js';

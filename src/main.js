@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import stylesRouter from './routers/stylesRouter.js';
+import stylesRouter from './routers/styleRouter.js';
+import { defaultNotFoundHandler, globalErrorHandler } from './controllers/errorController.js';
+import { PORT } from './lib/constants.js';
 //import curationsRouter from './routers/curations.js';
 //import commentsRouter from './routers/comments.js';
 
@@ -12,4 +14,7 @@ app.use('/styles', stylesRouter);
 //app.use('/curations', curationsRouter);
 //app.use('/comments', commentsRouter);
 
-app.listen(3001, () => console.log(`Server_3001 started`));
+app.use(defaultNotFoundHandler);
+app.use(globalErrorHandler);
+
+app.listen(PORT || 3001, () => console.log(`Server started`));

@@ -1,7 +1,7 @@
 import express from 'express';
 import errHandler from '../middlewares/errhandler.js';
-import { getStyles, getStylesList } from '../controllers/stylesController.js';
-import { createStyle, updateStyle, deleteStyle } from '../controllers/stylesController.js';
+import { getStyles, getStylesList } from '../controllers/styleController.js';
+import { createStyle, updateStyle, deleteStyle } from '../controllers/styleController.js';
 
 const stylesRouter = express.Router();
 
