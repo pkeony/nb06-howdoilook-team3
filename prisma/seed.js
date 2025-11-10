@@ -4,10 +4,10 @@ import { Styles, Categories, Curations, Comments } from './mock.js';
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.style.deleteMany();
-  await prisma.category.deleteMany();
-  await prisma.curation.deleteMany();
   await prisma.comment.deleteMany();
+  await prisma.curation.deleteMany();
+  await prisma.category.deleteMany();
+  await prisma.style.deleteMany();
 
   await prisma.style.createMany({
     data: Styles,
