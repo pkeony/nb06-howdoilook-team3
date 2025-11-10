@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import stylesRouter from './routers/styles.js';
+import stylesRouter from './routers/stylesRouter.js';
 //import curationsRouter from './routers/curations.js';
 //import commentsRouter from './routers/comments.js';
 
