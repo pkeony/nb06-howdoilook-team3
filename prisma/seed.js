@@ -4,10 +4,10 @@ import { Styles, Categories, Curations, Comments } from './mock.js';
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.style.deleteMany();
-  await prisma.category.deleteMany();
-  await prisma.curation.deleteMany();
   await prisma.comment.deleteMany();
+  await prisma.curation.deleteMany();
+  await prisma.category.deleteMany();
+  await prisma.style.deleteMany();
 
   await prisma.style.createMany({
     data: Styles,
@@ -27,14 +27,17 @@ async function main() {
   });
 
   await prisma.$executeRawUnsafe(`
-    SELECT setval(pg_get_serial_sequence('"Style"', 'id'), COALESCE((SELECT MAX(id) FROM "Style"), 0), true);
-  `);
+  SELECT setval(pg_get_serial_sequence('"Style"', 'id'), COALESCE((SELECT MAX(id) FROM "Style"), 0), true);
+`);
   await prisma.$executeRawUnsafe(`
-    SELECT setval(pg_get_serial_sequence('"Curation"', 'id'), COALESCE((SELECT MAX(id) FROM "Curation"), 0), true);
-  `);
+  SELECT setval(pg_get_serial_sequence('"Category"', 'id'), COALESCE((SELECT MAX(id) FROM "Category"), 0), true);
+`);
   await prisma.$executeRawUnsafe(`
-    SELECT setval(pg_get_serial_sequence('"Comment"', 'id'), COALESCE((SELECT MAX(id) FROM "Comment"), 0), true);
-  `);
+  SELECT setval(pg_get_serial_sequence('"Curation"', 'id'), COALESCE((SELECT MAX(id) FROM "Curation"), 0), true);
+`);
+  await prisma.$executeRawUnsafe(`
+  SELECT setval(pg_get_serial_sequence('"Comment"', 'id'), COALESCE((SELECT MAX(id) FROM "Comment"), 0), true);
+`);
 }
 
 main()
