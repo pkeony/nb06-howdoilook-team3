@@ -1,8 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { assert } from 'superstruct';
 import { CheckCuration } from '../structs/structs.js';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/prismaClient.js';
 
 export const getCurations = async (req, res) => {
   const { offset = 0, limit = 10, order = 'recent' } = req.query;
