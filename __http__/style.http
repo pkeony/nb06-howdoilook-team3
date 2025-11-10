@@ -1,0 +1,102 @@
+GET http://localhost:3001/styles?page=1&pageSize=5
+
+
+// 최신순, 조회순, 큐레이팅순(큐레이팅 많은 순)-정렬 
+###
+GET http://localhost:3001/styles?sortBy=latest
+###
+GET http://localhost:3001/styles?sortBy=mostViewed
+###
+GET http://localhost:3001/styles?sortBy=mostCurated
+
+//닉네임, 제목, 상세, 태그 검색 
+###
+GET http://localhost:3001/styles?searchBy=nickname&keyword=sora
+###
+GET http://localhost:3001/styles?searchBy=nickname&keyword=sooyoung
+###
+GET http://localhost:3001/styles?searchBy=title&keyword=겨울
+###
+GET http://localhost:3001/styles?searchBy=content&keyword=팬츠
+###
+GET http://localhost:3001/styles?searchBy=tag&keyword=감성
+
+
+//태그 검색 
+###
+GET http://localhost:3001/styles?tag=감성
+
+//스타일 상세 조회
+###
+GET http://localhost:3001/styles/
+
+###
+POST http://localhost:3001/styles
+Content-Type: application/json
+
+{
+	"nickname": "테스트용",
+	"title": "테스트입니다..",
+	"content": "테스트중",
+	"password": "test123123",
+	"categories": {
+		"TOP": {
+			"name": "후드티",
+			"brand": "메종키츠네",
+			"price": 350000
+		},
+		"BOTTOM": {
+			"name": "트레이닝바지",
+			"brand": "오프화이트",
+			"price": 500000
+		}
+	},
+	"tags": [
+		"겨울맞이",
+		"편한룩"
+	],
+	"imageUrls": [
+		"https://placehold.co/600x400/EEE/31343C?text=Image+1",
+    "https://placehold.co/600x400/CCC/31343C?text=Image+2"
+	]
+}
+
+
+###
+PUT http://localhost:3001/styles/14
+Content-Type: application/json
+
+{
+	"nickname": "수정테스트합니다",
+	"title": "수정테스트..",
+	"content": "수정테스트중",
+	"password": "test123123",
+	"categories": {
+		"TOP": {
+			"name": "후드티",
+			"brand": "메종키츠네",
+			"price": 350000
+		},
+		"BOTTOM": {
+			"name": "트레이닝바지",
+			"brand": "오프화이트",
+			"price": 500000
+		}
+	},
+	"tags": [
+		"겨울맞이",
+		"편한룩"
+	],
+	"imageUrls": [
+		"https://placehold.co/600x400/EEE/31343C?text=Image+1",
+    "https://placehold.co/600x400/CCC/31343C?text=Image+2"
+	]
+}
+
+###
+DELETE http://localhost:3001/styles/15
+Content-Type: application/json
+
+{
+  "password": "test123123"
+}
