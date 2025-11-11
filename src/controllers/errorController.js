@@ -1,6 +1,7 @@
 import { StructError } from 'superstruct';
 import BadRequestError from '../lib/errors/BadRequestError.js';
 import NotFoundError from '../lib/errors/NotFoundError.js';
+import { Prisma } from '@prisma/client';
 
 export function defaultNotFoundHandler(req, res, next) {
   return res.status(404).send({ message: '찾지 못했습니다.' });
