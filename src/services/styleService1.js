@@ -1,5 +1,5 @@
-import { back2front } from './catetory_conversion.js';
-import { pageInfo } from './pageInfo.js';
+import { back2front } from '../lib/catetory_conversion.js';
+import { pageInfo } from '../lib/pageInfo.js';
 import { prisma } from '../lib/prismaClient.js';
 
 // 스타일 상세 조회
