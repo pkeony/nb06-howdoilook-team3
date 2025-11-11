@@ -23,8 +23,8 @@ export async function getStyleService(styleId) {
   console.log('1 style fetched (detail)');
   const { categories: backEnd_categories, tags, imageUrls, ...rest } = backEnd_syle;
   const categories = back2front(backEnd_categories);
-  const frontEnd_Style = { ...rest, categories, tags, imageUrls };
-  return frontEnd_Style;
+  const frontEnd_style = { ...rest, categories, tags, imageUrls };
+  return frontEnd_style;
 }
 
 // 스타일 목록 조회
