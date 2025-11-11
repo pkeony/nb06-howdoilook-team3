@@ -49,7 +49,7 @@ export async function getStyleRankingListService(reqQuery) {
     currentPage: myPage.currPage,
     totalPage: myPage.totalPage,
     totalItemCount: myPage.totalItemCount,
-    data: rankedStyles,
+    data: back2front(rankedStyles),
   };
   console.log(`${rankedStyles.length} styles ranked by ${rankBy}`);
   return rankedStylesPaged;

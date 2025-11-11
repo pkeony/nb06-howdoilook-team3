@@ -31,7 +31,7 @@ GET http://localhost:3000/styles?tag=미니멀
 
 //스타일 상세 조회
 ###
-GET http://localhost:3000/styles/1
+GET http://localhost:3000/styles/12
 
 
 

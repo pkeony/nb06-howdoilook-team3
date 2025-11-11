@@ -1,36 +1,18 @@
-export function back2front(backEnd_style_categories) {
-  const categories = backEnd_style_categories.reduce((acc, cur) => {
-    acc[cur.type.toLowerCase()] = {
-      name: cur.name,
-      brand: cur.brand,
-      price: cur.price,
-    };
-    return acc;
-  }, {});
-  return categories;
-}
+// import { constructFromSymbol } from 'date-fns/constants';
 
-export function back2front2(styles) {
-  const arr = Array.isArray(styles) ? styles : [styles]; // ← 항상 배열로 통일
+// export function back2front(backEnd_style_categories) {
+//   const categories = backEnd_style_categories.reduce((acc, cur) => {
+//     acc[cur.type.toLowerCase()] = {
+//       name: cur.name,
+//       brand: cur.brand,
+//       price: cur.price,
+//     };
+//     return acc;
+//   }, {});
+//   return categories;
+// }
 
-  return styles.map((n) => {
-    console.log(n, Array.isArray(n.categories));
-    const categories = categories.reduce((acc, cur) => {
-      acc[cur.type.toLowerCase()] = {
-        name: cur.name,
-        brand: cur.brand,
-        price: cur.price,
-      };
-      return acc;
-    }, {});
-
-    return {
-      ...n,
-      categories, // categories 배열 대신 객체로 대체
-    };
-  });
-}
-
+// 선영님이 만들어 주세요~
 export function front2back(frontEnd_style) {
   const { categories, ...rest } = frontEnd_style.categories;
   const backEnd_categories = Object.entries(categories)
@@ -45,4 +27,30 @@ export function front2back(frontEnd_style) {
     });
   const backEnd_style = { ...rest, backEnd_categories };
   return backEnd_style;
+}
+
+export function back2front(styles) {
+  if (Array.isArray(styles)) {
+    return styles.map((n) => {
+      const categories = (n.categories || []).reduce((acc, cur) => {
+        acc[cur.type.toLowerCase()] = {
+          name: cur.name,
+          brand: cur.brand,
+          price: cur.price,
+        };
+        return acc;
+      }, {});
+      return { ...n, categories };
+    });
+  } else {
+    const categories = (styles.categories || []).reduce((acc, cur) => {
+      acc[cur.type.toLowerCase()] = {
+        name: cur.name,
+        brand: cur.brand,
+        price: cur.price,
+      };
+      return acc;
+    }, {});
+    return { ...styles, categories };
+  }
 }

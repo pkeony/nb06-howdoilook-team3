@@ -4,7 +4,7 @@ import { prisma } from '../lib/prismaClient.js';
 
 // 스타일 상세 조회
 export async function getStyleService(styleId) {
-  const backEnd_syle = await prisma.style.findUniqueOrThrow({
+  const backEnd_style = await prisma.style.findUniqueOrThrow({
     where: { id: parseInt(styleId) },
     select: {
       id: true,
@@ -21,9 +21,10 @@ export async function getStyleService(styleId) {
   });
 
   console.log('1 style fetched (detail)');
-  const { categories: backEnd_categories, tags, imageUrls, ...rest } = backEnd_syle;
-  const categories = back2front(backEnd_categories);
-  const frontEnd_style = { ...rest, categories, tags, imageUrls };
+  //const { categories: backEnd_categories, tags, imageUrls, ...rest } = backEnd_syle;
+  //const categories = back2front2(backEnd_categories);
+  //const frontEnd_style = { ...rest, categories, tags, imageUrls };
+  const frontEnd_style = back2front(backEnd_style);
   return frontEnd_style;
 }
 
@@ -120,7 +121,7 @@ export async function getStyleListService(reqQuery) {
     currentPage: myPage.currPage,
     totalPage: myPage.totalPage,
     totalItemCount: myPage.totalItemCount,
-    data: backEnd_styles,
+    data: back2front(backEnd_styles),
   };
   console.log(`${backEnd_styles.length} styles fetched`);
   return stylesPaged;
