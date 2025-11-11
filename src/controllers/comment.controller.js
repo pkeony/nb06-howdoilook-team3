@@ -4,7 +4,7 @@ import {
   updateReplyService,
   deleteReplyService,
   getRepliesService,
-} from '../services/reply.service.js'; // 서비스 임포트
+} from '../services/comment.service.js';
 
 // 답글 등록
 export const createReply = async (req, res) => {

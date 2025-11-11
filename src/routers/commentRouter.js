@@ -5,8 +5,7 @@ import {
   updateReply,
   deleteReply,
   getReplies,
-} from '../controllers/reply.controller.js'; // 컨트롤러 임포트
-
+} from '../controllers/comment.controller.js';
 const router = express.Router();
 
 // 답글 등록 (POST)

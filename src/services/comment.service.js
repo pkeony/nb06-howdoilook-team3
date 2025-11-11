@@ -1,5 +1,5 @@
 // src/services/reply.service.js
-import { PrismaClient } from '@prisma/client'; // Prisma Client 임포트
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
