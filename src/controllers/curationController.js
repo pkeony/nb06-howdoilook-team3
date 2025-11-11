@@ -36,6 +36,7 @@ export const updateCuration = async (req, res) => {
 
 export const deleteCuration = async (req, res) => {
   const { id } = req.params;
+  const { password } = req.params;
   const curation = await prisma.curation.findUnique({ where: { id } });
   if (!curation) {
     throw new NotFoundError('article', id);

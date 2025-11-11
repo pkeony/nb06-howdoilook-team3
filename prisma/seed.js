@@ -5,16 +5,9 @@ const prisma = new PrismaClient();
 
 async function main() {
   await prisma.comment.deleteMany();
-<<<<<<< HEAD
-  //   await prisma.$executeRawUnsafe(`
-  //   TRUNCATE TABLE "Comment", "Curation", "Category", "Style" RESTART IDENTITY CASCADE;
-  // `);
-=======
   await prisma.curation.deleteMany();
   await prisma.category.deleteMany();
   await prisma.style.deleteMany();
-
->>>>>>> dev
   await prisma.style.createMany({
     data: Styles,
     skipDuplicates: true,
@@ -43,37 +36,6 @@ async function main() {
   await prisma.$executeRawUnsafe(`
   SELECT setval(pg_get_serial_sequence('"Comment"', 'id'), COALESCE((SELECT MAX(id) FROM "Comment"), 0), true);
 `);
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  await prisma.$executeRawUnsafe(`
-  SELECT setval(pg_get_serial_sequence('"Style"', 'id'), COALESCE((SELECT MAX(id) FROM "Style"), 0), true);
-`);
-  await prisma.$executeRawUnsafe(`
-  SELECT setval(pg_get_serial_sequence('"Category"', 'id'), COALESCE((SELECT MAX(id) FROM "Category"), 0), true);
-`);
-  await prisma.$executeRawUnsafe(`
-  SELECT setval(pg_get_serial_sequence('"Curation"', 'id'), COALESCE((SELECT MAX(id) FROM "Curation"), 0), true);
-`);
-  await prisma.$executeRawUnsafe(`
-  SELECT setval(pg_get_serial_sequence('"Comment"', 'id'), COALESCE((SELECT MAX(id) FROM "Comment"), 0), true);
-`);
-=======
->>>>>>> dev
-  // await prisma.$executeRawUnsafe(`
-  //   SELECT setval(pg_get_serial_sequence('"Style"', 'id'), COALESCE((SELECT MAX(id) FROM "Style"), 0), true);
-  // `);
-  // await prisma.$executeRawUnsafe(`
-  //   SELECT setval(pg_get_serial_sequence('"Curation"', 'id'), COALESCE((SELECT MAX(id) FROM "Curation"), 0), true);
-  // `);
-  // await prisma.$executeRawUnsafe(`
-  //   SELECT setval(pg_get_serial_sequence('"Comment"', 'id'), COALESCE((SELECT MAX(id) FROM "Comment"), 0), true);
-  // `);
-<<<<<<< HEAD
-=======
->>>>>>> 2528db5 (merge dev)
->>>>>>> dev
 }
 
 main()
