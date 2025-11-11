@@ -1,5 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import { prisma } from '../lib/prismaClient.js';
 
 // 스타일 등록
 export const createStyleService = async (styleData) => {
