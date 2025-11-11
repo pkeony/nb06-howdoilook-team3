@@ -5,7 +5,7 @@ import {
 } from '../services/styleService.js';
 
 import { assert } from 'superstruct';
-import { CheckStyle, CheckDeleteStyle } from '../structs/structs.js';
+import { CheckStyle, CheckDeleteStyle } from '../structs/styleSchema.js';
 
 // 스타일 등록
 export const createStyle = async (req, res) => {
