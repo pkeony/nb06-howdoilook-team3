@@ -8,7 +8,7 @@ export function rankStylesBy(styles, rankBy = 'total') {
     if (nCurations > 0) {
       // curation이 하나라도 있는 경우
       avg = {
-        rankby: curations.reduce((a, c) => a + c.trendy, 0) / nCurations,
+        trendy: curations.reduce((a, c) => a + c.trendy, 0) / nCurations,
         personality: curations.reduce((a, c) => a + c.personality, 0) / nCurations,
         practicality: curations.reduce((a, c) => a + c.practicality, 0) / nCurations,
         costEffectiveness: curations.reduce((a, c) => a + c.costEffectiveness, 0) / nCurations,

@@ -41,7 +41,8 @@ export async function getStyleRankingListService(reqQuery) {
     throw new Error('NOT_FOUND');
   }
 
-  const rankedStyles = rankStylesBy(styles, rankBy); // curations 필드 없애야 함
+  const temp = rankStylesBy(styles, rankBy); // rankBy로 styles 소팅하고, ranking & rating 필드 추가
+  const rankedStyles = temp.map(({ curations, ...rest }) => rest); //  출력 양식에 맞추어 curations 필드 없앰
 
   const myPage = pageInfo(page, pageSize, styles.length);
   const rankedStylesPaged = {
@@ -50,6 +51,6 @@ export async function getStyleRankingListService(reqQuery) {
     totalItemCount: myPage.totalItemCount,
     data: rankedStyles,
   };
-  console.log(`${rankedStyles.length} styles fetched`);
+  console.log(`${rankedStyles.length} styles ranked by ${rankBy}`);
   return rankedStylesPaged;
 }
