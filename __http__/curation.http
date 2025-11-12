@@ -1,19 +1,48 @@
-GET http://localhost:3000/styles/
+GET http://localhost:3001/styles/1/curations
 
 
 ###
 
-
-POST http://localhost:3000/styles
-
+GET http://localhost:3001/styles/1/curations
 
 ###
 
 
-PUT http://localhost:3000/styles/1
+POST http://localhost:3001/styles/1/curations
+Content-Type: application/json
 
+{
+    "nickname":"kelvin",
+    "content": "좋은 옷들입니다",
+    "password": "park9090",
+    "trendy" : 8,
+    "personality": 7,
+    "practicality": 9,
+    "costEffectiveness": 7
+}
 
 ###
 
 
-DELETE http://localhost:3000/styles/1
+PUT http://localhost:3001/curations/1
+Content-Type: application/json
+
+{
+    "nickname":"curator_jay",
+    "content": "좋은 옷들입니다",
+    "password": "curJay11",
+    "trendy" : 8,
+    "personality": 7,
+    "practicality": 6,
+    "costEffectiveness": 7
+}
+
+###
+
+
+DELETE http://localhost:3001/curations/1
+Content-Type: application/json
+
+{
+    "password": "park90901"
+}

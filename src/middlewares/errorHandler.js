@@ -14,6 +14,8 @@ export function globalErrorHandler(err, req, res, next) {
       res.status(400).send({ message: '*영문, 숫자조합 8~16자리로 입력해주세요' });
     } else if (err.failures().some((f) => f.refinement === 'MinCategories')) {
       res.status(400).send({ message: '*최소 하나 이상 선택해주세요' });
+    } else if (err.failures().some((f) => f.type === 'number')) {
+      return res.status(400).send({ message: '*0~10 사이의 숫자를 입력해주세요' });
     } else {
       res.status(400).send({ message: '*필수 입력사항입니다.' });
     }
