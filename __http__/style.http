@@ -26,6 +26,10 @@ GET http://localhost:3000/styles?searchBy=tag&keyword=린넨
 ###
 GET http://localhost:3000/styles?tag=미니멀
 
+// 인기 태그 조회
+###
+GET http://localhost:3000/tags
+
 
 
 
