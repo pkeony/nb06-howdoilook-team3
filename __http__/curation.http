@@ -1,14 +1,15 @@
-GET http://localhost:3001/styles/1/curations
+GET http://localhost:3000/styles/2/curations?searchBy=nickname&keyword=kelvin
 
+###
+GET http://localhost:3000/styles/2/curations?searchBy=content&keyword=봄
+
+###
+GET http://localhost:3000/styles/2/curations
 
 ###
 
-GET http://localhost:3001/styles/1/curations
 
-###
-
-
-POST http://localhost:3001/styles/1/curations
+POST http://localhost:3000/styles/2/curations
 Content-Type: application/json
 
 {
@@ -24,7 +25,7 @@ Content-Type: application/json
 ###
 
 
-PUT http://localhost:3001/curations/1
+PUT http://localhost:3000/curations/1
 Content-Type: application/json
 
 {
@@ -40,9 +41,9 @@ Content-Type: application/json
 ###
 
 
-DELETE http://localhost:3001/curations/1
+DELETE http://localhost:3000/curations/20
 Content-Type: application/json
 
 {
-    "password": "park90901"
+    "password": "park9090"
 }
