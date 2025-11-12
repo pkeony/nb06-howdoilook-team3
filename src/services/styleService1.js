@@ -1,4 +1,4 @@
-import { back2front } from '../lib/catetory_conversion.js';
+import { back2front } from '../lib/category_conversion.js';
 import { pageInfo } from '../lib/pageInfo.js';
 import { save_thumbnail_imgUrl } from '../lib/save_thumbnail_imgUrl.js';
 import { prisma } from '../lib/prismaClient.js';
