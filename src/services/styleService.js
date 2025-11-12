@@ -1,34 +1,14 @@
 import { prisma } from '../lib/prismaClient.js';
 import NotFoundError from '../lib/errors/NotFoundError.js';
+import { front2back, formatStyleForDetail } from '../lib/category_conversion.js';
 
 // 스타일 등록
-const formatCategoriesAsObject = (categoriesArray) => {
-  if (!categoriesArray || categoriesArray.length === 0) return {};
-
-  return categoriesArray.reduce((acc, category) => {
-    const { type, ...itemData } = category;
-
-    // 리스폰스 예시에 type 필드가 소문자여서 소문자 키로 사용하여 객체에 추가
-    if (type) {
-      acc[type.toLowerCase()] = itemData;
-    }
-    return acc;
-  }, {});
-};
-
 export const createStyleService = async (styleData) => {
   const { id, ...dataWithoutId } = styleData;
 
-  const categoriesArray = Object.entries(dataWithoutId.categories)
-    .filter(([, item]) => item !== undefined && item !== null)
-    .map(([typeKey, itemData]) => ({
-      type: typeKey.toUpperCase(),
-      name: itemData.name,
-      brand: itemData.brand,
-      price: itemData.price,
-    }));
+  const categoriesArray = front2back(dataWithoutId.categories);
 
-  const newStyle = await prisma.style.create({
+  const newStyleFromDB = await prisma.style.create({
     data: {
       nickname: dataWithoutId.nickname,
       title: dataWithoutId.title,
@@ -54,12 +34,8 @@ export const createStyleService = async (styleData) => {
       },
     },
   });
-  const { categories: rawCategories, password, ...styleBase } = newStyle;
 
-  return {
-    ...styleBase,
-    categories: formatCategoriesAsObject(rawCategories),
-  };
+  return formatStyleForDetail(newStyleFromDB);
 };
 
 // 스타일 수정
@@ -79,18 +55,9 @@ export const updateStyleService = async (styleId, updateData) => {
     throw new Error('FORBIDDEN');
   }
 
-  const categoryData = Object.entries(categories)
-    .filter(([key, value]) => value != null && value.name)
-    .map(([type, details]) => {
-      return {
-        type: type.toUpperCase(),
-        name: details.name,
-        brand: details.brand,
-        price: details.price,
-      };
-    });
+  const categoryData = front2back(categories);
 
-  const [deleteResult, updatedStyle] = await prisma.$transaction([
+  const [deleteResult, updatedStyleFromDB] = await prisma.$transaction([
     prisma.category.deleteMany({
       where: { styleId: parsedStyleId },
     }),
@@ -102,6 +69,7 @@ export const updateStyleService = async (styleId, updateData) => {
         content,
         tags: tags,
         imageUrls: imageUrls,
+        thumbnail: imageUrls && imageUrls.length > 0 ? imageUrls[0] : undefined,
         categories: {
           create: categoryData,
         },
@@ -119,12 +87,7 @@ export const updateStyleService = async (styleId, updateData) => {
     }),
   ]);
 
-  const { categories: rawCategories, password: _, ...updatedStyleBase } = updatedStyle;
-
-  return {
-    ...updatedStyleBase,
-    categories: formatCategoriesAsObject(rawCategories),
-  };
+  return formatStyleForDetail(updatedStyleFromDB);
 };
 
 // 스타일 삭제
