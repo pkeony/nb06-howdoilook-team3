@@ -70,7 +70,7 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3001/styles/27
+PUT http://localhost:3000/styles/27
 Content-Type: application/json
 
 {
