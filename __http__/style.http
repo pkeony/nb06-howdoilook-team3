@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-GET http://localhost:3001/styles/1
-=======
 GET http://localhost:3000/styles?page=2&pageSize=10
->>>>>>> origin/deve
-
 
 // 최신순, 조회순, 큐레이팅순(큐레이팅 많은 순)-정렬 
 ###
@@ -75,7 +70,7 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3001/styles/27
+PUT http://localhost:3000/styles/27
 Content-Type: application/json
 
 {
