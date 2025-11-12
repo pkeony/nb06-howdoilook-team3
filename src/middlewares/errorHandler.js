@@ -71,6 +71,11 @@ export function globalErrorHandler(err, req, res, next) {
       return;
     }
 
+    //숫자입력 오류
+    if (err.failures().some((f) => f.type === 'number')) {
+      return res.status(400).send({ message: '*0~10 사이의 숫자를 입력해주세요' });
+    }
+
     // 요청 데이터 형식이 스키마와 맞지 않을 경우 에러 메시지
     if (err instanceof StructError) {
       const firstFailure = err.failures()[0];

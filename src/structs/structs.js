@@ -76,7 +76,6 @@ export const CheckCuration = s.object({
   nickname: s.size(s.string(), 1, 20),
   content: s.size(s.string(), 1, 150),
   password: Password,
-  stylesId: s.min(s.integer(), 1),
 });
 
 export const CheckComment = s.object({
