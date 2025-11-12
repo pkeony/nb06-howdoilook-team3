@@ -1,21 +1,18 @@
-GET http://localhost:3000/reply
+// 답글 등록
+POST http://localhost:3001/curations/15/comments
+Content-Type: application/json
+
+{
+	"content": "string",
+	"password": "string"
+}
 
 ###
 
-GET http://localhost:3000/reply? //최신순, 조회순, 큐레이팅순(큐레이팅 많은 순)-정렬  ,  닉네임, 제목, 상세, 태그로 검색 
+//답글 수정
+PUT http://localhost:3001/comments/14
 
 ###
 
-GET http://localhost:3000/reply
-
-###
-
-POST http://localhost:3000/reply  // curation - styles와 비밀번호 확인
-
-###
-
-PUT http://localhost:3000/reply/1
-
-###
-
-DELETE http://localhost:3000/reply/1
+//답글 삭제
+DELETE http://localhost:3001/comments/12

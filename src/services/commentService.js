@@ -1,10 +1,7 @@
-// src/services/reply.service.js
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/prismaClient.js';
 
 // 답글 등록 서비스
-export const createReplyService = async (nickname, content, password) => {
+export const createCommentService = async (nickname, content, password) => {
   if (!nickname || !content || !password) {
     throw new Error('닉네임, 내용, 비밀번호를 모두 입력해야 합니다.');
   }
@@ -17,11 +14,11 @@ export const createReplyService = async (nickname, content, password) => {
     },
   });
 
-  return '답글이 등록되었습니다.';
+  return console.log('답글이 등록되었습니다.');
 };
 
 // 답글 수정 서비스
-export const updateReplyService = async (nickname, content, password) => {
+export const updateCommentService = async (nickname, content, password) => {
   const existingComment = await prisma.comment.findUnique({
     where: { nickname },
   });
@@ -39,11 +36,11 @@ export const updateReplyService = async (nickname, content, password) => {
     data: { content },
   });
 
-  return '답글이 수정되었습니다.';
+  return console.log('답글이 수정되었습니다.');
 };
 
 // 답글 삭제 서비스
-export const deleteReplyService = async (nickname, password) => {
+export const deleteCommentService = async (nickname, password) => {
   const existingComment = await prisma.comment.findUnique({
     where: { nickname },
   });
@@ -60,10 +57,10 @@ export const deleteReplyService = async (nickname, password) => {
     where: { nickname },
   });
 
-  return '답글이 삭제되었습니다.';
+  return console.log('답글이 삭제되었습니다.');
 };
 
 // 답글 목록 조회 서비스
-export const getRepliesService = async () => {
+export const getCommentService = async () => {
   return await prisma.comment.findMany();
 };

@@ -1,23 +1,15 @@
-// src/routers/reply.router.js
 import express from 'express';
-import {
-  createReply,
-  updateReply,
-  deleteReply,
-  getReplies,
-} from '../controllers/comment.controller.js';
+import { createComment, updateComment, deleteComment } from '../controllers/commentController.js';
+
 const router = express.Router();
 
 // 답글 등록 (POST)
-router.post('/', createReply);
+router.post('/curations/:id/comments', createComment);
 
 // 답글 수정 (PUT)
-router.put('/:nickname', updateReply);
+router.put('/comments/:id', updateComment);
 
 // 답글 삭제 (DELETE)
-router.delete('/:nickname', deleteReply);
-
-// 답글 목록 조회 (GET)
-router.get('/', getReplies);
+router.delete('/comments/:id', deleteComment);
 
 export default router;
