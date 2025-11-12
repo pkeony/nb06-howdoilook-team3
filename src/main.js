@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-//import rankingRouter from './routers/rankingRouter.js';
+import rankingRouter from './routers/rankingRouter.js';
 import { defaultNotFoundHandler, globalErrorHandler } from './middlewares/errorHandler.js';
 import { PORT } from './lib/constants.js';
 import stylesRouter from './routers/styleRouter.js';
@@ -22,4 +22,4 @@ app.use('/styles', curationStyleRouter);
 app.use(defaultNotFoundHandler);
 app.use(globalErrorHandler);
 
-app.listen(PORT || 3001, () => console.log(`Server started`));
+app.listen(PORT || 3000, () => console.log(`Server started`));

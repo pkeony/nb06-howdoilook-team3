@@ -29,6 +29,8 @@ export const createCuration = async (req, res) => {
 
 export const updateCuration = async (req, res) => {
   assert(req.body, CheckCuration);
+  const { password } = req.body;
+  const { curationId } = req.params;
 
   const updatedCuration = await updateCurationSerivce(curationId, password, req.body);
 
