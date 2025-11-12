@@ -24,15 +24,15 @@ const styles = [
 // const rating = styles.map((n) => n.rating);
 // console.log(rating);
 
-const ratingSorted = styles
-  .map((n) => n.rating)
-  .sort((a, b) => {
-    return b - a;
-  });
+// const ratingSorted = styles
+//   .map((n) => n.rating)
+//   .sort((a, b) => {
+//     return b - a;
+//   });
 
-const sortedIds = styles.sort((a, b) => b.rating - a.rating).map((style) => style.id);
+// const sortedIds = styles.sort((a, b) => b.rating - a.rating).map((style) => style.id);
 
-console.log(styles);
-console.log(sortedIds);
-styles.map((n, ind) => (n.ranking = ind + 1));
-console.log(styles);
+// console.log(styles);
+// console.log(sortedIds);
+// styles.map((n, ind) => (n.ranking = ind + 1));
+// console.log(styles);
