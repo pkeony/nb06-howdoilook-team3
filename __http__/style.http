@@ -41,15 +41,15 @@ POST http://localhost:3000/styles
 Content-Type: application/json
 
 {
-	"nickname": "테스트용",
-	"title": "테스트입니다..",
-	"content": "테스트중",
-	"password": "test123123",
+	"nickname": "닉네임테스트끝",
+	"title": "타이틀테스트끝",
+	"content": "콘텐트테스트끝",
+	"password": "testComplete1",
 	"categories": {
 		"TOP": {
-			"name": "후드티",
-			"brand": "메종키츠네",
-			"price": 350000
+			"name": "카테고리네임테스트완",
+			"brand": "브랜드테스트완료",
+			"price": 35000
 		},
 		"BOTTOM": {
 			"name": "트레이닝바지",
@@ -58,8 +58,9 @@ Content-Type: application/json
 		}
 	},
 	"tags": [
-		"겨울맞이",
-		"편한룩"
+		"태그길이테스트해보겠습니다과연잘작동될지",
+		"길이도검사하고개수도검사해야하는데",
+		"밥먹으러가려면돼야해"
 	],
 	"imageUrls": [
 		"https://placehold.co/600x400/EEE/31343C?text=Image+1",
@@ -69,14 +70,15 @@ Content-Type: application/json
 
 
 ###
-PUT http://localhost:3000/styles/14
+
+PUT http://localhost:3001/styles/27
 Content-Type: application/json
 
 {
 	"nickname": "수정테스트합니다",
 	"title": "수정테스트..",
 	"content": "수정테스트중",
-	"password": "test123123",
+	"password": "testComplete1",
 	"categories": {
 		"TOP": {
 			"name": "후드티",
