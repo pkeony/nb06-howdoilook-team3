@@ -1,4 +1,4 @@
-GET http://localhost:3000/styles?page=1&pageSize=15
+GET http://localhost:3000/styles?page=2&pageSize=10
 
 
 // 최신순, 조회순, 큐레이팅순(큐레이팅 많은 순)-정렬 

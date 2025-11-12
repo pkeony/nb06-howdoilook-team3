@@ -44,13 +44,15 @@ export async function getStyleRankingListService(reqQuery) {
   const temp = rankStylesBy(styles, rankBy); // rankBy로 styles 소팅하고, ranking & rating 필드 추가
   const rankedStyles = temp.map(({ curations, ...rest }) => rest); //  출력 양식에 맞추어 curations 필드 없앰
 
-  const myPage = pageInfo(page, pageSize, styles.length);
-  const rankedStylesPaged = {
-    currentPage: myPage.currPage,
-    totalPage: myPage.totalPage,
-    totalItemCount: myPage.totalItemCount,
-    data: back2front(rankedStyles),
-  };
+  //const myPage = pageInfo(page, pageSize, styles.length);
+
+  // const rankedStylesPaged = {
+  //   currentPage: myPage.currPage,
+  //   totalPage: myPage.totalPage,
+  //   totalItemCount: myPage.totalItemCount,
+  //   data: back2front(rankedStyles),
+  // };
+  const pagedRankedStyles = pageInfo(page, pageSize, rankedStyles);
   console.log(`${rankedStyles.length} styles ranked by ${rankBy}`);
-  return rankedStylesPaged;
+  return pagedRankedStyles;
 }

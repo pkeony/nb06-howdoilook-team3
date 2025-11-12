@@ -113,16 +113,14 @@ export async function getStyleListService(reqQuery) {
     throw new Error('NOT_FOUND');
   }
 
-  // const { categories: backEnd_categories, ...rest } = backEnd_styles;
-  // const categories = back2front(backEnd_categories);
-  // const frontEnd_styles = { ...rest, categories };
-  const myPage = pageInfo(page, pageSize, nStyles);
-  const stylesPaged = {
-    currentPage: myPage.currPage,
-    totalPage: myPage.totalPage,
-    totalItemCount: myPage.totalItemCount,
-    data: back2front(backEnd_styles),
-  };
+  // const myPage = pageInfo(page, pageSize, nStyles);
+  // const stylesPaged = {
+  //   currentPage: myPage.currPage,
+  //   totalPage: myPage.totalPage,
+  //   totalItemCount: myPage.totalItemCount,
+  //   data: back2front(backEnd_styles),
+  // };
+  const stylesPaged = pageInfo(page, pageSize, backEnd_styles);
   console.log(`${backEnd_styles.length} styles fetched`);
   return stylesPaged;
 }
