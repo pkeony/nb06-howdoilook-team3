@@ -80,11 +80,8 @@ export function globalErrorHandler(err, req, res, next) {
     if (err instanceof StructError) {
       const firstFailure = err.failures()[0];
       if (firstFailure) {
-        // superstruct가 제공하는 기본 오류 메시지를 사용합니다.
         res.status(400).send({
-          message: `*요청 형식이 올바르지 않습니다. (필드: ${
-            firstFailure.path.join('.') || 'unknown'
-          }, 이유: ${firstFailure.message})`,
+          message: '잘못된 요청입니다',
         });
       } else {
         res.status(400).send({ message: '*필수 입력사항입니다.' });
