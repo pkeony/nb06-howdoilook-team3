@@ -3,3 +3,4 @@ node_modules/
 # 환경 설정 파일
 .env
 .DS_Store
+test.js
