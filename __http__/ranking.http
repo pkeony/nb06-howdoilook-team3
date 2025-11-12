@@ -1,12 +1,12 @@
 
 // 스타일 랭킹 목록 조회 - 아직 작동하지 않음
 ###
-GET http://localhost:3001/ranking?rankBy=total
+GET http://localhost:3000/ranking?rankBy=total
 ###
-GET http://localhost:3001/ranking?rankBy=trendy
+GET http://localhost:3000/ranking?rankBy=trendy
 ###
-GET http://localhost:3001/ranking?rankBy=personality
+GET http://localhost:3000/ranking?rankBy=personality
 ###
-GET http://localhost:3001/ranking?rankBy=practicality
+GET http://localhost:3000/ranking?rankBy=practicality
 ###
-GET http://localhost:3001/ranking?rankBy=costEffectiveness
+GET http://localhost:3000/ranking?rankBy=costEffectiveness
