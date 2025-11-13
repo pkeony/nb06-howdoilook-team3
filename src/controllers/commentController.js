@@ -34,5 +34,5 @@ export const deleteComment = (req, res) => {
   if (!curation) {
     throw new globalErrorHandler('curation', id);
   }
-  res.status(200).json({ message });
+  res.status(200).json({ message: '답글 삭제 성공' });
 };
