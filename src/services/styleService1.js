@@ -1,13 +1,15 @@
-import { back2front } from '../lib/catetory_conversion.js';
+import { back2front } from '../lib/category_conversion.js';
 import { pageInfo } from '../lib/pageInfo.js';
+import { save_thumbnail_imgUrl } from '../lib/save_thumbnail_imgUrl.js';
 import { prisma } from '../lib/prismaClient.js';
 
 // 스타일 상세 조회
 export async function getStyleService(styleId) {
-  const backEnd_syle = await prisma.style.findUniqueOrThrow({
+  const backEnd_style = await prisma.style.findUniqueOrThrow({
     where: { id: parseInt(styleId) },
     select: {
       id: true,
+      thumbnail: true,
       nickname: true,
       title: true,
       content: true,
@@ -21,10 +23,8 @@ export async function getStyleService(styleId) {
   });
 
   console.log('1 style fetched (detail)');
-  const { categories: backEnd_categories, tags, imageUrls, ...rest } = backEnd_syle;
-  const categories = back2front(backEnd_categories);
-  const frontEnd_Style = { ...rest, categories, tags, imageUrls };
-  return frontEnd_Style;
+  const frontEnd_style = back2front(backEnd_style);
+  return frontEnd_style;
 }
 
 // 스타일 목록 조회
@@ -101,7 +101,7 @@ export async function getStyleListService(reqQuery) {
       createdAt: true,
       updatedAt: false,
       password: false,
-      imageUrls: false,
+      imageUrls: true,
     },
     take: parseInt(pageSize),
     skip: (parseInt(page) - 1) * parseInt(pageSize),
@@ -111,17 +111,8 @@ export async function getStyleListService(reqQuery) {
     console.log(`0 styles fetched`);
     throw new Error('NOT_FOUND');
   }
-
-  // const { categories: backEnd_categories, ...rest } = backEnd_styles;
-  // const categories = back2front(backEnd_categories);
-  // const frontEnd_styles = { ...rest, categories };
-  const myPage = pageInfo(page, pageSize, nStyles);
-  const stylesPaged = {
-    currentPage: myPage.currPage,
-    totalPage: myPage.totalPage,
-    totalItemCount: myPage.totalItemCount,
-    data: backEnd_styles,
-  };
+  //save_thumbnail_ImgUrl(backEnd_styles);
+  const stylesPaged = pageInfo(page, pageSize, save_thumbnail_imgUrl(backEnd_styles));
   console.log(`${backEnd_styles.length} styles fetched`);
   return stylesPaged;
 }

@@ -1,6 +1,6 @@
 import * as s from 'superstruct';
 
-const Url = s.define('Url', (value) => {
+export const Url = s.define('Url', (value) => {
   try {
     new URL(value);
     return true;
@@ -9,70 +9,64 @@ const Url = s.define('Url', (value) => {
   }
 });
 
-const Password = s.refine(s.string(), 'Password', (value) => {
+export const Password = s.refine(s.string(), 'Password', (value) => {
   const lengthOk = value.length >= 8 && value.length <= 16;
   const hasLetter = /[a-zA-Z]/.test(value);
   const hasNumber = /\d/.test(value);
   return lengthOk && hasLetter && hasNumber;
 });
 
-// const CATEGORYTYPE = ['top', 'bottom', 'outer', 'dress', 'shoes', 'bag', 'accessory'];
+export const NicknameLength = s.refine(
+  s.string(),
+  'NicknameLength',
+  (value) => value.length >= 1 && value.length <= 20,
+);
 
-const CategoryItem = s.object({
-  name: s.size(s.string(), 1, 30),
-  brand: s.size(s.string(), 1, 30),
-  price: s.max(s.min(s.number(), 0), 1000000000),
+export const TitleLength = s.refine(
+  s.string(),
+  'TitleLength',
+  (value) => value.length >= 1 && value.length <= 30,
+);
+
+export const ContentLength = s.refine(
+  s.string(),
+  'ContentLength',
+  (value) => value.length >= 1 && value.length <= 500,
+);
+
+export const TagItemLength = s.refine(
+  s.string(),
+  'TagItemLength',
+  (value) => value.length >= 1 && value.length <= 20,
+);
+
+// --- 카테고리 아이템 Refinements 및 Object ---
+
+export const CategoryItemNameLength = s.refine(
+  s.string(),
+  'CategoryItemNameLength',
+  (value) => value.length >= 1 && value.length <= 30,
+);
+
+export const CategoryItemBrandLength = s.refine(
+  s.string(),
+  'CategoryItemBrandLength',
+  (value) => value.length >= 1 && value.length <= 30,
+);
+
+export const CategoryItemPriceRange = s.refine(
+  s.number(),
+  'CategoryItemPriceRange',
+  (value) => value >= 0 && value <= 1000000000,
+);
+
+export const CategoryItem = s.object({
+  name: CategoryItemNameLength,
+  brand: CategoryItemBrandLength,
+  price: CategoryItemPriceRange,
 });
 
-export const CheckStyle = s.object({
-  nickname: s.size(s.string(), 1, 20),
-  title: s.size(s.string(), 1, 30),
-  content: s.size(s.string(), 1, 500),
-  password: Password,
-  tags: s.size(s.array(s.size(s.string(), 1, 20)), 0, 3),
-  imageUrls: s.size(s.array(Url), 1, Infinity),
-
-  // 'categories'를 배열이 아닌 객체로 검증하도록 수정
-  categories: s.refine(
-    s.object({
-      TOP: s.optional(CategoryItem),
-      BOTTOM: s.optional(CategoryItem),
-      OUTER: s.optional(CategoryItem),
-      DRESS: s.optional(CategoryItem),
-      SHOES: s.optional(CategoryItem),
-      BAG: s.optional(CategoryItem),
-      ACCESSORY: s.optional(CategoryItem),
-    }),
-    'MinCategories',
-    (obj) => Object.values(obj).some((val) => val !== undefined && val !== null),
-  ),
-});
-
-export const CheckDeleteStyle = s.object({
-  password: Password,
-});
-
-// export const CheckStyles = s.object({
-//   nickname: s.size(s.string(), 1, 20),
-//   title: s.size(s.string(), 1, 30),
-//   tags: s.size(s.array(s.size(s.string(), 1, 20)), 0, 3),
-//   imageUrls: s.size(s.array(Url), 1, undefined),
-//   categories: s.array(
-//     s.size(
-//       s.object({
-//         type: s.enums(CATEGORYTYPE),
-//         name: s.size(s.string(), 1, 30),
-//         brand: s.size(s.string(), 1, 30),
-//         price: s.max(s.min(s.number(), 0), 1000000000),
-//         stylesId: s.min(s.integer(), 1),
-//       }),
-//       1,
-//       7,
-//     ),
-//   ),
-//   content: s.size(s.string(), 1, 500),
-//   password: Password,
-// });
+export const UrlArrayMin = s.refine(s.array(Url), 'UrlArrayMin', (value) => value.length >= 1);
 
 export const CheckCuration = s.object({
   trendy: s.max(s.min(s.number(), 0), 10),
@@ -82,7 +76,6 @@ export const CheckCuration = s.object({
   nickname: s.size(s.string(), 1, 20),
   content: s.size(s.string(), 1, 150),
   password: Password,
-  stylesId: s.min(s.integer(), 1),
 });
 
 export const CheckComment = s.object({

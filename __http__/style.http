@@ -1,52 +1,61 @@
-GET http://localhost:3001/styles?page=1&pageSize=10
-
+GET http://localhost:3000/styles?page=1&pageSize=13
 
 // 최신순, 조회순, 큐레이팅순(큐레이팅 많은 순)-정렬 
 ###
-GET http://localhost:3001/styles?sortBy=oldest
+GET http://localhost:3000/styles?sortBy=oldest
 ###
-GET http://localhost:3001/styles?sortBy=mostViewed
+GET http://localhost:3000/styles?sortBy=mostViewed
 ###
-GET http://localhost:3001/styles?sortBy=mostCurated
+GET http://localhost:3000/styles?sortBy=mostCurated
 
 //닉네임, 제목, 상세, 태그 검색 
 ###
-GET http://localhost:3001/styles?searchBy=nickname&keyword=sora
+GET http://localhost:3000/styles?searchBy=nickname&keyword=sora
 ###
-GET http://localhost:3001/styles?searchBy=nickname&keyword=sooyoung
+GET http://localhost:3000/styles?searchBy=nickname&keyword=sooyoung
 ###
-GET http://localhost:3001/styles?searchBy=title&keyword=겨울
+GET http://localhost:3000/styles?searchBy=title&keyword=겨울
 ###
-GET http://localhost:3001/styles?searchBy=content&keyword=팬츠
+GET http://localhost:3000/styles?searchBy=content&keyword=팬츠
 ###
-GET http://localhost:3001/styles?searchBy=tag&keyword=린넨
+GET http://localhost:3000/styles?searchBy=tag&keyword=린넨
 
 
 //태그 검색 
 ###
-GET http://localhost:3001/styles?tag=미니멀
+GET http://localhost:3000/styles?tag=미니멀
+
+// 인기 태그 조회
+###
+GET http://localhost:3000/tags
+###
+// 보고 싶은 인기 태그 갯수 지정 가능
+GET http://localhost:3000/tags?n=5
 
 
 
 
 //스타일 상세 조회
 ###
-GET http://localhost:3001/styles/5
+GET http://localhost:3000/styles/12
+
+
+
 
 ###
-POST http://localhost:3001/styles
+POST http://localhost:3000/styles
 Content-Type: application/json
 
 {
-	"nickname": "테스트용",
-	"title": "테스트입니다..",
-	"content": "테스트중",
-	"password": "test123123",
+	"nickname": "닉네임테스트끝",
+	"title": "타이틀테스트끝",
+	"content": "콘텐트테스트끝",
+	"password": "testComplete1",
 	"categories": {
 		"TOP": {
-			"name": "후드티",
-			"brand": "메종키츠네",
-			"price": 350000
+			"name": "카테고리네임테스트완",
+			"brand": "브랜드테스트완료",
+			"price": 35000
 		},
 		"BOTTOM": {
 			"name": "트레이닝바지",
@@ -55,8 +64,9 @@ Content-Type: application/json
 		}
 	},
 	"tags": [
-		"겨울맞이",
-		"편한룩"
+		"태그길이테스트해보겠습니다과연잘작동될지",
+		"길이도검사하고개수도검사해야하는데",
+		"밥먹으러가려면돼야해"
 	],
 	"imageUrls": [
 		"https://placehold.co/600x400/EEE/31343C?text=Image+1",
@@ -66,14 +76,15 @@ Content-Type: application/json
 
 
 ###
-PUT http://localhost:3001/styles/14
+
+PUT http://localhost:3000/styles/27
 Content-Type: application/json
 
 {
 	"nickname": "수정테스트합니다",
 	"title": "수정테스트..",
 	"content": "수정테스트중",
-	"password": "test123123",
+	"password": "testComplete1",
 	"categories": {
 		"TOP": {
 			"name": "후드티",
@@ -97,7 +108,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3001/styles/15
+DELETE http://localhost:3000/styles/18
 Content-Type: application/json
 
 {

@@ -8,7 +8,6 @@ async function main() {
   await prisma.curation.deleteMany();
   await prisma.category.deleteMany();
   await prisma.style.deleteMany();
-
   await prisma.style.createMany({
     data: Styles,
     skipDuplicates: true,
@@ -25,7 +24,6 @@ async function main() {
     data: Comments,
     skipDuplicates: true,
   });
-
   await prisma.$executeRawUnsafe(`
   SELECT setval(pg_get_serial_sequence('"Style"', 'id'), COALESCE((SELECT MAX(id) FROM "Style"), 0), true);
 `);
