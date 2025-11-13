@@ -10,7 +10,7 @@ const FILE_SIZE_LIMIT = 5 * 1024 * 1024;
 if (!fs.existsSync(PUBLIC_PATH)) {
   //폴더 있는지 확인
   fs.mkdirSync(PUBLIC_PATH, { recursive: true });
-  console.log('images폴더가 만들어졌습니다.');
+  console.log('uploads폴더가 만들어졌습니다.');
 }
 
 export const upload = multer({
@@ -43,6 +43,7 @@ export const upload = multer({
 });
 
 export async function uploadImage(req, res) {
+  // 업로드된 파일을 접근 가능한 URL생성해서 응답으로 반환
   const protocol = req.protocol;
   const host = req.get('host'); //요청의 Host 헤더 값 가져옴
   const imageUrl = `${protocol}://${host}${path.posix.join(STATIC_PATH, req.file.filename)}`;
