@@ -1,18 +1,3 @@
-// import { constructFromSymbol } from 'date-fns/constants';
-
-// export function back2front(backEnd_style_categories) {
-//   const categories = backEnd_style_categories.reduce((acc, cur) => {
-//     acc[cur.type.toLowerCase()] = {
-//       name: cur.name,
-//       brand: cur.brand,
-//       price: cur.price,
-//     };
-//     return acc;
-//   }, {});
-//   return categories;
-// }
-
-// 선영님이 만들어 주세요~ : 네엡 ~~~!!!
 export function front2back(categoriesObject) {
   if (!categoriesObject) return [];
 

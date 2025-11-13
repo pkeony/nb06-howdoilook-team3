@@ -36,3 +36,6 @@ const styles = [
 // console.log(sortedIds);
 // styles.map((n, ind) => (n.ranking = ind + 1));
 // console.log(styles);
+
+const str = '겨울감성';
+console.log(str.search('여름') !== -1);
