@@ -1,16 +1,16 @@
 import { prisma } from '../lib/prismaClient.js';
 
 // 답글 등록 서비스
-export const createCommentService = async (nickname, content, password) => {
-  if (!nickname || !content || !password) {
-    throw new Error('닉네임, 내용, 비밀번호를 모두 입력해야 합니다.');
+export const createCommentService = async (content, password, curationId) => {
+  if (!content || !password) {
+    throw new Error('내용, 비밀번호를 모두 입력해야 합니다.');
   }
 
   const newComment = await prisma.comment.create({
     data: {
-      nickname,
       content,
       password,
+      curationId,
     },
   });
 

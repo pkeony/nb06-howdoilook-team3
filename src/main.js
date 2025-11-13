@@ -7,7 +7,7 @@ import stylesRouter from './routers/styleRouter.js';
 import stylesRouter1 from './routers/styleRouter1.js';
 import tagsRouter from './routers/tagRouter.js';
 import { curationRouter, curationStyleRouter } from './routers/curationRouter.js';
-//import commentsRouter from './routers/comments.js';
+import commentsRouter from './routers/commentRouter.js';
 
 const app = express();
 app.use(express.json());
@@ -18,9 +18,9 @@ app.use('/tags', tagsRouter);
 app.use('/ranking', rankingRouter);
 app.use('/curations', curationRouter);
 app.use('/styles', curationStyleRouter);
-//app.use('/comments', commentsRouter);
+app.use('/', commentsRouter);
 
 app.use(defaultNotFoundHandler);
 app.use(globalErrorHandler);
 
-app.listen(PORT || 3000, () => console.log(`Server started`));
+app.listen(PORT || 3001, () => console.log(`Server started`));
