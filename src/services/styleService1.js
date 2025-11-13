@@ -2,6 +2,8 @@ import { back2front } from '../lib/category_conversion.js';
 import { pageInfo } from '../lib/pageInfo.js';
 import { save_thumbnail_imgUrl } from '../lib/save_thumbnail_imgUrl.js';
 import { prisma } from '../lib/prismaClient.js';
+import BadRequestError from '../lib/errors/BadRequestError.js';
+import NotFoundError from '../lib/errors/NotFoundError.js';
 
 // 스타일 상세 조회
 export async function getStyleService(styleId) {
@@ -9,7 +11,6 @@ export async function getStyleService(styleId) {
     where: { id: parseInt(styleId) },
     select: {
       id: true,
-      thumbnail: true,
       nickname: true,
       title: true,
       content: true,
@@ -21,6 +22,10 @@ export async function getStyleService(styleId) {
       imageUrls: true,
     },
   });
+  if (!backEnd_style) {
+    console.log(`0 style fetched`);
+    throw new NotFoundError('Style', parseInt(styleId));
+  }
 
   console.log('1 style fetched (detail)');
   const frontEnd_style = back2front(backEnd_style);
@@ -35,9 +40,6 @@ export async function getStyleListService(reqQuery) {
     case 'recent':
       orderBy = { createdAt: 'desc' };
       break;
-    case 'oldest':
-      orderBy = { createdAt: 'asc' };
-      break;
     case 'mostViewed':
       orderBy = { viewCount: 'desc' };
       break;
@@ -45,25 +47,29 @@ export async function getStyleListService(reqQuery) {
       orderBy = { curationCount: 'desc' };
       break;
     default:
-      orderBy = { createdAt: 'desc' };
+      throw new BadRequestError('잘못된 요청입니다.');
   }
 
   let searchWhere;
-  switch (searchBy) {
-    case 'nickname':
-      searchWhere = { nickname: { contains: keyword } };
-      break;
-    case 'title':
-      searchWhere = { title: { contains: keyword } };
-      break;
-    case 'content':
-      searchWhere = { content: { contains: keyword } };
-      break;
-    case 'tag':
-      searchWhere = { tags: { has: keyword } };
-      break;
-    default:
-      searchWhere = { undefined: undefined };
+  if (searchBy) {
+    switch (searchBy) {
+      case 'nickname':
+        searchWhere = { nickname: { contains: keyword } };
+        break;
+      case 'title':
+        searchWhere = { title: { contains: keyword } };
+        break;
+      case 'content':
+        searchWhere = { content: { contains: keyword } };
+        break;
+      case 'tag':
+        searchWhere = { tags: { has: keyword } };
+        break;
+      default:
+        throw new BadRequestError('잘못된 요청입니다.');
+    }
+  } else {
+    searchWhere = { undefined: undefined };
   }
 
   // const searchWhere = {
@@ -87,6 +93,7 @@ export async function getStyleListService(reqQuery) {
       ...searchWhere,
       ...(tag ? { tags: { has: tag } } : {}),
     },
+    //select: { _count: { select: { tags: tag } } }, // 작동 안함
     orderBy,
     select: {
       id: true,
@@ -109,9 +116,9 @@ export async function getStyleListService(reqQuery) {
 
   if (!backEnd_styles.length) {
     console.log(`0 styles fetched`);
-    throw new Error('NOT_FOUND');
+    throw new BadRequestError('잘못된 요청입니다.');
   }
-  //save_thumbnail_ImgUrl(backEnd_styles);
+
   const stylesPaged = pageInfo(page, pageSize, save_thumbnail_imgUrl(backEnd_styles));
   console.log(`${backEnd_styles.length} styles fetched`);
   return stylesPaged;

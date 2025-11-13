@@ -12,10 +12,11 @@ export async function getPopularTagsService(reqQuery) {
   // 모든 태그를 한 배열로 병합하고 오름차순으로 정렬
   const allTagsSorted = combineAllTags(styles).sort();
   const result = getPopChart(allTagsSorted); // 인기는 태그 빈도
-  console.log(result);
 
   const popChart = result.map((n) => n.tag); // 정렬된 순서대로 tag만 추출
-  console.log(`인기태그 ${popChart.length}개 중 ${parseInt(nTags)}개 반환`);
+  console.log('');
+  console.log(`인기 태그 ${parseInt(nTags)}개 반환`);
+  console.log(result.slice(0, parseInt(nTags)));
   console.log('');
   return { tags: popChart.slice(0, parseInt(nTags)) };
 }

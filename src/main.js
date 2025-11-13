@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import rankingRouter from './routers/rankingRouter.js';
-import { defaultNotFoundHandler, globalErrorHandler } from './middlewares/errorHandler.js';
+import { defaultNotFoundHandler, globalErrorHandler } from './middlewares/syErrorHandler.js';
 import { PORT } from './lib/constants.js';
 import stylesRouter from './routers/styleRouter.js';
 import stylesRouter1 from './routers/styleRouter1.js';

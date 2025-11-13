@@ -1,30 +1,32 @@
-GET http://localhost:3000/styles
+@baseUrl = http://localhost:3000
+
+GET {{baseUrl}}/styles
 
 
 ###
 
 
-GET http://localhost:3000/styles? //최신순, 조회순, 큐레이팅순(큐레이팅 많은 순)-정렬  ,  닉네임, 제목, 상세, 태그로 검색 
+GET {{baseUrl}}/styles? //최신순, 조회순, 큐레이팅순(큐레이팅 많은 순)-정렬  ,  닉네임, 제목, 상세, 태그로 검색 
 
 
 ###
 
-GET http://localhost:3000/styles
-
-
-###
-
-
-POST http://localhost:3000/styles  // curation - styles와 비밀번호 확인
+GET {{baseUrl}}/styles
 
 
 ###
 
 
-PUT http://localhost:3000/styles/1
+POST {{baseUrl}}/styles  // curation - styles와 비밀번호 확인
 
 
 ###
 
 
-DELETE http://localhost:3000/styles/1
+PUT {{baseUrl}}/styles/1
+
+
+###
+
+
+DELETE {{baseUrl}}/styles/1
