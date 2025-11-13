@@ -28,6 +28,9 @@ GET http://localhost:3000/styles?tag=미니멀
 // 인기 태그 조회
 ###
 GET http://localhost:3000/tags
+###
+// 보고 싶은 인기 태그 갯수 지정 가능
+GET http://localhost:3000/tags?n=5
 
 
 

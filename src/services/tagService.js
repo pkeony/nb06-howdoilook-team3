@@ -9,18 +9,19 @@ export async function getPopularTagsService(reqQuery) {
     select: { tags: true },
   });
 
-  // 모든 태그를 한 배열로 병합하고 정렬
+  // 모든 태그를 한 배열로 병합하고 오름차순으로 정렬
   const allTagsSorted = combineAllTags(styles).sort();
 
-  //const popChart = getPopChart1(allTagsSorted); // 인기(1): 태그 빈도
-  const popChart = getPopChart2(allTagsSorted, 3); // 인기(2): 각 태그 안의 연이은 몇 글자의 빈도
+  //const popChart = getPopChart1(allTagsSorted); // 로직(1): 태그 빈도
+  const popChart = getPopChart2(allTagsSorted, 3); // 로직(2): 각 태그 안 연이은 2 글자의 빈도
 
-  console.log(`태그 순위 (총 ${popChart.length}개)`);
   console.log(popChart);
+  console.log(`인기태그 ${popChart.length}개 중 ${parseInt(nTags)}개 반환`);
   console.log('');
   return { tags: popChart.slice(0, parseInt(nTags)) };
 }
 
+//--------------------------------------- 사용된 함수들
 function combineAllTags(styles) {
   let myTags = [];
   styles.map((n) => {
@@ -32,6 +33,7 @@ function combineAllTags(styles) {
 function getPopChart1(allTagsSorted) {
   const freq = {};
   for (const t of allTagsSorted) freq[t] = (freq[t] || 0) + 1;
+  //console.log(freq);
 
   const uniqueTags = Object.keys(freq); // 중복 제거된 태그들
   const counts = uniqueTags.map((t) => freq[t]); // 각 태그의 개수
@@ -42,7 +44,7 @@ function getPopChart1(allTagsSorted) {
   return uniqueTags;
 }
 
-function getPopChart2(allTagsSorted, sizeUnitStr = 2) {
+function getPopChart2(allTagsSorted, sizeUnitStr = 3) {
   const substringMap = {}; // substring -> Set(포함된 태그 인덱스)
 
   // 각 태그에서 substring 추출해서 맵에 저장
