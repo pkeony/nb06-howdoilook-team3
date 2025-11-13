@@ -78,6 +78,10 @@ export const CheckCuration = s.object({
   password: Password,
 });
 
+export const CheckDeleteCuration = s.object({
+  password: Password,
+});
+
 export const CheckComment = s.object({
   content: s.size(s.string(), 1, 150),
   password: Password,
