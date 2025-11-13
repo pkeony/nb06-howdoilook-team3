@@ -93,7 +93,7 @@ export function globalErrorHandler(err, req, res, next) {
   }
 
   if (err.message === 'FORBIDDEN') {
-    res.status(403).send({ message: '비밀번호가 일치하지 않습니다.' });
+    res.status(403).send({ message: '비밀번호가 틀렸습니다' });
     return;
   }
 
