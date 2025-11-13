@@ -3,7 +3,7 @@ import cors from 'cors';
 import path from 'path';
 import rankingRouter from './routers/rankingRouter.js';
 import { defaultNotFoundHandler, globalErrorHandler } from './middlewares/syErrorHandler.js';
-import { PORT } from './lib/constants.js';
+import { PORT, PUBLIC_PATH, STATIC_PATH } from './lib/constants.js';
 import stylesRouter from './routers/styleRouter.js';
 import stylesRouter1 from './routers/styleRouter1.js';
 import tagsRouter from './routers/tagRouter.js';

@@ -3,7 +3,7 @@
 GET {{baseUrl}}/styles/1/curations
 
 ###
-GET http://localhost:3000/styles/2/curations?searchBy=content&keyword=봄
+GET {{baseUrl}}/styles/2/curations?searchBy=content&keyword=봄
 
 ###
 
