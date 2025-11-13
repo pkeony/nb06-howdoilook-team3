@@ -4,14 +4,17 @@ import {
   deleteCommentService,
 } from '../services/commentService.js';
 import { globalErrorHandler } from '../middlewares/errorHandler.js';
-import { parse } from 'dotenv';
 
 // 답글 등록
-export const createComment = (req, res) => {
-  const id = Number(req.params.id);
-  const { content, password } = req.body;
-  const message = createCommentService(content, password, id);
-  res.status(201).json({ message });
+export const createComment = async (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    const { content, password } = req.body;
+    const newComment = await createCommentService(content, password, id);
+    res.status(201).json(newComment);
+  } catch (error) {
+    globalErrorHandler(error, req, res);
+  }
 };
 
 // 답글 수정

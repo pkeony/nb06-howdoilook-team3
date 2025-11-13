@@ -7,8 +7,8 @@ POST http://localhost:3001/curations/15/comments
 Content-Type: application/json
 
 {
-	"content": "string",
-	"password": "string"
+	"content": "아주 좋습니다!",
+	"password": "testyongyong1"
 }
 
 ###

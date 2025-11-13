@@ -14,7 +14,12 @@ export const createCommentService = async (content, password, curationId) => {
     },
   });
 
-  return console.log('답글이 등록되었습니다.');
+  return {
+    id: newComment.id,
+    nickname: newComment.user ? newComment.user.nickname : '익명',
+    content: newComment.content,
+    createdAt: newComment.createdAt.toISOString(),
+  };
 };
 
 // 답글 수정 서비스
