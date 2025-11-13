@@ -30,7 +30,7 @@ Content-Type: application/json
 
 {
     "nickname":"curator_jay",
-    "content": "좋은 옷들입니다",
+    "content": "좋은 옷들입니다!!!!!!!!!!",
     "password": "curJay11",
     "trendy" : 8,
     "personality": 7,
@@ -41,7 +41,7 @@ Content-Type: application/json
 ###
 
 
-DELETE http://localhost:3000/curations/20
+DELETE http://localhost:3000/curations/50
 Content-Type: application/json
 
 {
