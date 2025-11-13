@@ -35,5 +35,5 @@ export const deleteStyle = async (req, res) => {
   const { password } = req.body;
   await deleteStyleService(styleId, password);
 
-  res.status(200).json({ message: '성공적으로 삭제되었습니다.' });
+  res.status(200).json({ message: '스타일 삭제 성공' });
 };

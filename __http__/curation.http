@@ -2,6 +2,8 @@
 
 GET {{baseUrl}}/styles/1/curations
 
+###
+GET http://localhost:3000/styles/2/curations?searchBy=content&keyword=봄
 
 ###
 
@@ -46,5 +48,5 @@ DELETE {{baseUrl}}/curations/1
 Content-Type: application/json
 
 {
-    "password": "park90901"
+    "password": "park9090"
 }

@@ -1,7 +1,6 @@
 import { assert } from 'superstruct';
-import { CheckCuration } from '../structs/structs.js';
-import { prisma } from '../lib/prismaClient.js';
-import NotFoundError from '../lib/errors/NotFoundError.js';
+import { CheckCuration, CheckDeleteCuration } from '../structs/structs.js';
+
 import {
   getCurationsService,
   createCurationService,
@@ -38,6 +37,7 @@ export const updateCuration = async (req, res) => {
 };
 
 export const deleteCuration = async (req, res) => {
+  assert(req.body, CheckDeleteCuration);
   const { password } = req.body;
   const { curationId } = req.params;
 

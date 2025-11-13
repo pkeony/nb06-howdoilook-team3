@@ -10,7 +10,7 @@ export const getCurationsService = async (styleId, page = 1, pageSize = 10, sear
   if (searchBy === 'nickname' || searchBy === 'content') {
     where[searchBy] = {
       contains: keyword,
-      mode: 'intensitive',
+      mode: 'insensitive',
     };
   }
 
