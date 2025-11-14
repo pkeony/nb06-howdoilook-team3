@@ -2,7 +2,6 @@ import { pageInfo } from '../lib/pageInfo.js';
 import { prisma } from '../lib/prismaClient.js';
 import { save_thumbnail_imgUrl } from '../lib/save_thumbnail_imgUrl.js';
 import BadRequestError from '../lib/errors/BadRequestError.js';
-import { objectEnumValues } from '@prisma/client/runtime/library';
 
 // 스타일 랭킹 조회
 export async function getStyleRankingListService(reqQuery) {

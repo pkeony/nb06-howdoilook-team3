@@ -13,10 +13,11 @@ export function validateQueryKeys(allowedKeys = []) {
   };
 }
 
-export function validateQueryValues(allowedValues) {
+export function validateQueryValues(allowedValues = []) {
   return (req, res, next) => {
     const queryValues = Object.values(req.query).filter((n) => isNaN(Number(n)));
-    const queryValsOK = queryValues.every((n) => allowedValues.include(n));
+    const queryValsOK = queryValues.every((n) => allowedValues.includes(n));
+
     if (!queryValsOK) {
       throw new BadRequestError('잘못된 요청입니다.');
     } else {
