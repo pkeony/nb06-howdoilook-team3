@@ -28,8 +28,8 @@ export async function getStyleService(styleId) {
       //   },
       // },
       tags: true,
-      imageUrls: true,
-    },
+      imageUrls: true
+    }
   });
   if (!backEnd_style) {
     console.log(`0 style fetched`);
@@ -65,46 +65,28 @@ export async function getStyleListService(reqQuery) {
 
   let searchWhere;
   if (searchBy) {
-    switch (searchBy) {
-      case 'nickname':
-        searchWhere = { nickname: { contains: keyword } };
-        break;
-      case 'title':
-        searchWhere = { title: { contains: keyword } };
-        break;
-      case 'content':
-        searchWhere = { content: { contains: keyword } };
-        break;
-      case 'tag':
-        searchWhere = { tags: { has: keyword } };
-        break;
-      default:
-        throw new BadRequestError('잘못된 요청입니다.');
-    }
-  } else {
-    searchWhere = { undefined: undefined };
+    searchWhere = {
+      OR: [
+        { nickname: { contains: keyword } },
+        { title: { contains: keyword } },
+        { content: { contains: keyword } },
+        { tags: { has: keyword } }
+      ]
+    };
   }
-
-  // const searchWhere = {
-  //   nickname: { contains: keyword },
-  //   title: { contains: keyword },
-  //   content: { contains: keyword },
-  //   tags: { has: keyword },
-  //   undefined: undefined,
-  // };
 
   //nStyles: 총 스타일 수
   const nTotalStyles = await prisma.style.count({
     where: {
-      ...searchWhere,
-      ...(tag ? { tags: { has: tag } } : {}),
-    },
+      ...(searchWhere || {}),
+      ...(tag ? { tags: { has: tag } } : {})
+    }
   });
 
   const styles = await prisma.style.findMany({
     where: {
-      ...searchWhere,
-      ...(tag ? { tags: { has: tag } } : {}),
+      ...(searchWhere || {}),
+      ...(tag ? { tags: { has: tag } } : {})
     },
     take: parseInt(pageSize),
     skip: (parseInt(page) - 1) * parseInt(pageSize),
@@ -119,8 +101,8 @@ export async function getStyleListService(reqQuery) {
       content: true,
       viewCount: true,
       curationCount: true,
-      createdAt: true,
-    },
+      createdAt: true
+    }
   });
 
   if (!styles.length) {
@@ -130,7 +112,7 @@ export async function getStyleListService(reqQuery) {
 
   const formattedStyles = {
     ...pageInfoForList(page, pageSize, styles.length, nTotalStyles),
-    data: back2front(styles),
+    data: back2front(styles)
   };
 
   console.log(`${styles.length} styles fetched`);
