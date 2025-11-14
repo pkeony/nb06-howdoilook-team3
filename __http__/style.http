@@ -16,7 +16,7 @@ GET {{baseUrl}}/styles?searchBy=nickname&keyword=sora
 ###
 GET {{baseUrl}}/styles?searchBy=nickname&keyword=sooyoung
 ###
-GET{{baseUrl}}/styles?searchBy=title&keyword=겨울
+GET {{baseUrl}}/styles?searchBy=title&keyword=겨울
 ###
 GET {{baseUrl}}/styles?searchBy=content&keyword=팬츠
 ###
