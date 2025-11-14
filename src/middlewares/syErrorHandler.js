@@ -4,15 +4,21 @@ import NotFoundError from '../lib/errors/NotFoundError.js';
 import { Prisma } from '@prisma/client';
 
 export function defaultNotFoundHandler(req, res, next) {
-  return res.status(404).send({ message: '존재하지 않습니다.' });
+  return res.status(404).send({ message: '요청하신 페이지를 찾을 수 없습니다.' });
 }
 
 export function globalErrorHandler(err, req, res, next) {
-  //console.error(err); // 개발용 로그
+  // console.error(err); // 개발용 로그
 
   // Superstruct 에러 처리
   if (err instanceof StructError) {
     const failures = typeof err.failures === 'function' ? err.failures() : [];
+    const firstFailure = failures.length > 0 ? failures[0] : null;
+
+    if (firstFailure && firstFailure.message && firstFailure.refinement) {
+      return res.status(400).send({ message: firstFailure.message });
+    }
+
     return res.status(400).send({ message: '잘못된 요청입니다.' });
   }
 
