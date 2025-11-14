@@ -1,15 +1,18 @@
-GET http://localhost:3000/styles/2/curations?searchBy=nickname&keyword=kelvin
+@baseUrl = http://localhost:3000
+
+GET {{baseUrl}}/styles/1/curations
 
 ###
-GET http://localhost:3000/styles/2/curations?searchBy=content&keyword=봄
-
-###
-GET http://localhost:3000/styles/2/curations
+GET {{baseUrl}}/styles/2/curations?searchBy=content&keyword=봄
 
 ###
 
+GET {{baseUrl}}/styles/1/curations
 
-POST http://localhost:3000/styles/2/curations
+###
+
+
+POST {{baseUrl}}/styles/1/curations
 Content-Type: application/json
 
 {
@@ -25,13 +28,13 @@ Content-Type: application/json
 ###
 
 
-PUT http://localhost:3000/curations/1
+PUT {{baseUrl}}/curations/17
 Content-Type: application/json
 
 {
     "nickname":"curator_jay",
-    "content": "좋은 옷들입니다!!!!!!!!!!",
-    "password": "curJay11",
+    "content": "좋은 옷들입니다",
+    "password": "curJay11", 
     "trendy" : 8,
     "personality": 7,
     "practicality": 6,
@@ -41,7 +44,7 @@ Content-Type: application/json
 ###
 
 
-DELETE http://localhost:3000/curations/50
+DELETE {{baseUrl}}/curations/1
 Content-Type: application/json
 
 {

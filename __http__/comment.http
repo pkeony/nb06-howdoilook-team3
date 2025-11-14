@@ -1,9 +1,11 @@
-GET  http://localhost:3001/styles/1/curations
+@baseUrl = http://localhost:3001
+
+GET {{baseUrl}}/styles/1/curations
 
 ###
 
 // 답글 등록
-POST http://localhost:3001/curations/15/comments
+POST {{baseUrl}}/curations/15/comments
 Content-Type: application/json
 
 {
@@ -14,18 +16,18 @@ Content-Type: application/json
 ###
 
 //답글 수정
-PUT http://localhost:3001/comments/15
+PUT {{baseUrl}}/comments/14
 Content-Type: application/json
 
 {
-	"content": "바꿨습니다.",
-	"password": "testyongyong1"
+	"content": "string",
+	"password": "string",
 }
 
 ###
 
 //답글 삭제
-DELETE http://localhost:3001/comments/12
+DELETE {{baseUrl}}/comments/12
 Content-Type: application/json
 
 {
