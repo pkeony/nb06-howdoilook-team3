@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000
 
-GET {{baseUrl}}/styles/1/curations
+GET {{baseUrl}}/styles/3/curations
 
 ###
 GET {{baseUrl}}/styles/2/curations?searchBy=content&keyword=봄
@@ -28,13 +28,13 @@ Content-Type: application/json
 ###
 
 
-PUT {{baseUrl}}/curations/17
+PUT {{baseUrl}}/curations/22
 Content-Type: application/json
 
 {
-    "nickname":"curator_jay",
+    "nickname":"kelvin",
     "content": "좋은 옷들입니다",
-    "password": "curJay11", 
+    "password": "park90902", 
     "trendy" : 8,
     "personality": 7,
     "practicality": 6,
@@ -44,9 +44,9 @@ Content-Type: application/json
 ###
 
 
-DELETE {{baseUrl}}/curations/1
+DELETE {{baseUrl}}/curations/22
 Content-Type: application/json
 
 {
-    "password": "park9090"
+    "password": "park90902"
 }

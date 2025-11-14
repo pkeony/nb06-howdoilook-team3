@@ -5,6 +5,14 @@ export const getCurationsService = async (styleId, page = 1, pageSize = 10, sear
   const take = Number(pageSize);
   const skip = (Number(page) - 1) * take;
 
+  const style = await prisma.style.findUnique({
+    where: { id: Number(styleId) },
+  });
+
+  if (!style) {
+    throw new NotFoundError('style', styleId);
+  }
+
   const where = { stylesId: Number(styleId) };
 
   if (searchBy === 'nickname' || searchBy === 'content') {
