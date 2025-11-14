@@ -18,6 +18,17 @@ export async function getStyleService(styleId) {
       curationCount: true,
       createdAt: true,
       categories: { select: { type: true, name: true, brand: true, price: true } },
+      // curations: {  //큐레이션 조회 포함
+      //   select: {
+      //     nickname: true,
+      //     content: true,
+      //     trendy: true,
+      //     personality: true,
+      //     practicality: true,
+      //     costEffectiveness: true,
+      //     Comment: { select: { content: true } }, // 큐레이션 댓글 포함
+      //   },
+      // },
       tags: true,
       imageUrls: true,
     },
@@ -34,11 +45,15 @@ export async function getStyleService(styleId) {
 
 // 스타일 목록 조회
 export async function getStyleListService(reqQuery) {
-  const { page = 1, pageSize = 10, sortBy = 'recent', searchBy, keyword, tag } = reqQuery;
+  const { page = 1, pageSize = 10, sortBy = 'latest', searchBy, keyword, tag } = reqQuery;
+
   let orderBy;
   switch (sortBy) {
-    case 'recent':
+    case 'latest':
       orderBy = { createdAt: 'desc' };
+      break;
+    case 'oldest':
+      orderBy = { createdAt: 'asc' };
       break;
     case 'mostViewed':
       orderBy = { viewCount: 'desc' };
