@@ -5,7 +5,7 @@ export const Url = s.define('Url', (value) => {
     new URL(value);
     return true;
   } catch {
-    return '유효한 URL 형식이 아닙니다.';
+    return false;
   }
 });
 
@@ -28,11 +28,16 @@ export const UrlArrayMin = s.refine(
   (value) => value.length >= 1 || '*필수 입력사항입니다.',
 );
 
+export const Score0to10 = s.refine(s.union([s.number(), s.string()]), 'Score0to10', (value) => {
+  const num = Number(value);
+  return (num >= 0 && num <= 10) || '0~10 사이의 숫자를 입력해주세요.';
+});
+
 export const CheckCuration = s.object({
-  trendy: s.max(s.min(s.number(), 0), 10),
-  personality: s.max(s.min(s.number(), 0), 10),
-  practicality: s.max(s.min(s.number(), 0), 10),
-  costEffectiveness: s.max(s.min(s.number(), 0), 10),
+  trendy: Score0to10,
+  personality: Score0to10,
+  practicality: Score0to10,
+  costEffectiveness: Score0to10,
   nickname: s.size(s.string(), 1, 20),
   content: s.size(s.string(), 1, 150),
   password: Password,
