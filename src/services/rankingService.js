@@ -1,10 +1,16 @@
 import { pageInfo } from '../lib/pageInfo.js';
 import { prisma } from '../lib/prismaClient.js';
 import { save_thumbnail_imgUrl } from '../lib/save_thumbnail_imgUrl.js';
+import BadRequestError from '../lib/errors/BadRequestError.js';
 
 // 스타일 랭킹 조회
 export async function getStyleRankingListService(reqQuery) {
   const { page = 1, pageSize = 10, rankBy = 'total' } = reqQuery;
+
+  const rankByStr = ['total', 'trendy', 'personality', 'practicality', 'costEffectiveness'];
+  if (!rankByStr.some((n) => n === rankBy)) {
+    throw new BadRequestError('잘못된 요청입니다.');
+  }
 
   const styles = await prisma.style.findMany({
     select: {
@@ -38,7 +44,7 @@ export async function getStyleRankingListService(reqQuery) {
 
   if (!styles.length) {
     console.log(`0 styles fetched`);
-    throw new Error('NOT_FOUND');
+    throw new BadRequestError('잘못된 요청입니다.');
   }
 
   const temp = rankStylesBy(styles, rankBy); // rankBy로 styles 소팅하고, ranking & rating 필드 추가
@@ -51,7 +57,7 @@ export async function getStyleRankingListService(reqQuery) {
   return pagedRankedStyles;
 }
 
-function rankStylesBy(styles, rankBy = 'total') {
+function rankStylesBy(styles, rankBy) {
   // 각 스타일 curation 평균 계산 - total/trendy/personality/practicality/costEffectiveness
   const ranked = styles.map((style) => {
     const { id, curations } = style;
