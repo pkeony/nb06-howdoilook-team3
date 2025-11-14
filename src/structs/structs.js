@@ -5,7 +5,7 @@ export const Url = s.define('Url', (value) => {
     new URL(value);
     return true;
   } catch {
-    return '유효한 URL 형식이 아닙니다.';
+    return false;
   }
 });
 
