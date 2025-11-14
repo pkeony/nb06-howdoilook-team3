@@ -14,13 +14,12 @@ Content-Type: application/json
 ###
 
 //답글 수정
-PUT http://localhost:3001/comments/14
+PUT http://localhost:3001/comments/15
 Content-Type: application/json
 
 {
-  "nickname": "string",
-	"content": "string",
-	"password": "string",
+	"content": "바꿨습니다.",
+	"password": "testyongyong1"
 }
 
 ###

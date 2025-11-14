@@ -23,25 +23,25 @@ export const createCommentService = async (content, password, curationId) => {
 };
 
 // 답글 수정 서비스
-export const updateCommentService = async (nickname, content, password) => {
+export const updateCommentService = async (id, content, password) => {
   const existingComment = await prisma.comment.findUnique({
-    where: { nickname },
+    where: { id },
   });
-
-  if (!existingComment) {
-    throw new Error('답글을 찾을 수 없습니다.');
-  }
 
   if (existingComment.password !== password) {
     throw new Error('비밀번호가 일치하지 않습니다.');
   }
-
   const updatedComment = await prisma.comment.update({
-    where: { nickname },
+    where: { id },
     data: { content },
   });
 
-  return console.log('답글이 수정되었습니다.');
+  return {
+    id: updatedComment.id,
+    nickname: updatedComment.nickname,
+    content: updatedComment.content,
+    createdAt: updatedComment.createdAt,
+  };
 };
 
 // 답글 삭제 서비스
@@ -49,14 +49,6 @@ export const deleteCommentService = async (nickname, password) => {
   const existingComment = await prisma.comment.findUnique({
     where: { nickname },
   });
-
-  if (!existingComment) {
-    throw new Error('답글을 찾을 수 없습니다.');
-  }
-
-  if (existingComment.password !== password) {
-    throw new Error('비밀번호가 일치하지 않습니다.');
-  }
 
   await prisma.comment.delete({
     where: { nickname },

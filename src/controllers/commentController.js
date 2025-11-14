@@ -18,11 +18,16 @@ export const createComment = async (req, res) => {
 };
 
 // 답글 수정
-export const updateComment = (req, res) => {
-  const { nickname } = req.params;
+export const updateComment = async (req, res) => {
+  const { id } = req.params;
   const { content, password } = req.body;
-  const message = updateCommentService(nickname, content, password);
-  res.status(200).json({ message });
+
+  try {
+    const updatedComment = await updateCommentService(id, content, password);
+    res.status(200).json({ message: updatedComment });
+  } catch (error) {
+    globalErrorHandler(error, req, res);
+  }
 };
 
 // 답글 삭제
