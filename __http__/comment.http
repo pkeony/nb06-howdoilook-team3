@@ -16,12 +16,12 @@ Content-Type: application/json
 ###
 
 //답글 수정
-PUT {{baseUrl}}/comments/14
+PUT {{baseUrl}}/comments/134
 Content-Type: application/json
 
 {
-	"content": "string",
-	"password": "string",
+	"content": "스타일이 정말 좋아요!",
+	"password": "testyongyong1",
 }
 
 ###
@@ -31,5 +31,5 @@ DELETE {{baseUrl}}/comments/12
 Content-Type: application/json
 
 {
-	"password": "string",
+	"password": "testyongyong1"
 }

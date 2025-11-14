@@ -24,13 +24,26 @@ export const createCommentService = async (content, password, curationId) => {
 
 // 답글 수정 서비스
 export const updateCommentService = async (id, content, password) => {
+  if (!content || !password) {
+    throw new Error('Missing required parameters: content and password');
+  }
+
+  if (isNaN(id)) {
+    throw new Error('Invalid ID format, must be a number');
+  }
+
   const existingComment = await prisma.comment.findUnique({
     where: { id },
   });
 
-  if (existingComment.password !== password) {
-    throw new Error('비밀번호가 일치하지 않습니다.');
+  if (!existingComment) {
+    throw new Error(`Comment with ID ${id} not found`);
   }
+
+  if (existingComment.password !== password) {
+    throw new Error('FORBIDDEN'); // 비밀번호가 일치하지 않으면 403 오류 발생
+  }
+
   const updatedComment = await prisma.comment.update({
     where: { id },
     data: { content },
@@ -40,7 +53,7 @@ export const updateCommentService = async (id, content, password) => {
     id: updatedComment.id,
     nickname: updatedComment.nickname,
     content: updatedComment.content,
-    createdAt: updatedComment.createdAt,
+    createdAt: updatedComment.createdAt.toISOString(),
   };
 };
 

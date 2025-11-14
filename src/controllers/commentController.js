@@ -6,7 +6,7 @@ import {
 import { globalErrorHandler } from '../middlewares/errorHandler.js';
 
 // 답글 등록
-export const createComment = async (req, res) => {
+export const createCommentController = async (req, res) => {
   try {
     const id = Number(req.params.id);
     const { content, password } = req.body;
@@ -18,20 +18,23 @@ export const createComment = async (req, res) => {
 };
 
 // 답글 수정
-export const updateComment = async (req, res) => {
+export const updateCommentController = async (req, res) => {
   const { id } = req.params;
   const { content, password } = req.body;
 
+  console.log('Received request body:', req.body);
+  console.log('Received ID from URL:', id);
+
   try {
-    const updatedComment = await updateCommentService(id, content, password);
-    res.status(200).json({ message: updatedComment });
+    const updatedComment = await updateCommentService(Number(id), content, password);
+    res.status(200).json(updatedComment);
   } catch (error) {
     globalErrorHandler(error, req, res);
   }
 };
 
 // 답글 삭제
-export const deleteComment = (req, res) => {
+export const deleteCommentController = (req, res) => {
   const { nickname } = req.params;
   const { password } = req.body;
   const message = deleteCommentService(nickname, password);
