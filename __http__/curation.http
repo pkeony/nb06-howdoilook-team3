@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:3000
 
-GET {{baseUrl}}/styles/3/curations
+GET {{baseUrl}}/styles/2/curations
 
 ###
 GET {{baseUrl}}/styles/2/curations?searchBy=content&keyword=봄
@@ -19,9 +19,9 @@ Content-Type: application/json
     "nickname":"kelvin",
     "content": "좋은 옷들입니다",
     "password": "park9090",
-    "trendy" : 8,
+    "trendy" : 7,
     "personality": 7,
-    "practicality": 9,
+    "practicality": 8,
     "costEffectiveness": 7
 }
 
