@@ -1,6 +1,6 @@
 import { prisma } from '../lib/prismaClient.js';
 import NotFoundError from '../lib/errors/NotFoundError.js';
-import { front2back, formatStyleForDetail } from '../lib/category_conversion.js';
+import { front2back, formatStyleForDetail } from '../lib/commonFn.js';
 
 // 스타일 등록
 export const createStyleService = async (styleData) => {
