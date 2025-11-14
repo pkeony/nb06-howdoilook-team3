@@ -128,7 +128,6 @@ export async function getStyleListService(reqQuery) {
     throw new BadRequestError('잘못된 요청입니다.');
   }
 
-  console.log(pageInfoForList(page, pageSize, styles.length, nTotalStyles));
   const formattedStyles = {
     ...pageInfoForList(page, pageSize, styles.length, nTotalStyles),
     data: back2front(styles),
