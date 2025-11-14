@@ -12,7 +12,7 @@ GET {{baseUrl}}/styles/1/curations
 ###
 
 
-POST {{baseUrl}}/styles/1/curations
+POST {{baseUrl}}/styles/10/curations
 Content-Type: application/json
 
 {
@@ -28,13 +28,13 @@ Content-Type: application/json
 ###
 
 
-PUT {{baseUrl}}/curations/22
+PUT {{baseUrl}}/curations/26
 Content-Type: application/json
 
 {
     "nickname":"kelvin",
     "content": "좋은 옷들입니다",
-    "password": "park90902", 
+    "password": "park9090", 
     "trendy" : 8,
     "personality": 7,
     "practicality": 6,

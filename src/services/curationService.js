@@ -31,7 +31,7 @@ export const getCurationsService = async (styleId, page = 1, pageSize = 10, sear
     take,
     orderBy: { createdAt: 'asc' },
     include: {
-      Comment: true,
+      comment: true,
     },
   });
 
@@ -48,12 +48,12 @@ export const getCurationsService = async (styleId, page = 1, pageSize = 10, sear
     practicality: c.practicality,
     costEffectiveness: c.costEffectiveness,
     createdAt: c.createdAt,
-    comment: c.Comment
+    comment: c.comment
       ? {
-          id: c.Comment.id,
-          nickname: c.Comment.nickname,
-          content: c.Comment.content,
-          createdAt: c.Comment.createdAt,
+          id: c.comment.id,
+          nickname: c.comment.nickname,
+          content: c.comment.content,
+          createdAt: c.comment.createdAt,
         }
       : {},
   }));
@@ -68,10 +68,19 @@ export const createCurationService = async (styleId, body) => {
 
   if (!curation) throw new NotFoundError('Style', styleId);
 
-  return curation;
+  await prisma.style.update({
+    where: { id: Number(styleId) },
+    data: {
+      curationCount: { increment: 1 },
+    },
+  });
+
+  const { password, updatedAt, stylesId, ...rest } = curation;
+
+  return rest;
 };
 
-export const updateCurationSerivce = async (id, password, body) => {
+export const updateCurationSerivce = async (id, curationPassword, body) => {
   const curation = await prisma.curation.findUnique({
     where: { id: Number(id) },
   });
@@ -80,7 +89,7 @@ export const updateCurationSerivce = async (id, password, body) => {
     throw new NotFoundError('Curation', id);
   }
 
-  if (curation.password != password) {
+  if (curation.password != curationPassword) {
     throw new Error('FORBIDDEN');
   }
 
@@ -88,8 +97,9 @@ export const updateCurationSerivce = async (id, password, body) => {
     where: { id: Number(id) },
     data: body,
   });
+  const { password, updatedAt, stylesId, ...rest } = updatedCuration;
 
-  return updatedCuration;
+  return rest;
 };
 
 export const deleteCurationService = async (id, password) => {
