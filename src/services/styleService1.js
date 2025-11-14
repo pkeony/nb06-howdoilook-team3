@@ -1,6 +1,4 @@
-import { back2front } from '../lib/category_conversion.js';
-import { pageInfo } from '../lib/pageInfo.js';
-import { save_thumbnail_imgUrl } from '../lib/save_thumbnail_imgUrl.js';
+import { back2front, pageInfoForList } from '../lib/commonFn.js';
 import { prisma } from '../lib/prismaClient.js';
 import BadRequestError from '../lib/errors/BadRequestError.js';
 import NotFoundError from '../lib/errors/NotFoundError.js';
@@ -95,20 +93,21 @@ export async function getStyleListService(reqQuery) {
   //   undefined: undefined,
   // };
 
-  // nStyles: 총 스타일 수
-  const nStyles = await prisma.style.count({
+  //nStyles: 총 스타일 수
+  const nTotalStyles = await prisma.style.count({
     where: {
       ...searchWhere,
       ...(tag ? { tags: { has: tag } } : {}),
     },
   });
 
-  const backEnd_styles = await prisma.style.findMany({
+  const styles = await prisma.style.findMany({
     where: {
       ...searchWhere,
       ...(tag ? { tags: { has: tag } } : {}),
     },
-    //select: { _count: { select: { tags: tag } } }, // 작동 안함
+    take: parseInt(pageSize),
+    skip: (parseInt(page) - 1) * parseInt(pageSize),
     orderBy,
     select: {
       id: true,
@@ -121,20 +120,20 @@ export async function getStyleListService(reqQuery) {
       viewCount: true,
       curationCount: true,
       createdAt: true,
-      updatedAt: false,
-      password: false,
-      imageUrls: true,
     },
-    take: parseInt(pageSize),
-    skip: (parseInt(page) - 1) * parseInt(pageSize),
   });
 
-  if (!backEnd_styles.length) {
+  if (!styles.length) {
     console.log(`0 styles fetched`);
     throw new BadRequestError('잘못된 요청입니다.');
   }
 
-  const stylesPaged = pageInfo(page, pageSize, save_thumbnail_imgUrl(backEnd_styles));
-  console.log(`${backEnd_styles.length} styles fetched`);
-  return stylesPaged;
+  console.log(pageInfoForList(page, pageSize, styles.length, nTotalStyles));
+  const formattedStyles = {
+    ...pageInfoForList(page, pageSize, styles.length, nTotalStyles),
+    data: back2front(styles),
+  };
+
+  console.log(`${styles.length} styles fetched`);
+  return formattedStyles;
 }
