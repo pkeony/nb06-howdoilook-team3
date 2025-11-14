@@ -5,7 +5,7 @@ export const Url = s.define('Url', (value) => {
     new URL(value);
     return true;
   } catch {
-    return false;
+    return '유효한 URL 형식이 아닙니다.';
   }
 });
 
@@ -13,60 +13,20 @@ export const Password = s.refine(s.string(), 'Password', (value) => {
   const lengthOk = value.length >= 8 && value.length <= 16;
   const hasLetter = /[a-zA-Z]/.test(value);
   const hasNumber = /\d/.test(value);
-  return lengthOk && hasLetter && hasNumber;
+  return (lengthOk && hasLetter && hasNumber) || '*영문, 숫자조합 8~16자리로 입력해주세요';
 });
 
 export const NicknameLength = s.refine(
   s.string(),
   'NicknameLength',
-  (value) => value.length >= 1 && value.length <= 20,
+  (value) => (value.length >= 1 && value.length <= 20) || '*20자 이내로 입력해주세요.',
 );
 
-export const TitleLength = s.refine(
-  s.string(),
-  'TitleLength',
-  (value) => value.length >= 1 && value.length <= 30,
+export const UrlArrayMin = s.refine(
+  s.array(Url),
+  'UrlArrayMin',
+  (value) => value.length >= 1 || '*필수 입력사항입니다.',
 );
-
-export const ContentLength = s.refine(
-  s.string(),
-  'ContentLength',
-  (value) => value.length >= 1 && value.length <= 500,
-);
-
-export const TagItemLength = s.refine(
-  s.string(),
-  'TagItemLength',
-  (value) => value.length >= 1 && value.length <= 20,
-);
-
-// --- 카테고리 아이템 Refinements 및 Object ---
-
-export const CategoryItemNameLength = s.refine(
-  s.string(),
-  'CategoryItemNameLength',
-  (value) => value.length >= 1 && value.length <= 30,
-);
-
-export const CategoryItemBrandLength = s.refine(
-  s.string(),
-  'CategoryItemBrandLength',
-  (value) => value.length >= 1 && value.length <= 30,
-);
-
-export const CategoryItemPriceRange = s.refine(
-  s.number(),
-  'CategoryItemPriceRange',
-  (value) => value >= 0 && value <= 1000000000,
-);
-
-export const CategoryItem = s.object({
-  name: CategoryItemNameLength,
-  brand: CategoryItemBrandLength,
-  price: CategoryItemPriceRange,
-});
-
-export const UrlArrayMin = s.refine(s.array(Url), 'UrlArrayMin', (value) => value.length >= 1);
 
 export const CheckCuration = s.object({
   trendy: s.max(s.min(s.number(), 0), 10),
