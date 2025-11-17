@@ -7,11 +7,6 @@ import BadRequestError from '../lib/errors/BadRequestError.js';
 export async function getStyleRankingListService(reqQuery) {
   const { page = 1, pageSize = 10, rankBy = 'total' } = reqQuery;
 
-  const rankByStr = ['total', 'trendy', 'personality', 'practicality', 'costEffectiveness'];
-  if (!rankByStr.some((n) => n === rankBy)) {
-    throw new BadRequestError('잘못된 요청입니다.');
-  }
-
   const styles = await prisma.style.findMany({
     select: {
       id: true,
