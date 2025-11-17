@@ -1,7 +1,7 @@
 import { prisma } from '../lib/prismaClient.js';
 
 // 인기 태그 조회
-// nTags: 조회할 인기 태그 갯수 (default 3)
+// n: 조회할 인기 태그 갯수 (default 3)
 export async function getPopularTagsService(reqQuery) {
   const { n: nTags = 3 } = reqQuery;
 
