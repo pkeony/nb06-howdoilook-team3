@@ -1,15 +1,15 @@
-import { assert, integer } from 'superstruct';
+import { assert } from 'superstruct';
 import { prisma } from '../lib/prismaClient.js';
 import { CheckComment } from '../structs/structs.js';
+import NotFoundError from '../lib/errors/NotFoundError.js';
 
 // 답글 등록 서비스
 export const createCommentService = async (content, password, curationId) => {
   // 큐레이션 아이디 -> 스타일 아이디 찾기
-  console.log(curationId);
   const curation = await prisma.curation.findUnique({
     where: { id: Number(curationId) }
   });
-  console.log(curation);
+
   // 스타일 아이디 -> 스타일 패스워드 찾기
   const { stylesId } = curation;
   const style = await prisma.style.findUnique({
@@ -18,15 +18,14 @@ export const createCommentService = async (content, password, curationId) => {
 
   // 스타일 객체 -> 스타일 패스워드 찾고 오류 잡기
   const { password: newPassword } = style;
-  console.log(password, newPassword);
   if (password !== newPassword) {
     throw new Error('FORBIDDEN');
   }
   const data = {
-    // curationId: Number(curationId),
     content,
     password
   };
+  // superstruct import
   assert(data, CheckComment);
 
   // 스타일 패스워드 일치할 때 내용 등록
@@ -34,71 +33,89 @@ export const createCommentService = async (content, password, curationId) => {
     where: { id: Number(curationId) },
     data: { comment: { create: data } }
   });
-  // const newComment = await prisma.comment.create({
-  //   data: {
-  //    content,
-  //     password,
-  //     curationId
-  //   }
-  // });
 
-  // return {
-  //   id: newComment.id,
-  //   nickname: newComment.nickname,
-  //   content: newComment.content,
-  //   createdAt: newComment.createdAt.toISOString()
-  // };
+  // 결과 출력
   return newCuration;
 };
 
 // 답글 수정 서비스
-export const updateCommentService = async (id, content, password) => {
-  if (!content || !password) {
-    throw new Error('Missing required parameters: content and password');
-  }
-
-  if (isNaN(id)) {
-    throw new Error('Invalid ID format, must be a number');
-  }
-
-  const existingComment = await prisma.comment.findUnique({
-    where: { id }
+export const updateCommentService = async (commentId, content, password) => {
+  const comment = await prisma.comment.findUnique({
+    where: { id: Number(commentId) }
   });
 
-  if (!existingComment) {
-    throw new Error(`Comment with ID ${id} not found`);
-  }
-
-  if (existingComment.password !== password) {
-    throw new Error('FORBIDDEN'); // 비밀번호가 일치하지 않으면 403 오류 발생
-  }
-
-  const updatedComment = await prisma.comment.update({
-    where: { id },
-    data: {
-      content
-    }
+  const { curationId } = comment;
+  const curation = await prisma.curation.findUnique({
+    where: { id: Number(curationId) }
   });
 
-  return {
-    id: updatedComment.id,
-    nickname: updatedComment.nickname,
-    content: updatedComment.content,
-    createdAt: updatedComment.createdAt.toISOString()
+  const { stylesId } = curation;
+  const style = await prisma.style.findUnique({
+    where: { id: Number(stylesId) }
+  });
+
+  // 스타일 객체 -> 스타일 패스워드 찾고 오류 잡기
+  const { password: newPassword } = style;
+  if (password !== newPassword) {
+    throw new Error('FORBIDDEN');
+  }
+  const data = {
+    content,
+    password
   };
+
+  assert(data, CheckComment);
+  //코멘트 고치기
+  const updateComment = await prisma.comment.update({
+    where: { id: Number(commentId) },
+    data
+  });
+
+  return updateComment;
 };
 
 // 답글 삭제 서비스
-export const deleteCommentService = async (nickname, password) => {
-  const existingComment = await prisma.comment.findUnique({
-    where: { nickname }
+export const deleteCommentService = async (commentId, password) => {
+  const deletecomment = await prisma.comment.findUnique({
+    where: { id: Number(commentId) }
   });
 
+  if (!deletecomment) {
+    throw new Error('Comment not found');
+  }
+
+  const { curationId } = deletecomment;
+  const deletecuration = await prisma.curation.findUnique({
+    where: { id: Number(curationId) }
+  });
+
+  if (!deletecuration) {
+    throw new Error('Curation not found');
+  }
+
+  const { stylesId } = deletecuration;
+  const style = await prisma.style.findUnique({
+    where: { id: Number(stylesId) }
+  });
+
+  if (!style) {
+    throw new Error('Style not found');
+  }
+
+  // 2. 비밀번호 일치 확인
+  const { password: newPassword } = style;
+  if (password !== newPassword) {
+    throw new Error('FORBIDDEN');
+  }
+
+  // 3. 코멘트 삭제
   await prisma.comment.delete({
-    where: { nickname }
+    where: {
+      id: Number(commentId)
+    }
   });
 
-  return console.log('답글이 삭제되었습니다.');
+  return;
 };
 
 // 답글 목록 조회 서비스

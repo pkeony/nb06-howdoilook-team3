@@ -11,9 +11,9 @@ const router = express.Router();
 router.post('/curations/:curationId/comments', createCommentController);
 
 // 답글 수정 (PUT)
-router.put('/comments/:id', updateCommentController);
+router.put('/comments/:commentId', updateCommentController);
 
 // 답글 삭제 (DELETE)
-router.delete('/comments/:id', deleteCommentController);
+router.delete('/comments/:commentId', deleteCommentController);
 
 export default router;

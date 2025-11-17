@@ -16,20 +16,20 @@ Content-Type: application/json
 ###
 
 //답글 수정
-PUT {{baseUrl}}/comments/134
+PUT {{baseUrl}}/comments/20
 Content-Type: application/json
 
 {
 	"content": "스타일이 정말 좋아요!",
-	"password": "testyongyong1",
+	"password": "hwT67qNj94bP"
 }
 
 ###
 
 //답글 삭제
-DELETE {{baseUrl}}/comments/16
+DELETE {{baseUrl}}/comments/20
 Content-Type: application/json
 
 {
-	"password": "pwpwpwpw51"
+	"password": "hwT67qNj94bP"
 }
