@@ -1,20 +1,21 @@
 import {
   createCommentService,
   updateCommentService,
-  deleteCommentService,
+  deleteCommentService
 } from '../services/commentService.js';
 import { globalErrorHandler } from '../middlewares/errorHandler.js';
 
 // 답글 등록
 export const createCommentController = async (req, res) => {
-  try {
-    const id = Number(req.params.id);
-    const { content, password } = req.body;
-    const newComment = await createCommentService(content, password, id);
-    res.status(201).json(newComment);
-  } catch (error) {
-    globalErrorHandler(error, req, res);
-  }
+  const { curationId } = req.params;
+  console.log(curationId);
+  const { content, password } = req.body;
+  const newCuration = await createCommentService(content, password, curationId);
+  res.status(201).json(newCuration);
+
+  //   } catch (error) {
+  //     globalErrorHandler(error, req, res);
+  //   }
 };
 
 // 답글 수정

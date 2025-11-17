@@ -19,13 +19,13 @@ export const Password = s.refine(s.string(), 'Password', (value) => {
 export const NicknameLength = s.refine(
   s.string(),
   'NicknameLength',
-  (value) => (value.length >= 1 && value.length <= 20) || '*20자 이내로 입력해주세요.',
+  (value) => (value.length >= 1 && value.length <= 20) || '*20자 이내로 입력해주세요.'
 );
 
 export const UrlArrayMin = s.refine(
   s.array(Url),
   'UrlArrayMin',
-  (value) => value.length >= 1 || '*필수 입력사항입니다.',
+  (value) => value.length >= 1 || '*필수 입력사항입니다.'
 );
 
 export const Score0to10 = s.refine(s.union([s.number(), s.string()]), 'Score0to10', (value) => {
@@ -40,15 +40,15 @@ export const CheckCuration = s.object({
   costEffectiveness: Score0to10,
   nickname: s.size(s.string(), 1, 20),
   content: s.size(s.string(), 1, 150),
-  password: Password,
+  password: Password
 });
 
 export const CheckDeleteCuration = s.object({
-  password: Password,
+  password: Password
 });
 
 export const CheckComment = s.object({
   content: s.size(s.string(), 1, 150),
   password: Password,
-  curationId: s.min(s.integer(), 1),
+  curationId: s.optional(s.min(s.integer(), 1))
 });

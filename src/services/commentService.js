@@ -1,25 +1,54 @@
+import { assert, integer } from 'superstruct';
 import { prisma } from '../lib/prismaClient.js';
+import { CheckComment } from '../structs/structs.js';
 
 // 답글 등록 서비스
 export const createCommentService = async (content, password, curationId) => {
-  if (!content || !password) {
-    throw new Error('내용, 비밀번호를 모두 입력해야 합니다.');
-  }
-
-  const newComment = await prisma.comment.create({
-    data: {
-      content,
-      password,
-      curationId,
-    },
+  // 큐레이션 아이디 -> 스타일 아이디 찾기
+  console.log(curationId);
+  const curation = await prisma.curation.findUnique({
+    where: { id: Number(curationId) }
+  });
+  console.log(curation);
+  // 스타일 아이디 -> 스타일 패스워드 찾기
+  const { stylesId } = curation;
+  const style = await prisma.style.findUnique({
+    where: { id: Number(stylesId) }
   });
 
-  return {
-    id: newComment.id,
-    nickname: newComment.user ? newComment.user.nickname : '익명',
-    content: newComment.content,
-    createdAt: newComment.createdAt.toISOString(),
+  // 스타일 객체 -> 스타일 패스워드 찾고 오류 잡기
+  const { password: newPassword } = style;
+  console.log(password, newPassword);
+  if (password !== newPassword) {
+    throw new Error('FORBIDDEN');
+  }
+  const data = {
+    // curationId: Number(curationId),
+    content,
+    password
   };
+  assert(data, CheckComment);
+
+  // 스타일 패스워드 일치할 때 내용 등록
+  const newCuration = await prisma.curation.update({
+    where: { id: Number(curationId) },
+    data: { comment: { create: data } }
+  });
+  // const newComment = await prisma.comment.create({
+  //   data: {
+  //    content,
+  //     password,
+  //     curationId
+  //   }
+  // });
+
+  // return {
+  //   id: newComment.id,
+  //   nickname: newComment.nickname,
+  //   content: newComment.content,
+  //   createdAt: newComment.createdAt.toISOString()
+  // };
+  return newCuration;
 };
 
 // 답글 수정 서비스
@@ -33,7 +62,7 @@ export const updateCommentService = async (id, content, password) => {
   }
 
   const existingComment = await prisma.comment.findUnique({
-    where: { id },
+    where: { id }
   });
 
   if (!existingComment) {
@@ -46,25 +75,27 @@ export const updateCommentService = async (id, content, password) => {
 
   const updatedComment = await prisma.comment.update({
     where: { id },
-    data: { content },
+    data: {
+      content
+    }
   });
 
   return {
     id: updatedComment.id,
     nickname: updatedComment.nickname,
     content: updatedComment.content,
-    createdAt: updatedComment.createdAt.toISOString(),
+    createdAt: updatedComment.createdAt.toISOString()
   };
 };
 
 // 답글 삭제 서비스
 export const deleteCommentService = async (nickname, password) => {
   const existingComment = await prisma.comment.findUnique({
-    where: { nickname },
+    where: { nickname }
   });
 
   await prisma.comment.delete({
-    where: { nickname },
+    where: { nickname }
   });
 
   return console.log('답글이 삭제되었습니다.');

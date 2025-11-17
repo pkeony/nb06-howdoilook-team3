@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:3000
+@baseUrl = http://localhost:3001
 
 GET {{baseUrl}}/styles/2/curations
 
@@ -12,13 +12,13 @@ GET {{baseUrl}}/styles/1/curations
 ###
 
 
-POST {{baseUrl}}/styles/10/curations
+POST {{baseUrl}}/styles/13/curations
 Content-Type: application/json
 
 {
-    "nickname":"kelvin",
-    "content": "좋은 옷들입니다",
-    "password": "park9090",
+    "nickname":"kelvins",
+    "content": "멋진 옷입니다",
+    "password": "qwerd1425",
     "trendy" : 7,
     "personality": 7,
     "practicality": 8,
