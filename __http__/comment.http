@@ -16,7 +16,7 @@ Content-Type: application/json
 ###
 
 //답글 수정
-PUT {{baseUrl}}/comments/16
+PUT {{baseUrl}}/comments/18
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 ###
 
 //답글 삭제
-DELETE {{baseUrl}}/comments/16
+DELETE {{baseUrl}}/comments/18
 Content-Type: application/json
 
 {

@@ -15,8 +15,10 @@ export const createCommentService = async (content, password, curationId) => {
     throw new NotFoundError('Curation', curationId);
   }
 
-  if (curation.comment.length > 0) {
-    throw new Error('P2002');
+  if (curation.comment) {
+    const error = new Error('P2002');
+    error.code = 'P2002';
+    throw error;
   }
 
   // 스타일 아이디 -> 스타일 패스워드 찾기
@@ -45,7 +47,6 @@ export const createCommentService = async (content, password, curationId) => {
   const newComment = await prisma.comment.create({
     data: {
       content: data.content,
-      nickname: data.nickname,
       password: data.password,
       curationId: Number(curationId)
     }
