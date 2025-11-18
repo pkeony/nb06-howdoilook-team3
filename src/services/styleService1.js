@@ -5,8 +5,20 @@ import NotFoundError from '../lib/errors/NotFoundError.js';
 
 // 스타일 상세 조회
 export async function getStyleService(styleId) {
-  const backEnd_style = await prisma.style.findUniqueOrThrow({
+  let style = await prisma.style.findUniqueOrThrow({
     where: { id: parseInt(styleId) },
+    select: { viewCount: true }
+  });
+  if (!style) {
+    console.log(`0 style fetched`);
+    throw new NotFoundError('Style', parseInt(styleId));
+  }
+
+  const count = ++style.viewCount;
+
+  style = await prisma.style.update({
+    where: { id: parseInt(styleId) },
+    data: { viewCount: count },
     select: {
       id: true,
       nickname: true,
@@ -16,32 +28,20 @@ export async function getStyleService(styleId) {
       curationCount: true,
       createdAt: true,
       categories: { select: { type: true, name: true, brand: true, price: true } },
-      // curations: {  //큐레이션 조회 포함
-      //   select: {
-      //     nickname: true,
-      //     content: true,
-      //     trendy: true,
-      //     personality: true,
-      //     practicality: true,
-      //     costEffectiveness: true,
-      //     Comment: { select: { content: true } }, // 큐레이션 댓글 포함
-      //   },
-      // },
       tags: true,
       imageUrls: true
     }
   });
-  if (!backEnd_style) {
-    console.log(`0 style fetched`);
-    throw new NotFoundError('Style', parseInt(styleId));
-  }
 
   console.log('1 style fetched (detail)');
-  const frontEnd_style = back2front(backEnd_style);
+  const frontEnd_style = back2front(style);
   return frontEnd_style;
 }
 
 // 스타일 목록 조회
+// sortBy=latest/oldest
+// searchBy=nickname/title/content/tag & keyword = yourKW
+// tags=yourTag
 export async function getStyleListService(reqQuery) {
   const { page = 1, pageSize = 10, sortBy = 'latest', searchBy, keyword, tag } = reqQuery;
 
@@ -66,6 +66,8 @@ export async function getStyleListService(reqQuery) {
   let searchWhere;
   if (searchBy) {
     searchWhere = {
+      // 그냥 두면 AND search
+      // (sortBy를 동시에 2번 부르는 것은 불가능하지만 그래도 명시)
       OR: [
         { nickname: { contains: keyword } },
         { title: { contains: keyword } },
@@ -75,7 +77,7 @@ export async function getStyleListService(reqQuery) {
     };
   }
 
-  //nStyles: 총 스타일 수
+  //nTotalStyles: 총 스타일 수 in DB
   const nTotalStyles = await prisma.style.count({
     where: {
       ...(searchWhere || {}),
@@ -86,7 +88,7 @@ export async function getStyleListService(reqQuery) {
   const styles = await prisma.style.findMany({
     where: {
       ...(searchWhere || {}),
-      ...(tag ? { tags: { has: tag } } : {})
+      ...(tag ? { tags: { has: tag } } : {}) // tags와 sortBy 는 AND search 가능
     },
     take: parseInt(pageSize),
     skip: (parseInt(page) - 1) * parseInt(pageSize),

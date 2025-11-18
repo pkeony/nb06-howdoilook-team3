@@ -8,7 +8,7 @@ import stylesRouter1 from './routers/styleRouter1.js';
 import tagsRouter from './routers/tagRouter.js';
 import { curationRouter, curationStyleRouter } from './routers/curationRouter.js';
 import imageRouter from './routers/imageRouter.js';
-//import commentsRouter from './routers/comments.js';
+//import commentRouter from './routers/commentRouter.js';
 
 const app = express();
 app.use(express.json());
@@ -23,7 +23,7 @@ app.use('/ranking', rankingRouter);
 app.use('/curations', curationRouter);
 app.use('/styles', curationStyleRouter);
 app.use('/', imageRouter);
-//app.use('/comments', commentsRouter);
+//app.use('/', commentRouter);
 
 app.use(defaultNotFoundHandler);
 app.use(globalErrorHandler);
