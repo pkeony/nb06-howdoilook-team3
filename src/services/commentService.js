@@ -60,39 +60,48 @@ export const createCommentService = async (content, password, curationId) => {
 };
 
 // 답글 수정 서비스
-export const updateCommentService = async (commentId, content, password) => {
+export const updateCommentService = async (commentId, content, stylePassword) => {
   const comment = await prisma.comment.findUnique({
     where: { id: Number(commentId) }
   });
+  if (!comment) throw new NotFoundError('Comment', commentId);
 
-  const { curationId } = comment;
   const curation = await prisma.curation.findUnique({
-    where: { id: Number(curationId) }
+    where: { id: Number(comment.curationId) } // comment에서 가져오기 안전
   });
+  if (!curation) throw new NotFoundError('Curation', comment.curationId);
 
-  const { stylesId } = curation;
   const style = await prisma.style.findUnique({
-    where: { id: Number(stylesId) }
+    where: { id: Number(curation.stylesId) }
   });
+  if (!style) throw new NotFoundError('Style', curation.stylesId);
 
-  // 스타일 객체 -> 스타일 패스워드 찾고 오류 잡기
-  const { password: newPassword } = style;
-  if (password !== newPassword) {
+  if (stylePassword == null) {
+    throw new BadRequestError('비밀번호가 필요합니다.');
+  }
+
+  if (stylePassword !== style.password) {
     throw new Error('FORBIDDEN');
   }
+
   const data = {
     content,
-    password
+    password: stylePassword // ← 중요: key는 'password'여야 함
   };
 
   assert(data, CheckComment);
-  //코멘트 고치기
+
   const updateComment = await prisma.comment.update({
     where: { id: Number(commentId) },
     data
   });
 
-  return updateComment;
+  const { updatedAt, password, curationId, ...rest } = updateComment;
+
+  return {
+    ...rest,
+    stylesId: curation.stylesId // rest 뒤에 추가 (우선순위: 명시된 필드가 덮어씀)
+  };
 };
 
 // 답글 삭제 서비스 ~

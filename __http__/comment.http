@@ -5,31 +5,31 @@ GET {{baseUrl}}/styles/1/curations
 ###
 
 // 답글 등록
-POST {{baseUrl}}/curations/17/comments
+POST {{baseUrl}}/curations/16/comments
 Content-Type: application/json
 
 {
 	"content": "아주 좋습니다!",
-	"password": "hwT67qNj94bP"
+	"password": "pwpwpwpw5"
 }
 
 ###
 
 //답글 수정
-PUT {{baseUrl}}/comments/21
+PUT {{baseUrl}}/comments/16
 Content-Type: application/json
 
 {
 	"content": "스타일이 정말 좋아요!",
-	"password": "hwT67qNj94bP"
+	"password": "pwpwpwpw5"
 }
 
 ###
 
 //답글 삭제
-DELETE {{baseUrl}}/comments/22
+DELETE {{baseUrl}}/comments/16
 Content-Type: application/json
 
 {
-	"password": "hwT67qNj94bP"
+	"password": "pwpwpwpw5"
 }
