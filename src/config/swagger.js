@@ -1,4 +1,4 @@
-import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -12,13 +12,18 @@ const options = {
     info: {
       title: 'HowDoILook API',
       version: '1.0.0',
-      description: 'HowDoILook 프로젝트의 API 문서입니다.'
+      description: 'API documentation for HowDoILook service'
     },
-    servers: [{ url: 'http://localhost:3000' }]
+    servers: [
+      {
+        url: 'http://localhost:3000',
+        description: 'Local Server'
+      }
+    ]
   },
   apis: [path.join(__dirname, '../routers/*.js')]
 };
 
-const swaggerSpec = swaggerJsDoc(options);
+const swaggerSpec = swaggerJsdoc(options);
 
-export { swaggerSpec, swaggerUi };
+export { swaggerUi, swaggerSpec };

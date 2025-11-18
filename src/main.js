@@ -8,11 +8,12 @@ import tagsRouter from './routers/tagRouter.js';
 import { curationRouter, curationStyleRouter } from './routers/curationRouter.js';
 import imageRouter from './routers/imageRouter.js';
 import commentRouter from './routers/commentRouter.js';
+import { swaggerUi, swaggerSpec } from './config/swagger.js';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(STATIC_PATH, express.static(PUBLIC_PATH));
 
 app.use('/styles', stylesRouter);
@@ -26,4 +27,4 @@ app.use('/', commentRouter);
 app.use(defaultNotFoundHandler);
 app.use(globalErrorHandler);
 
-app.listen(PORT || 3000, () => console.log(`Server started`));
+app.listen(PORT || 3001, () => console.log(`Server started`));
