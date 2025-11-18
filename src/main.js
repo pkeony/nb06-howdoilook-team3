@@ -28,4 +28,4 @@ app.use('/', commentRouter);
 app.use(defaultNotFoundHandler);
 app.use(globalErrorHandler);
 
-app.listen(PORT || 3000, () => console.log(`Server started`));
+app.listen(PORT || 3001, () => console.log(`Server started`));
