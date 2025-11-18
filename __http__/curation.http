@@ -1,19 +1,52 @@
-GET http://localhost:3000/styles
+@baseUrl = http://localhost:3000
 
+GET {{baseUrl}}/styles/2/curations
+
+###
+GET {{baseUrl}}/styles/2/curations?searchBy=content&keyword=봄
+
+###
+
+GET {{baseUrl}}/styles/1/curations
 
 ###
 
 
-POST http://localhost:3000/styles
+POST {{baseUrl}}/styles/10/curations
+Content-Type: application/json
 
+{
+    "nickname":"kelvin",
+    "content": "좋은 옷들입니다",
+    "password": "park9090",
+    "trendy" : 7,
+    "personality": 7,
+    "practicality": 8,
+    "costEffectiveness": 7
+}
 
 ###
 
 
-PUT http://localhost:3000/styles/1
+PUT {{baseUrl}}/curations/26
+Content-Type: application/json
 
+{
+    "nickname":"kelvin",
+    "content": "좋은 옷들입니다",
+    "password": "park9090", 
+    "trendy" : 8,
+    "personality": 7,
+    "practicality": 6,
+    "costEffectiveness": 7
+}
 
 ###
 
 
-DELETE http://localhost:3000/styles/1
+DELETE {{baseUrl}}/curations/22
+Content-Type: application/json
+
+{
+    "password": "park90902"
+}
