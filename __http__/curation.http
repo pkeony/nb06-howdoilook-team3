@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:3000
+@baseUrl = http://localhost:3001
 
 GET {{baseUrl}}/styles/2/curations
 
@@ -28,7 +28,7 @@ Content-Type: application/json
 ###
 
 
-PUT {{baseUrl}}/curations/26
+PUT {{baseUrl}}/curations/18
 Content-Type: application/json
 
 {
@@ -44,9 +44,9 @@ Content-Type: application/json
 ###
 
 
-DELETE {{baseUrl}}/curations/22
+DELETE {{baseUrl}}/curations/18
 Content-Type: application/json
 
 {
-    "password": "park90902"
+    "password": "park9090"
 }
