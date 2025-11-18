@@ -17,11 +17,11 @@ export const createStyleService = async (styleData) => {
       tags: dataWithoutId.tags,
       imageUrls: dataWithoutId.imageUrls,
       categories: {
-        create: categoriesArray,
+        create: categoriesArray
       },
       viewCount: 0,
       curationCount: 0,
-      thumbnail: dataWithoutId.imageUrls[0],
+      thumbnail: dataWithoutId.imageUrls[0]
     },
     include: {
       categories: {
@@ -29,10 +29,10 @@ export const createStyleService = async (styleData) => {
           type: true,
           name: true,
           brand: true,
-          price: true,
-        },
-      },
-    },
+          price: true
+        }
+      }
+    }
   });
 
   return formatStyleForDetail(newStyleFromDB);
@@ -44,7 +44,7 @@ export const updateStyleService = async (styleId, updateData) => {
   const parsedStyleId = parseInt(styleId);
 
   const style = await prisma.style.findUnique({
-    where: { id: parsedStyleId },
+    where: { id: parsedStyleId }
   });
 
   if (!style) {
@@ -59,7 +59,7 @@ export const updateStyleService = async (styleId, updateData) => {
 
   const [deleteResult, updatedStyleFromDB] = await prisma.$transaction([
     prisma.category.deleteMany({
-      where: { styleId: parsedStyleId },
+      where: { styleId: parsedStyleId }
     }),
     prisma.style.update({
       where: { id: parsedStyleId },
@@ -71,8 +71,8 @@ export const updateStyleService = async (styleId, updateData) => {
         imageUrls: imageUrls,
         thumbnail: imageUrls && imageUrls.length > 0 ? imageUrls[0] : undefined,
         categories: {
-          create: categoryData,
-        },
+          create: categoryData
+        }
       },
       include: {
         categories: {
@@ -80,11 +80,11 @@ export const updateStyleService = async (styleId, updateData) => {
             type: true,
             name: true,
             brand: true,
-            price: true,
-          },
-        },
-      },
-    }),
+            price: true
+          }
+        }
+      }
+    })
   ]);
 
   return formatStyleForDetail(updatedStyleFromDB);
@@ -96,7 +96,7 @@ export const deleteStyleService = async (styleId, password) => {
 
   // 1. 비밀번호 검증을 위해 스타일 조회
   const style = await prisma.style.findUnique({
-    where: { id: parsedStyleId },
+    where: { id: parsedStyleId }
   });
 
   if (!style) {
@@ -110,7 +110,7 @@ export const deleteStyleService = async (styleId, password) => {
 
   // 3. 스타일 삭제
   await prisma.style.delete({
-    where: { id: parsedStyleId },
+    where: { id: parsedStyleId }
   });
 
   return;
