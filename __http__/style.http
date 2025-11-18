@@ -47,7 +47,7 @@ GET {{baseUrl}}/tags?n=5
 
 // 스타일 상세 조회
 ###
-GET {{baseUrl}}/styles/1
+GET {{baseUrl}}/styles/17
 
 
 

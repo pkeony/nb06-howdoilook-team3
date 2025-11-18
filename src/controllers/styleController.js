@@ -1,11 +1,12 @@
 import {
   createStyleService,
   updateStyleService,
-  deleteStyleService,
+  deleteStyleService
 } from '../services/styleService.js';
 
 import { assert } from 'superstruct';
 import { CheckStyle, CheckDeleteStyle } from '../structs/styleSchema.js';
+import { getStyleService, getStyleListService } from '../services/styleService.js';
 
 // 스타일 등록
 export const createStyle = async (req, res) => {
@@ -37,3 +38,16 @@ export const deleteStyle = async (req, res) => {
 
   res.status(200).json({ message: '스타일 삭제 성공' });
 };
+
+// 스타일 상세 조회
+export async function getStyle(req, res) {
+  const { styleId } = req.params;
+  const styleFetched = await getStyleService(styleId);
+  res.status(200).send(styleFetched);
+}
+
+// 스타일 목록 조회
+export async function getStyleList(req, res) {
+  const stylesFetched = await getStyleListService(req.query);
+  res.status(200).send(stylesFetched);
+}
