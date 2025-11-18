@@ -1,0 +1,126 @@
+@baseUrl = http://localhost:3000
+
+//----------------------------------------- 스타일 목록 조회
+// 페이지네이션: page, pageStr
+###
+GET {{baseUrl}}/styles?page=1&pageSize=10
+
+// 정렬 sortBy: 최신(latest), 조회수순, 큐레이팅수순
+###
+GET {{baseUrl}}/styles?sortBy=oldest
+###
+GET {{baseUrl}}/styles?sortBy=mostViewed
+###
+GET {{baseUrl}}/styles?sortBy=mostCurated
+
+// 닉네임, 제목, 상세, 태그 검색
+###
+GET {{baseUrl}}/styles?searchBy=nickname&keyword=sora
+###
+GET {{baseUrl}}/styles?searchBy=nickname&keyword=sooyoung
+###
+GET {{baseUrl}}/styles?searchBy=title&keyword=겨울
+###
+GET {{baseUrl}}/styles?searchBy=content&keyword=팬츠
+###
+GET {{baseUrl}}/styles?searchBy=tag&keyword=오피스룩
+
+
+
+
+//태그 검색 
+###
+GET {{baseUrl}}/styles?tag=오피스룩
+###
+GET {{baseUrl}}/styles?searchBy=content&keyword=팬츠&tag=캐쥬얼
+
+
+// 인기 태그 조회: 빈도로 결정
+// 보고 싶은 인기 태그 갯수 지정 가능 (디폴트 3)
+###
+GET {{baseUrl}}/tags
+###
+GET {{baseUrl}}/tags?n=5
+
+
+
+
+// 스타일 상세 조회
+###
+GET {{baseUrl}}/styles/11
+
+
+
+
+###
+POST {{baseUrl}}/styles
+Content-Type: application/json
+
+{
+	"nickname": "닉네임테스트끝",
+	"title": "타이틀테스트끝",
+	"content": "콘텐트테스트끝",
+	"password": "testComplete1",
+	"categories": {
+		"TOP": {
+			"name": "카테고리네임테스트완",
+			"brand": "브랜드테스트완료",
+			"price": 35000
+		},
+		"BOTTOM": {
+			"name": "트레이닝바지",
+			"brand": "오프화이트",
+			"price": 500000
+		}
+	},
+	"tags": [
+		"태그길이테스트해보겠습니다과연잘작동될지",
+		"길이도검사하고개수도검사해야하는데",
+		"밥먹으러가려면돼야해"
+	],
+	"imageUrls": [
+		"https://placehold.co/600x400/EEE/31343C?text=Image+1",
+    "https://placehold.co/600x400/CCC/31343C?text=Image+2"
+	]
+}
+
+
+###
+
+PUT {{baseUrl}}/styles/17
+Content-Type: application/json
+
+{
+	"nickname": "수정테스트합니다",
+	"title": "수정테스트..",
+	"content": "수정테스트중",
+	"password": "testComplete1",
+	"categories": {
+		"TOP": {
+			"name": "후드티",
+			"brand": "메종키츠네",
+			"price": 350000
+		},
+		"BOTTOM": {
+			"name": "트레이닝바지",
+			"brand": "오프화이트",
+			"price": 500000
+		}
+	},
+	"tags": [
+		"겨울맞이",
+		"편한룩"
+	],
+	"imageUrls": [
+		"https://placehold.co/600x400/EEE/31343C?text=Image+1",
+    "https://placehold.co/600x400/CCC/31343C?text=Image+2"
+	]
+}
+
+###
+DELETE {{baseUrl}}/styles/17
+Content-Type: application/json
+
+{
+  "password": "testComplete1"
+}
