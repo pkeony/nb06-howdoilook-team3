@@ -65,7 +65,7 @@ model Curation {
   updatedAt         DateTime @updatedAt
   style             Style    @relation(fields: [stylesId], references: [id], onDelete: Cascade)
   stylesId          Int
-  comment           Comment?
+  Comment           Comment?
 }
 
 model Comment {
