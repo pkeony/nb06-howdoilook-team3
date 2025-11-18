@@ -1,7 +1,4 @@
 node_modules/
-uploads/
 # Keep environment variables out of version control
 # 환경 설정 파일
 .env
-.DS_Store
-test.js
