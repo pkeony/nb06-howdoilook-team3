@@ -16,7 +16,7 @@ GET {{baseUrl}}/styles?sortBy=mostCurated&pageSize=3
 // 닉네임, 제목, 상세, 태그 검색
 ###
 GET {{baseUrl}}/styles?searchBy=nickname&keyword=sora
-###
+### 없는 검색어
 GET {{baseUrl}}/styles?searchBy=nickname&keyword=sooyoung
 ###
 GET {{baseUrl}}/styles?searchBy=title&keyword=겨울
@@ -30,7 +30,7 @@ GET {{baseUrl}}/styles?searchBy=tag&keyword=오피스룩
 
 //태그 검색 
 ###
-GET {{baseUrl}}/styles?tag=오피스룩
+GET {{baseUrl}}/styles?tag=모노톤
 ###
 GET {{baseUrl}}/styles?searchBy=content&keyword=팬츠&tag=캐쥬얼
 
@@ -47,7 +47,7 @@ GET {{baseUrl}}/tags?n=5
 
 // 스타일 상세 조회
 ###
-GET {{baseUrl}}/styles/17
+GET {{baseUrl}}/styles/10
 
 
 
@@ -87,7 +87,7 @@ Content-Type: application/json
 
 ###
 
-PUT {{baseUrl}}/styles/18
+PUT {{baseUrl}}/styles/17
 Content-Type: application/json
 
 {
@@ -118,7 +118,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{baseUrl}}/styles/19
+DELETE {{baseUrl}}/styles/17
 Content-Type: application/json
 
 {
