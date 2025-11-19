@@ -53,3 +53,7 @@ export const CheckComment = s.object({
   curationId: s.optional(s.min(s.integer(), 1)) // 여기에만 옵션으로 수정
   // comment 생성할 때에는 prisma가 id를 자동으로 만들어주기 때문에, 여기에 필수 필드로 되어 있으면 에러 남
 });
+
+export const CheckDeleteComment = s.object({
+  password: Password
+});
