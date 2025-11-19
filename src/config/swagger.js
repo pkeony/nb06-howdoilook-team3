@@ -18,6 +18,10 @@ const options = {
       {
         url: 'http://localhost:3000',
         description: 'Local Server'
+      },
+      {
+        url: 'https://nb06-howdoilook-team3.onrender.com',
+        description: 'Production Server'
       }
     ]
   },
