@@ -1,19 +1,68 @@
-GET http://localhost:3000/styles
+@baseUrl = http://localhost:3001
 
+### 조회 성공
+GET {{baseUrl}}/styles/5/curations
+
+### 조회 실패
+GET {{baseUrl}}/styles/30/curations
+
+### 검색 content
+GET {{baseUrl}}/styles/5/curations?searchBy=content&keyword=가을
+
+### 검색 nickname
+GET {{baseUrl}}/styles/5/curations?searchBy=nickname&keyword=kelvin
+
+### 페이지네이션
+GET {{baseUrl}}/styles/5/curations?page=1&pageSize=2
+
+### 생성
+POST {{baseUrl}}/styles/5/curations
+Content-Type: application/json
+
+{
+    "nickname":"kelvin",
+    "content": "감사합니다",
+    "password": "park9090",
+    "trendy" : 7,
+    "personality": 7,
+    "practicality": 8,
+    "costEffectiveness": 7
+}
+
+### 생성 실패
+POST {{baseUrl}}/styles/2/curations
+Content-Type: application/json
+
+{
+    "nickname":"kelvin",
+    "content": "좋은 옷들입니다",
+    "password": "111",
+    "trendy" : 7,
+    "personality": 7,
+    "practicality": 8,
+    "costEffectiveness": 7
+}
+
+### 수정
+PUT {{baseUrl}}/curations/24
+Content-Type: application/json
+
+{
+    "nickname":"kelvin",
+    "content": "수정 후 입니다.",
+    "password": "park9090", 
+    "trendy" : 8,
+    "personality": 7,
+    "practicality": 6,
+    "costEffectiveness": 7
+}
 
 ###
 
 
-POST http://localhost:3000/styles
+DELETE {{baseUrl}}/curations/24
+Content-Type: application/json
 
-
-###
-
-
-PUT http://localhost:3000/styles/1
-
-
-###
-
-
-DELETE http://localhost:3000/styles/1
+{
+    "password": "park9090"
+}

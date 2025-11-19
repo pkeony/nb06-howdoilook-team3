@@ -1,0 +1,24 @@
+@baseUrl = http://localhost:3001
+
+// 스타일 랭킹 목록 조회
+// pagenation by page, pageSize       
+###
+###
+GET {{baseUrl}}/ranking?rankBy=total
+###
+GET {{baseUrl}}/ranking?rankBy=total&page=1&pageSize=3
+
+
+// query: rankBy
+// 각 스타일이 받은 큐레이션들의 평균값
+// total은 4 차원의 평균치   
+###
+GET {{baseUrl}}/ranking?rankBy=total
+###
+GET {{baseUrl}}/ranking?rankBy=trendy
+###
+GET {{baseUrl}}/ranking?rankBy=personality
+###
+GET {{baseUrl}}/ranking?rankBy=practicality
+###
+GET {{baseUrl}}/ranking?rankBy=costEffectiveness

@@ -1,15 +1,32 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import cors from 'cors';
-import stylesRouter from './routers/styles.js';
-//import curationsRouter from './routers/curations.js';
-//import commentsRouter from './routers/comments.js';
+import rankingRouter from './routers/rankingRouter.js';
+import { defaultNotFoundHandler, globalErrorHandler } from './middlewares/errorHandler.js';
+import { PORT, PUBLIC_PATH, STATIC_PATH } from './lib/constants.js';
+import stylesRouter from './routers/styleRouter.js';
+import tagsRouter from './routers/tagRouter.js';
+import { curationRouter, curationStyleRouter } from './routers/curationRouter.js';
+import imageRouter from './routers/imageRouter.js';
+import commentRouter from './routers/commentRouter.js';
+import { swaggerUi, swaggerSpec } from './config/swagger.js';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use(STATIC_PATH, express.static(PUBLIC_PATH));
 
 app.use('/styles', stylesRouter);
-//app.use('/curations', curationsRouter);
-//app.use('/comments', commentsRouter);
+app.use('/tags', tagsRouter);
+app.use('/ranking', rankingRouter);
+app.use('/curations', curationRouter);
+app.use('/styles', curationStyleRouter);
+app.use('/', imageRouter);
+app.use('/', commentRouter);
 
-app.listen(3001, () => console.log(`Server_3001 started`));
+app.use(defaultNotFoundHandler);
+app.use(globalErrorHandler);
+
+app.listen(PORT || 3001, () => console.log(`Server started`));

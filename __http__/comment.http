@@ -1,30 +1,80 @@
-GET http://localhost:3000/styles
+@baseUrl = http://localhost:3001
 
-
-###
-
-
-GET http://localhost:3000/styles? //최신순, 조회순, 큐레이팅순(큐레이팅 많은 순)-정렬  ,  닉네임, 제목, 상세, 태그로 검색 
-
+GET {{baseUrl}}/styles/5/curations
 
 ###
 
-GET http://localhost:3000/styles
+// 답글 등록
+POST {{baseUrl}}/curations/21/comments
+Content-Type: application/json
 
+{
+	"content": "아주 좋습니다!",
+	"password": "pwpwpwpw5"
+}
+
+### 답글 등록 실패(비번)
+POST {{baseUrl}}/curations/23/comments
+Content-Type: application/json
+
+{
+	"content": "아주 좋습니다!",
+	"password": "pwpwpwpw3"
+}
+### 답글 등록 실패(중복)
+POST {{baseUrl}}/curations/21/comments
+Content-Type: application/json
+
+{
+	"content": "아주 좋습니다!",
+	"password": "pwpwpwpw5"
+}
+
+### 
+
+//답글 수정
+PUT {{baseUrl}}/comments/19
+Content-Type: application/json
+
+{
+	"content": "스타일이 정말 좋아요!@@@",
+	"password": "pwpwpwpw5"
+}
+
+###답글 수정 실패 (비밀번호)
+PUT {{baseUrl}}/comments/13
+Content-Type: application/json
+
+{
+	"content": "스타일이 정말 좋아요!",
+	"password": "hwT67qNj94bP22"
+}
+
+### 답글 수정 실패 (없는 댓글)
+PUT {{baseUrl}}/comments/30
+Content-Type: application/json
+
+{
+	"content": "스타일이 정말 좋아요!",
+	"password": "hwT67qNj94bP22"
+}
 
 ###
 
+//답글 삭제
+DELETE {{baseUrl}}/comments/3
+Content-Type: application/json
 
-POST http://localhost:3000/styles  // curation - styles와 비밀번호 확인
+{
+	"password": "pwpwpwpw3"
+}
 
+###답글 삭제 실패
+DELETE {{baseUrl}}/comments/5
+Content-Type: application/json
+
+{
+	"password": "pwpwpwpw5"
+}
 
 ###
-
-
-PUT http://localhost:3000/styles/1
-
-
-###
-
-
-DELETE http://localhost:3000/styles/1

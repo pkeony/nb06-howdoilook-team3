@@ -1,0 +1,12 @@
+@baseUrl = http://localhost:3001
+
+### 이미지 업로드
+POST {{baseUrl}}/images
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="google-logo.png"
+Content-Type: image/png
+
+< ../images/google-logo.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
