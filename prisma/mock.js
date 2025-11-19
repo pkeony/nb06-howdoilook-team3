@@ -4,7 +4,7 @@
 export const Styles = [
   {
     id: 1,
-    thumbnail: 'https://picsum.photos/id/11/600/400_tn',
+    thumbnail: 'https://cdn.pixabay.com/photo/2020/12/07/16/08/girl-5812182_960_720.jpg',
     nickname: 'keony',
     title: '미니멀 오피스룩',
     content: '화이트 셔츠와 블랙 슬랙스로 구성된 깔끔한 출근룩.',
@@ -12,13 +12,13 @@ export const Styles = [
     viewCount: 1200,
     curationCount: 1,
     tags: ['미니멀', '오피스룩', '모노톤'],
-    imageUrls: ['https://picsum.photos/id/11/600/400'],
+    imageUrls: ['https://cdn.pixabay.com/photo/2020/12/07/16/08/girl-5812182_960_720.jpg'],
     createdAt: '2025-01-01T00:00:00Z',
     updatedAt: '2025-01-02T00:00:00Z'
   },
   {
     id: 2,
-    thumbnail: 'https://picsum.photos/id/12/600/400_tn',
+    thumbnail: 'https://cdn.pixabay.com/photo/2016/11/29/09/41/bag-1868758_960_720.jpg',
     nickname: 'sora',
     title: '봄 데일리 캐주얼',
     content: '가벼운 자켓과 청바지로 완성한 캐주얼 봄 코디.',
@@ -26,13 +26,13 @@ export const Styles = [
     viewCount: 980,
     curationCount: 1,
     tags: ['간절기', '캐쥬얼', '봄패션'],
-    imageUrls: ['https://picsum.photos/id/12/600/400'],
+    imageUrls: ['https://cdn.pixabay.com/photo/2016/11/29/09/41/bag-1868758_960_720.jpg'],
     createdAt: '2025-02-02T00:00:00Z',
     updatedAt: '2025-02-03T00:00:00Z'
   },
   {
     id: 3,
-    thumbnail: 'https://picsum.photos/id/21/600/400_tn',
+    thumbnail: 'https://cdn.pixabay.com/photo/2021/10/03/04/21/woman-6676901_1280.jpg',
     nickname: 'minsu',
     title: '겨울 감성룩',
     content: '코트와 머플러로 따뜻한 분위기의 감성 스타일.',
@@ -40,13 +40,13 @@ export const Styles = [
     viewCount: 1500,
     curationCount: 2,
     tags: ['겨울룩', '감성'],
-    imageUrls: ['https://picsum.photos/id/21/600/400'],
+    imageUrls: ['https://cdn.pixabay.com/photo/2021/10/03/04/21/woman-6676901_1280.jpg'],
     createdAt: '2025-03-03T00:00:00Z',
     updatedAt: '2025-03-04T00:00:00Z'
   },
   {
     id: 4,
-    thumbnail: 'https://picsum.photos/id/41/600/400_tn',
+    thumbnail: 'https://cdn.pixabay.com/photo/2016/11/21/16/01/woman-1846127_1280.jpg',
     nickname: 'yuna',
     title: '여름 스트릿룩',
     content: '와이드 팬츠와 크롭티로 시원한 스트릿 무드 완성.',
@@ -54,13 +54,13 @@ export const Styles = [
     viewCount: 800,
     curationCount: 1,
     tags: ['스트릿', '여름패션', '캐쥬얼'],
-    imageUrls: ['https://picsum.photos/id/41/600/400'],
+    imageUrls: ['https://cdn.pixabay.com/photo/2016/11/21/16/01/woman-1846127_1280.jpg'],
     createdAt: '2025-04-04T00:00:00Z',
     updatedAt: '2025-04-05T00:00:00Z'
   },
   {
     id: 5,
-    thumbnail: 'https://picsum.photos/id/51/600/400_tn',
+    thumbnail: 'https://cdn.pixabay.com/photo/2015/02/01/22/36/young-man-620391_1280.jpg',
     nickname: 'taeyang',
     title: '가을 데이트룩',
     content: '브라운 가디건과 데님으로 따뜻한 데이트 감성.',
@@ -68,13 +68,16 @@ export const Styles = [
     viewCount: 1100,
     curationCount: 3,
     tags: ['데이트룩', '감성', '캐쥬얼'],
-    imageUrls: ['https://picsum.photos/id/51/600/400', 'https://picsum.photos/id/52/600/400'],
+    imageUrls: [
+      'https://cdn.pixabay.com/photo/2015/02/01/22/36/young-man-620391_1280.jpg',
+      'https://picsum.photos/id/52/600/400'
+    ],
     createdAt: '2025-05-05T00:00:00Z',
     updatedAt: '2025-05-06T00:00:00Z'
   },
   {
     id: 6,
-    thumbnail: 'https://images.unsplash.com/photo-1682685794760-3e7e1d796be4_tn',
+    thumbnail: 'https://i.ibb.co/WvFSqpNX/Gemini-Generated-Image-rwlcsyrwlcsyrwlc.png',
     nickname: 'minji',
     title: '가을 캐주얼 데일리룩',
     content: '부드러운 가디건과 데님 팬츠로 완성한 따뜻한 데일리룩.',
@@ -82,13 +85,13 @@ export const Styles = [
     viewCount: 132,
     curationCount: 1,
     tags: ['가을룩', '캐쥬얼', '데님'],
-    imageUrls: ['https://images.unsplash.com/photo-1682685794760-3e7e1d796be4'],
+    imageUrls: ['https://i.ibb.co/WvFSqpNX/Gemini-Generated-Image-rwlcsyrwlcsyrwlc.png'],
     createdAt: '2025-06-06T10:00:00Z',
     updatedAt: '2025-06-07T09:30:00Z'
   },
   {
     id: 7,
-    thumbnail: 'https://picsum.photos/id/51/600/400_tn',
+    thumbnail: 'https://i.ibb.co/nND79d8Y/Gemini-Generated-Image-n9ewp6n9ewp6n9ew.png',
     nickname: 'soobin',
     title: '오피스 미니멀룩',
     content: '화이트 셔츠와 블랙 슬랙스로 심플한 오피스룩.',
@@ -96,13 +99,13 @@ export const Styles = [
     viewCount: 208,
     curationCount: 1,
     tags: ['미니멀룩', '모노톤', '오피스룩'],
-    imageUrls: ['https://picsum.photos/id/51/600/400'],
+    imageUrls: ['https://i.ibb.co/nND79d8Y/Gemini-Generated-Image-n9ewp6n9ewp6n9ew.png'],
     createdAt: '2025-07-07T11:00:00Z',
     updatedAt: '2025-07-08T08:45:00Z'
   },
   {
     id: 8,
-    thumbnail: 'https://picsum.photos/id/52/600/400_tn',
+    thumbnail: 'https://i.ibb.co/hJBjsN5R/Gemini-Generated-Image-cz83wccz83wccz83.png',
     nickname: 'yuna',
     title: '편안한 주말 스트릿룩',
     content: '후드티와 조거팬츠로 완성한 캐주얼 스트릿 스타일.',
@@ -110,13 +113,13 @@ export const Styles = [
     viewCount: 97,
     curationCount: 1,
     tags: ['스트릿룩', '캐쥬얼', '트레이닝'],
-    imageUrls: ['https://picsum.photos/id/52/600/400'],
+    imageUrls: ['https://i.ibb.co/hJBjsN5R/Gemini-Generated-Image-cz83wccz83wccz83.png'],
     createdAt: '2025-08-08T09:00:00Z',
     updatedAt: '2025-08-09T10:10:00Z'
   },
   {
     id: 9,
-    thumbnail: 'https://images.unsplash.com/photo-1682685794760-3e7e1d796be4_tn',
+    thumbnail: 'https://i.ibb.co/HfQp8Dj3/Gemini-Generated-Image-82up8382up8382up.png',
     nickname: 'hajin',
     title: '간절기 레이어드룩',
     content: '셔츠와 니트를 함께 매치해 포근하면서 세련된 간절기 코디.',
@@ -124,13 +127,13 @@ export const Styles = [
     viewCount: 185,
     curationCount: 1,
     tags: ['레이어드룩', '간절기'],
-    imageUrls: ['https://images.unsplash.com/photo-1682685794760-3e7e1d796be4'],
+    imageUrls: ['https://i.ibb.co/HfQp8Dj3/Gemini-Generated-Image-82up8382up8382up.png'],
     createdAt: '2025-09-09T10:00:00Z',
     updatedAt: '2025-09-10T11:00:00Z'
   },
   {
     id: 10,
-    thumbnail: 'https://images.unsplash.com/photo-1679932156433-2f909f1b01d7_tn',
+    thumbnail: 'https://i.ibb.co/Rp9gKdFK/10.jpg',
     nickname: 'eunho',
     title: '겨울 오버핏 코트룩',
     content: '롱코트와 머플러로 완성한 감성적인 겨울 스타일.',
@@ -138,13 +141,13 @@ export const Styles = [
     viewCount: 266,
     curationCount: 1,
     tags: ['겨울룩', '감성', '오버핏'],
-    imageUrls: ['https://images.unsplash.com/photo-1679932156433-2f909f1b01d7'],
+    imageUrls: ['https://i.ibb.co/Rp9gKdFK/10.jpg'],
     createdAt: '2025-10-10T09:00:00Z',
     updatedAt: '2025-10-11T10:15:00Z'
   },
   {
     id: 11,
-    thumbnail: 'https://images.unsplash.com/photo-1680951732398-7a7ff76d43f0_tn',
+    thumbnail: 'https://i.ibb.co/9kGyyRDc/11.jpg',
     nickname: 'sora',
     title: '여름 린넨 셋업룩',
     content: '린넨 셔츠와 팬츠로 시원하게 연출한 썸머 셋업 스타일.',
@@ -152,13 +155,13 @@ export const Styles = [
     viewCount: 119,
     curationCount: 1,
     tags: ['린넨', '여름룩'],
-    imageUrls: ['https://images.unsplash.com/photo-1680951732398-7a7ff76d43f0'],
+    imageUrls: ['https://i.ibb.co/9kGyyRDc/11.jpg'],
     createdAt: '2025-11-11T08:30:00Z',
     updatedAt: '2025-11-12T09:45:00Z'
   },
   {
     id: 12,
-    thumbnail: 'https://images.unsplash.com/photo-1684324872744-9948e1e272db_tn',
+    thumbnail: 'https://i.ibb.co/bgqTDrSC/12.jpg',
     nickname: 'jimin',
     title: '하프집 맨투맨 캐주얼룩',
     content: '트레이닝 팬츠와 하프집 맨투맨으로 완성한 가벼운 캐주얼룩.',
@@ -166,13 +169,13 @@ export const Styles = [
     viewCount: 152,
     curationCount: 1,
     tags: ['트레이닝', '캐쥬얼', '맨투맨'],
-    imageUrls: ['https://images.unsplash.com/photo-1684324872744-9948e1e272db'],
+    imageUrls: ['https://i.ibb.co/bgqTDrSC/12.jpg'],
     createdAt: '2025-12-12T10:00:00Z',
     updatedAt: '2025-12-13T11:20:00Z'
   },
   {
     id: 13,
-    thumbnail: 'https://images.unsplash.com/photo-1679932156433-2f909f1b01d7_tn',
+    thumbnail: 'https://i.ibb.co/NdSfXB8Q/13.jpg',
     nickname: 'hyunwoo',
     title: '블랙앤화이트 모노톤룩',
     content: '깔끔한 대비감으로 포멀한 인상을 주는 모노톤 스타일.',
@@ -180,7 +183,7 @@ export const Styles = [
     viewCount: 230,
     curationCount: 1,
     tags: ['모노톤', '오피스룩', '포멀'],
-    imageUrls: ['https://images.unsplash.com/photo-1679932156433-2f909f1b01d7'],
+    imageUrls: ['https://i.ibb.co/NdSfXB8Q/13.jpg'],
     createdAt: '2025-12-30T09:00:00Z',
     updatedAt: '2025-12-31T10:40:00Z'
   }
