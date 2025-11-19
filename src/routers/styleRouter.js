@@ -32,22 +32,87 @@ const allowedKeys = ['page', 'pageSize', 'sortBy', 'searchBy', 'keyword', 'tag']
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - nickname
+ *               - title
+ *               - content
+ *               - password
+ *               - tags
+ *               - imageUrls
+ *               - categories
  *             properties:
- *               imageUrl:
+ *               nickname:
  *                 type: string
- *                 example: "https://example.com/style1.png"
- *               description:
+ *                 example: "선영"
+ *               title:
  *                 type: string
- *                 example: "캐주얼 스트릿룩"
+ *                 example: "봄 캐주얼룩"
+ *               content:
+ *                 type: string
+ *                 example: "가볍게 입기 좋은 봄 스트릿 캐주얼 코디입니다."
+ *               password:
+ *                 type: string
+ *                 example: "1234"
  *               tags:
  *                 type: array
+ *                 maxItems: 3
  *                 items:
  *                   type: string
  *                 example: ["street", "casual"]
+ *               imageUrls:
+ *                 type: array
+ *                 minItems: 1
+ *                 items:
+ *                   type: string
+ *                 example: [
+ *                   "https://example.com/img1.png",
+ *                   "https://example.com/img2.png"
+ *                 ]
+ *               categories:
+ *                 type: object
+ *                 description: 최소 하나는 반드시 포함해야 함
+ *                 properties:
+ *                   TOP:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   BOTTOM:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   OUTER:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   DRESS:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   SHOES:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   BAG:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   ACCESSORY:
+ *                     $ref: '#/components/schemas/CategoryItem'
  *     responses:
  *       201:
- *         description: 스타일 생성 완료
+ *         description: 생성 완료
  */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     CategoryItem:
+ *       type: object
+ *       required:
+ *         - name
+ *         - brand
+ *         - price
+ *       properties:
+ *         name:
+ *           type: string
+ *           example: "오버핏 맨투맨"
+ *         brand:
+ *           type: string
+ *           example: "무신사 스탠다드"
+ *         price:
+ *           type: integer
+ *           example: 29900
+ */
+
 stylesRouter.post('/', withTryCatch(createStyle));
 
 /**
@@ -62,31 +127,53 @@ stylesRouter.post('/', withTryCatch(createStyle));
  *         required: true
  *         schema:
  *           type: integer
- *         description: 수정할 Style ID
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - password
  *             properties:
- *               imageUrl:
+ *               nickname:
  *                 type: string
- *                 example: "https://example.com/updated.png"
- *               description:
+ *               title:
  *                 type: string
- *                 example: "업데이트된 스타일 설명"
+ *               content:
+ *                 type: string
+ *               password:
+ *                 type: string
  *               tags:
  *                 type: array
  *                 items:
  *                   type: string
- *                 example: ["modern", "minimal"]
+ *               imageUrls:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *               categories:
+ *                 type: object
+ *                 properties:
+ *                   TOP:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   BOTTOM:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   OUTER:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   DRESS:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   SHOES:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   BAG:
+ *                     $ref: '#/components/schemas/CategoryItem'
+ *                   ACCESSORY:
+ *                     $ref: '#/components/schemas/CategoryItem'
  *     responses:
  *       200:
  *         description: 수정 성공
- *       404:
- *         description: Style ID 없음
  */
+
 stylesRouter.put('/:styleId', withTryCatch(updateStyle));
 
 /**
@@ -98,16 +185,26 @@ stylesRouter.put('/:styleId', withTryCatch(updateStyle));
  *     parameters:
  *       - in: path
  *         name: styleId
- *         required: true
  *         schema:
  *           type: integer
- *         description: 삭제할 Style ID
+ *         required: true
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - password
+ *             properties:
+ *               password:
+ *                 type: string
+ *                 example: "1234"
  *     responses:
  *       200:
- *         description: 삭제 완료
- *       404:
- *         description: Style ID 없음
+ *         description: 삭제 성공
  */
+
 stylesRouter.delete('/:styleId', withTryCatch(deleteStyle));
 
 /**
@@ -121,38 +218,33 @@ stylesRouter.delete('/:styleId', withTryCatch(deleteStyle));
  *         name: page
  *         schema:
  *           type: integer
- *         example: 1
  *       - in: query
  *         name: pageSize
  *         schema:
  *           type: integer
- *         example: 10
  *       - in: query
  *         name: sortBy
  *         schema:
  *           type: string
  *           enum: [latest, popular]
- *         example: latest
  *       - in: query
  *         name: searchBy
  *         schema:
  *           type: string
- *           enum: [description, tags]
- *         example: description
+ *           enum: [title, tags, content]
  *       - in: query
  *         name: keyword
  *         schema:
  *           type: string
- *         example: "캐주얼"
  *       - in: query
  *         name: tag
  *         schema:
  *           type: string
- *         example: "street"
  *     responses:
  *       200:
  *         description: 조회 성공
  */
+
 stylesRouter.get('/', validateQueryKeys(allowedKeys), withTryCatch(getStyleList));
 
 /**
@@ -173,6 +265,7 @@ stylesRouter.get('/', validateQueryKeys(allowedKeys), withTryCatch(getStyleList)
  *       404:
  *         description: Style ID 없음
  */
+
 stylesRouter.get('/:styleId', withTryCatch(getStyle));
 
 export default stylesRouter;

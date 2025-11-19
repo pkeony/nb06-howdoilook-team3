@@ -3,6 +3,8 @@ import {
   updateCommentService,
   deleteCommentService
 } from '../services/commentService.js';
+import { assert } from 'superstruct';
+import { CheckDeleteComment } from '../structs/structs.js';
 
 // 답글 등록
 export const createCommentController = async (req, res) => {
@@ -22,6 +24,7 @@ export const updateCommentController = async (req, res) => {
 
 // 답글 삭제~
 export const deleteCommentController = async (req, res) => {
+  assert(req.body, CheckDeleteComment);
   const { commentId } = req.params;
   const { password } = req.body;
   await deleteCommentService(commentId, password);
