@@ -5,31 +5,76 @@ GET {{baseUrl}}/styles/1/curations
 ###
 
 // 답글 등록
+POST {{baseUrl}}/curations/17/comments
+Content-Type: application/json
+
+{
+	"content": "아주 좋습니다!",
+	"password": "pwpwpwpw2"
+}
+
+### 답글 등록 실패(비번)
 POST {{baseUrl}}/curations/16/comments
 Content-Type: application/json
 
 {
 	"content": "아주 좋습니다!",
-	"password": "pwpwpwpw5"
+	"password": "pwpwpwpw3"
+}
+### 답글 등록 실패(중복)
+POST {{baseUrl}}/curations/17/comments
+Content-Type: application/json
+
+{
+	"content": "아주 좋습니다!",
+	"password": "pwpwpwpw2"
 }
 
-###
+### 
 
 //답글 수정
-PUT {{baseUrl}}/comments/31
+PUT {{baseUrl}}/comments/13
 Content-Type: application/json
 
 {
 	"content": "스타일이 정말 좋아요!",
-	"password": "pwpwpwpw5"
+	"password": "hwT67qNj94bP"
+}
+
+###답글 수정 실패 (비밀번호)
+PUT {{baseUrl}}/comments/13
+Content-Type: application/json
+
+{
+	"content": "스타일이 정말 좋아요!",
+	"password": "hwT67qNj94bP22"
+}
+
+### 답글 수정 실패 (없는 댓글)
+PUT {{baseUrl}}/comments/30
+Content-Type: application/json
+
+{
+	"content": "스타일이 정말 좋아요!",
+	"password": "hwT67qNj94bP22"
 }
 
 ###
 
 //답글 삭제
-DELETE {{baseUrl}}/comments/31
+DELETE {{baseUrl}}/comments/3
 Content-Type: application/json
 
 {
-	"password": "pwpwpwpw5"
+	"password": "pwpwpwpw3"
 }
+
+###
+DELETE {{baseUrl}}/comments/2
+Content-Type: application/json
+
+{
+	"password": "pwpwpwpw10"
+}
+
+###
