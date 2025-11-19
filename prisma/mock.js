@@ -170,8 +170,8 @@ export const Styles = [
     curationCount: 1,
     tags: ['트레이닝', '캐쥬얼', '맨투맨'],
     imageUrls: ['https://i.ibb.co/bgqTDrSC/12.jpg'],
-    createdAt: '2025-12-12T10:00:00Z',
-    updatedAt: '2025-12-13T11:20:00Z'
+    createdAt: '2025-11-12T10:00:00Z',
+    updatedAt: '2025-11-13T11:20:00Z'
   },
   {
     id: 13,
@@ -184,8 +184,8 @@ export const Styles = [
     curationCount: 1,
     tags: ['모노톤', '오피스룩', '포멀'],
     imageUrls: ['https://i.ibb.co/NdSfXB8Q/13.jpg'],
-    createdAt: '2025-12-30T09:00:00Z',
-    updatedAt: '2025-12-31T10:40:00Z'
+    createdAt: '2025-11-13T09:00:00Z',
+    updatedAt: '2025-11-14T10:40:00Z'
   }
 ];
 
