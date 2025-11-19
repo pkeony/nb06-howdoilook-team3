@@ -24,11 +24,11 @@ export const upload = multer({
     filename(req, file, cb) {
       // 저장할 파일 이름 결정
       cb(null, file.originalname); //원래이름 그대로 설정
-    },
+    }
   }),
   limits: {
     // 파일 크기 제한
-    fileSize: FILE_SIZE_LIMIT,
+    fileSize: FILE_SIZE_LIMIT
   },
 
   fileFilter: function (req, file, cb) {
@@ -39,14 +39,14 @@ export const upload = multer({
     }
 
     cb(null, true);
-  },
+  }
 });
 
 export async function uploadImage(req, res) {
   // 업로드된 파일을 접근 가능한 URL생성해서 응답으로 반환
   const protocol = req.protocol;
   const host = req.get('host'); //요청의 Host 헤더 값 가져옴
-  const imageUrl = `${protocol}://${host}${path.posix.join(STATIC_PATH, req.file.filename)}`;
+  const imageUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
   //path.posix.join() : 여러개의 문자열 인자를 받아 하나의 경로 문자열로 만듬(운영체제에 관계없이 일관된 경로형식 유지)
   return res.send({ imageUrl });
 }
