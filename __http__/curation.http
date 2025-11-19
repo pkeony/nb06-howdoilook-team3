@@ -28,13 +28,13 @@ Content-Type: application/json
 ###
 
 
-PUT {{baseUrl}}/curations/18
+PUT {{baseUrl}}/curations/11
 Content-Type: application/json
 
 {
     "nickname":"kelvin",
     "content": "좋은 옷들입니다",
-    "password": "park9090", 
+    "password": "curLuna112", 
     "trendy" : 8,
     "personality": 7,
     "practicality": 6,
@@ -44,9 +44,9 @@ Content-Type: application/json
 ###
 
 
-DELETE {{baseUrl}}/curations/18
+DELETE {{baseUrl}}/curations/14
 Content-Type: application/json
 
 {
-    "password": "park9090"
+    "password": "curSoo14"
 }

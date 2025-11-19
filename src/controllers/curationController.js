@@ -5,7 +5,7 @@ import {
   getCurationsService,
   createCurationService,
   updateCurationSerivce,
-  deleteCurationService,
+  deleteCurationService
 } from '../services/curationService.js';
 
 export const getCurations = async (req, res) => {
@@ -42,5 +42,5 @@ export const deleteCuration = async (req, res) => {
   const { curationId } = req.params;
 
   await deleteCurationService(curationId, password);
-  res.status(204).send();
+  res.status(200).json({ message: '큐레이팅 삭제 성공' });
 };

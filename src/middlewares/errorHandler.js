@@ -45,7 +45,11 @@ export function globalErrorHandler(err, req, res, next) {
       message: err.message || '존재하지 않습니다.'
     });
   }
-
+  if (err.code === 'P2002') {
+    return res.status(409).send({
+      message: '이미 이 큐레이션에는 댓글이 존재합니다.'
+    });
+  }
   // Prisma 관련 오류 처리
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
     if (err.code === 'P2002' && err.meta?.target?.includes('curationId')) {
