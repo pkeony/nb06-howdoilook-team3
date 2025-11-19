@@ -107,34 +107,30 @@ export const updateCommentService = async (commentId, content, stylePassword) =>
 
 // 답글 삭제 서비스 ~
 export const deleteCommentService = async (commentId, password) => {
-  const deletecomment = await prisma.comment.findUnique({
+  const deleteComment = await prisma.comment.findUnique({
     where: { id: Number(commentId) }
   });
 
-  if (!deletecomment) {
-    throw new Error('BadRequestError');
+  if (!deleteComment) {
+    throw new NotFoundError('Comment', Number(commentId));
   }
 
-  const { curationId } = deletecomment;
-  const deletecuration = await prisma.curation.findUnique({
+  const { curationId } = deleteComment;
+  const deleteCuration = await prisma.curation.findUnique({
     where: { id: Number(curationId) }
   });
 
-  if (!deletecuration) {
-    throw new Error('BadRequestError');
+  if (!deleteCuration) {
+    throw new NotFoundError('Curation', Number(curationId));
   }
 
-  const { stylesId } = deletecuration;
+  const { stylesId } = deleteCuration;
   const style = await prisma.style.findUnique({
     where: { id: Number(stylesId) }
   });
 
   if (!style) {
-    throw new Error('NotFoundError');
-  }
-
-  if (!commentId) {
-    throw new Error('NotFoundError');
+    throw new NotFoundError('Style', Number(stylesId));
   }
 
   // 2. 비밀번호 일치 확인
