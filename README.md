@@ -3,6 +3,7 @@
 ---
 
 초급 프로젝트 - How do I Look
+
 관련 문서: [Notion](https://www.notion.so/2a0a7f17193481b2906ad1bd67e9d610) [발표 자료PDF](https://drive.google.com/file/d/13P-6w_0H7Olx8kjGJ7fcBaLMKTOX5Ihx/view) [Swagger](https://nb06-howdoilook-team3.onrender.com/api-docs/)
 
 ---
