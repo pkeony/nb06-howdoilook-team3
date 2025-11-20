@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(STATIC_PATH, express.static(PUBLIC_PATH));
+app.use('/uploads', express.static(PUBLIC_PATH));
 
 app.use('/styles', stylesRouter);
 app.use('/tags', tagsRouter);
@@ -29,4 +30,4 @@ app.use('/', commentRouter);
 app.use(defaultNotFoundHandler);
 app.use(globalErrorHandler);
 
-app.listen(PORT || 3000, () => console.log(`Server started`));
+app.listen(PORT || 3001, () => console.log(`Server started`));

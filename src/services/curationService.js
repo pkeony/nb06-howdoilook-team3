@@ -6,7 +6,7 @@ export const getCurationsService = async (styleId, page = 1, pageSize = 10, sear
   const skip = (Number(page) - 1) * take;
 
   const style = await prisma.style.findUnique({
-    where: { id: Number(styleId) },
+    where: { id: Number(styleId) }
   });
 
   if (!style) {
@@ -18,7 +18,7 @@ export const getCurationsService = async (styleId, page = 1, pageSize = 10, sear
   if (searchBy === 'nickname' || searchBy === 'content') {
     where[searchBy] = {
       contains: keyword,
-      mode: 'insensitive',
+      mode: 'insensitive'
     };
   }
 
@@ -31,8 +31,8 @@ export const getCurationsService = async (styleId, page = 1, pageSize = 10, sear
     take,
     orderBy: { createdAt: 'asc' },
     include: {
-      comment: true,
-    },
+      comment: true
+    }
   });
 
   if (!curations) {
@@ -53,9 +53,9 @@ export const getCurationsService = async (styleId, page = 1, pageSize = 10, sear
           id: c.comment.id,
           nickname: c.comment.nickname,
           content: c.comment.content,
-          createdAt: c.comment.createdAt,
+          createdAt: c.comment.createdAt
         }
-      : {},
+      : {}
   }));
 
   return { currentPage: Number(page), totalPages, totalItemCount, data };
@@ -63,7 +63,7 @@ export const getCurationsService = async (styleId, page = 1, pageSize = 10, sear
 
 export const createCurationService = async (styleId, body) => {
   const curation = await prisma.curation.create({
-    data: { ...body, stylesId: Number(styleId) },
+    data: { ...body, stylesId: Number(styleId) }
   });
 
   if (!curation) throw new NotFoundError('Style', styleId);
@@ -71,8 +71,8 @@ export const createCurationService = async (styleId, body) => {
   await prisma.style.update({
     where: { id: Number(styleId) },
     data: {
-      curationCount: { increment: 1 },
-    },
+      curationCount: { increment: 1 }
+    }
   });
 
   const { password, updatedAt, stylesId, ...rest } = curation;
@@ -82,7 +82,7 @@ export const createCurationService = async (styleId, body) => {
 
 export const updateCurationSerivce = async (id, curationPassword, body) => {
   const curation = await prisma.curation.findUnique({
-    where: { id: Number(id) },
+    where: { id: Number(id) }
   });
 
   if (!curation) {
@@ -95,7 +95,7 @@ export const updateCurationSerivce = async (id, curationPassword, body) => {
 
   const updatedCuration = await prisma.curation.update({
     where: { id: Number(id) },
-    data: body,
+    data: body
   });
   const { password, updatedAt, stylesId, ...rest } = updatedCuration;
 
@@ -104,7 +104,7 @@ export const updateCurationSerivce = async (id, curationPassword, body) => {
 
 export const deleteCurationService = async (id, password) => {
   const curation = await prisma.curation.findUnique({
-    where: { id: Number(id) },
+    where: { id: Number(id) }
   });
 
   if (!curation) {
@@ -115,5 +115,16 @@ export const deleteCurationService = async (id, password) => {
     throw new Error('FORBIDDEN');
   }
 
-  await prisma.curation.delete({ where: { id: Number(id) } });
+  await prisma.curation.delete({
+    where: { id: Number(id) }
+  });
+
+  await prisma.style.update({
+    where: { id: Number(curation.stylesId) },
+    data: {
+      curationCount: {
+        decrement: 1
+      }
+    }
+  });
 };

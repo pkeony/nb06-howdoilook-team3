@@ -1,4 +1,4 @@
-@baseUrl = http://localhost:3000
+@baseUrl = http://localhost:3001
 
 ### 조회 성공
 GET {{baseUrl}}/styles/5/curations
